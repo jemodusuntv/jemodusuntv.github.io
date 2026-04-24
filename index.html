@@ -7,22 +7,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
 <title>Kebun Sawit v6.9</title>
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<link rel="apple-touch-icon" href="icon-192.png">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "f9f39360-2198-482e-87b6-0d45ec35af8c",
-      notifyButton: { enable: false },
-      serviceWorkerPath: "OneSignalSDKWorker.js",
-    });
-  });
-</script>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -629,7 +613,6 @@ const loadAll=async(force=false)=>{
     cache={lahan,realisasi,modal,jadwal};
     saveCache();
     setConn(true);refreshSelects();renderDashboard();
-    cekNotifikasiLokal();
   }catch(e){
     setConn(false);
     if(loadCacheLocal())showToast('Offline — data terakhir ditampilkan');
@@ -1433,69 +1416,6 @@ document.addEventListener('touchend',async()=>{
   ptrTriggered=false;
 });
 
-/* ===== SERVICE WORKER & NOTIFIKASI ===== */
-const registerSW=async()=>{
-  if(!('serviceWorker' in navigator))return;
-  try{
-    const reg=await navigator.serviceWorker.register('/service-worker.js');
-    if('Notification' in window && Notification.permission==='default'){
-      const perm=await Notification.requestPermission();
-      if(perm==='granted'){
-        showToast('Notifikasi aktif! Kamu akan dapat reminder jadwal 🌿');
-        if('periodicSync' in reg){
-          try{await reg.periodicSync.register('check-jadwal',{minInterval:6*60*60*1000});}catch(e){}
-        }
-      }
-    }
-    if(reg.active)reg.active.postMessage({type:'SCHEDULE_CHECK'});
-  }catch(e){console.error('SW error:',e);}
-};
-
-const cekNotifikasiLokal=()=>{
-  if(!('Notification' in window)||Notification.permission!=='granted')return;
-  // Hanya cek sekali per hari
-  const today=todayStr();
-  const lastCek=localStorage.getItem('sawit_last_notif');
-  if(lastCek===today)return;
-  localStorage.setItem('sawit_last_notif',today);
-
-  const now=new Date();now.setHours(0,0,0,0);
-  const panenTelat=cache.jadwal.filter(j=>{
-    if(j.status!=='pending'||j.jenis!=='Panen')return false;
-    return new Date(j.tanggal_due+'T00:00:00')<now;
-  });
-  if(panenTelat.length){
-    const lahan=panenTelat.map(j=>{
-      const hari=Math.round((now-new Date(j.tanggal_due+'T00:00:00'))/86400000);
-      return`${j.lahan} (${hari} hari)`;
-    }).join(', ');
-    new Notification('🚨 Panen Terlewat!',{
-      body:lahan+' — Buka aplikasi untuk catat panen',
-      icon:'/icon-192.png',
-      tag:'panen-telat'
-    });
-    return;
-  }
-  // Cek jadwal mendekati (3 hari ke depan)
-  const dekat=cache.jadwal.filter(j=>{
-    if(j.status!=='pending')return false;
-    const diff=Math.round((new Date(j.tanggal_due+'T00:00:00')-now)/86400000);
-    return diff>=0&&diff<=3;
-  });
-  if(dekat.length){
-    const lahan=dekat.slice(0,3).map(j=>{
-      const diff=Math.round((new Date(j.tanggal_due+'T00:00:00')-now)/86400000);
-      const label=j.jenis==='Panen'?'Panen':j.detail||j.jenis;
-      return`${j.lahan} — ${label} (${diff===0?'hari ini':diff+' hari lagi'})`;
-    }).join('\n');
-    new Notification('📅 Jadwal Mendekati',{
-      body:lahan,
-      icon:'/icon-192.png',
-      tag:'jadwal-dekat'
-    });
-  }
-};
-
 /* ===== INIT ===== */
 (async()=>{
   await loadPin();
@@ -1504,7 +1424,6 @@ const cekNotifikasiLokal=()=>{
     document.getElementById('app-main').classList.remove('app-hidden');
     document.getElementById('nav-arrows').style.display='flex';
     initApp();
-    registerSW();
   } else {
     document.getElementById('pin-screen').style.display='flex';
   }
