@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v6.7</title>
+<title>Kebun Sawit v6.9</title>
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 6.7</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 6.9</div>
 </div>
 
 <!-- APP -->
@@ -217,7 +217,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v6.7</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v6.9</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -1437,7 +1437,7 @@ document.addEventListener('touchend',async()=>{
 const registerSW=async()=>{
   if(!('serviceWorker' in navigator))return;
   try{
-    const reg=await navigator.serviceWorker.register('/kebun-sawit/service-worker.js');
+    const reg=await navigator.serviceWorker.register('/service-worker.js');
     if('Notification' in window && Notification.permission==='default'){
       const perm=await Notification.requestPermission();
       if(perm==='granted'){
@@ -1453,20 +1453,45 @@ const registerSW=async()=>{
 
 const cekNotifikasiLokal=()=>{
   if(!('Notification' in window)||Notification.permission!=='granted')return;
-  const today=new Date();today.setHours(0,0,0,0);
+  // Hanya cek sekali per hari
+  const today=todayStr();
+  const lastCek=localStorage.getItem('sawit_last_notif');
+  if(lastCek===today)return;
+  localStorage.setItem('sawit_last_notif',today);
+
+  const now=new Date();now.setHours(0,0,0,0);
   const panenTelat=cache.jadwal.filter(j=>{
     if(j.status!=='pending'||j.jenis!=='Panen')return false;
-    return new Date(j.tanggal_due+'T00:00:00')<today;
+    return new Date(j.tanggal_due+'T00:00:00')<now;
   });
   if(panenTelat.length){
     const lahan=panenTelat.map(j=>{
-      const hari=Math.round((today-new Date(j.tanggal_due+'T00:00:00'))/86400000);
+      const hari=Math.round((now-new Date(j.tanggal_due+'T00:00:00'))/86400000);
       return`${j.lahan} (${hari} hari)`;
     }).join(', ');
     new Notification('🚨 Panen Terlewat!',{
       body:lahan+' — Buka aplikasi untuk catat panen',
-      icon:'/kebun-sawit/icon-192.png',
+      icon:'/icon-192.png',
       tag:'panen-telat'
+    });
+    return;
+  }
+  // Cek jadwal mendekati (3 hari ke depan)
+  const dekat=cache.jadwal.filter(j=>{
+    if(j.status!=='pending')return false;
+    const diff=Math.round((new Date(j.tanggal_due+'T00:00:00')-now)/86400000);
+    return diff>=0&&diff<=3;
+  });
+  if(dekat.length){
+    const lahan=dekat.slice(0,3).map(j=>{
+      const diff=Math.round((new Date(j.tanggal_due+'T00:00:00')-now)/86400000);
+      const label=j.jenis==='Panen'?'Panen':j.detail||j.jenis;
+      return`${j.lahan} — ${label} (${diff===0?'hari ini':diff+' hari lagi'})`;
+    }).join('\n');
+    new Notification('📅 Jadwal Mendekati',{
+      body:lahan,
+      icon:'/icon-192.png',
+      tag:'jadwal-dekat'
     });
   }
 };
