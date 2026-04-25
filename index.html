@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v7.3</title>
+<title>Kebun Sawit v7.4</title>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -191,7 +191,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.3</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.4</div>
 </div>
 
 <!-- APP -->
@@ -202,7 +202,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.3</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.4</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -421,6 +421,27 @@ select:focus,input:focus{border-color:var(--green)}
     <div class="metric"><div class="metric-val" id="rek-modal-total" style="font-size:18px;color:var(--red)">-</div><div class="metric-lbl">Total modal</div></div>
     <div class="metric"><div class="metric-val" id="rek-ur-total" style="font-size:18px">-</div><div class="metric-lbl" id="rek-ur-lbl">Untung/Rugi</div></div>
   </div>
+
+  <div class="section-lbl" style="margin-top:16px">Rata-rata per panen</div>
+  <div class="metric-row-2" id="rek-rata2">
+    <div class="metric"><div class="metric-val" id="rek-avg-kg" style="font-size:16px">-</div><div class="metric-lbl">Rata-rata kg/panen</div></div>
+    <div class="metric"><div class="metric-val" id="rek-avg-income" style="font-size:16px;color:var(--green)">-</div><div class="metric-lbl">Rata-rata pendapatan/panen</div></div>
+  </div>
+  <div class="metric-row-2">
+    <div class="metric"><div class="metric-val" id="rek-avg-harga" style="font-size:16px;color:var(--orange)">-</div><div class="metric-lbl">Rata-rata harga TBS/kg</div></div>
+    <div class="metric"><div class="metric-val" id="rek-tot-panen" style="font-size:16px;color:var(--blue)">-</div><div class="metric-lbl">Total rotasi panen</div></div>
+  </div>
+
+  <div class="section-lbl" style="margin-top:16px">Tren produksi — <span id="rek-tren-label"></span></div>
+  <div class="card" style="padding:12px">
+    <div style="position:relative;height:200px"><canvas id="chart-rekap-produksi"></canvas></div>
+  </div>
+
+  <div class="section-lbl" style="margin-top:4px">Perbandingan tahun ini vs tahun lalu</div>
+  <div class="card">
+    <div id="rek-compare"><div class="loading">Memuat...</div></div>
+  </div>
+
   <div id="rekap-isi"></div>
   <button class="btn btn-blue" onclick="exportCSV()" style="margin-top:8px">Export semua data ke CSV</button>
 </div>
@@ -1439,6 +1460,74 @@ const renderRekap=()=>{
   document.getElementById('rek-ur-total').textContent=fmtK(Math.abs(ur));
   document.getElementById('rek-ur-lbl').textContent=ur>=0?'UNTUNG':'RUGI';
   document.getElementById('rek-ur-total').style.color=ur>=0?'var(--green)':'var(--red)';
+
+  // ===== RATA-RATA PER PANEN =====
+  const totPanen=reaAll.length;
+  const avgKg=totPanen?Math.round(totKg/totPanen):0;
+  const avgIncome=totPanen?Math.round(totBersih/totPanen):0;
+  const avgHarga=totPanen?Math.round(reaAll.reduce((a,r)=>a+(r.harga_aktual||0),0)/totPanen):0;
+  document.getElementById('rek-avg-kg').textContent=fmt(avgKg)+' kg';
+  document.getElementById('rek-avg-income').textContent=fmtK(avgIncome);
+  document.getElementById('rek-avg-harga').textContent=fmtRp(avgHarga)+'/kg';
+  document.getElementById('rek-tot-panen').textContent=totPanen+'x rotasi';
+
+  // ===== GRAFIK TREN PRODUKSI 12 BULAN =====
+  document.getElementById('rek-tren-label').textContent=tahun;
+  const trendLabels=MN.map(m=>m);
+  const trendKg=MN.map((_,i)=>Math.round(
+    rea.filter(r=>new Date(r.tanggal).getMonth()===i).reduce((a,r)=>a+(r.kg_aktual||0),0)
+  ));
+  const trendIncome=MN.map((_,i)=>Math.round(
+    rea.filter(r=>new Date(r.tanggal).getMonth()===i).reduce((a,r)=>a+(r.pendapatan_bersih||r.pendapatan||0),0)
+  ));
+  loadChartJS(()=>{
+    const ctx=document.getElementById('chart-rekap-produksi');
+    if(!ctx)return;
+    if(ctx._chart)ctx._chart.destroy();
+    ctx._chart=new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:trendLabels,
+        datasets:[
+          {label:'Produksi (kg)',data:trendKg,backgroundColor:'#1D9E75',borderRadius:4,yAxisID:'y'},
+          {label:'Pendapatan',data:trendIncome,type:'line',borderColor:'#E67E22',backgroundColor:'rgba(230,126,34,0.1)',tension:0.3,fill:true,yAxisID:'y1',pointRadius:3}
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}},
+        scales:{
+          y:{beginAtZero:true,ticks:{callback:v=>v>=1000?Math.round(v/1000)+'rb':v,font:{size:9}},grid:{color:'rgba(128,128,128,0.1)'}},
+          y1:{beginAtZero:true,position:'right',ticks:{callback:v=>v>=1000000?(v/1000000).toFixed(1)+'jt':v>=1000?Math.round(v/1000)+'rb':v,font:{size:9}},grid:{display:false}},
+          x:{ticks:{font:{size:9}},grid:{display:false}}
+        }
+      }
+    });
+  });
+
+  // ===== PERBANDINGAN TAHUN INI VS TAHUN LALU =====
+  const tahunLalu=tahun-1;
+  const reaLalu=cache.realisasi.filter(r=>new Date(r.tanggal).getFullYear()===tahunLalu&&(!lahanFilter||r.lahan===lahanFilter));
+  const modLalu=cache.modal.filter(m=>new Date(m.tanggal).getFullYear()===tahunLalu&&(!lahanFilter||m.lahan===lahanFilter));
+  const kgIni=rea.reduce((a,r)=>a+(r.kg_aktual||0),0);
+  const kgLalu=reaLalu.reduce((a,r)=>a+(r.kg_aktual||0),0);
+  const incIni=rea.reduce((a,r)=>a+(r.pendapatan_bersih||r.pendapatan||0),0);
+  const incLalu=reaLalu.reduce((a,r)=>a+(r.pendapatan_bersih||r.pendapatan||0),0);
+  const modIni=mod.reduce((a,m)=>a+(m.total||0),0);
+  const modLaluTot=modLalu.reduce((a,m)=>a+(m.total||0),0);
+  const urIni=incIni-modIni;
+  const urLalu=incLalu-modLaluTot;
+  const diffKg=kgLalu?Math.round((kgIni-kgLalu)/kgLalu*100):null;
+  const diffInc=incLalu?Math.round((incIni-incLalu)/incLalu*100):null;
+  const arrow=v=>v===null?'—':v>=0?`<span style="color:var(--green)">▲${v}%</span>`:`<span style="color:var(--red)">▼${Math.abs(v)}%</span>`;
+  document.getElementById('rek-compare').innerHTML=`
+    <div class="info-row"><span style="font-weight:700;color:var(--text2)">Kategori</span><span style="font-weight:700;color:var(--text2)">${tahunLalu} → ${tahun}</span></div>
+    <div class="info-row"><span>Total produksi (kg)</span><span>${fmt(kgLalu)} → <b>${fmt(kgIni)}</b> ${arrow(diffKg)}</span></div>
+    <div class="info-row"><span>Pendapatan bersih</span><span>${fmtK(incLalu)} → <b>${fmtK(incIni)}</b> ${arrow(diffInc)}</span></div>
+    <div class="info-row"><span>Total modal</span><span>${fmtK(modLaluTot)} → <b>${fmtK(modIni)}</b></span></div>
+    <div class="info-row" style="border:none"><span>Untung/Rugi</span><span style="color:${urLalu>=0?'var(--green)':'var(--red)'}">${fmtK(Math.abs(urLalu))}</span> → <span style="font-weight:700;color:${urIni>=0?'var(--green)':'var(--red)'}">${fmtK(Math.abs(urIni))}</span></div>
+    ${kgLalu===0?'<div style="font-size:12px;color:var(--text3);padding:8px 0">Tidak ada data tahun '+tahunLalu+'</div>':''}
+  `;
 
   // Untung/rugi per lahan — precompute semua sekaligus
   const lahanList=lahanFilter?cache.lahan.filter(d=>d.nama===lahanFilter):cache.lahan;
