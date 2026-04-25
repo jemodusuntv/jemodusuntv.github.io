@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v7.0</title>
+<title>Kebun Sawit v7.1</title>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -191,7 +191,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.0</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.1</div>
 </div>
 
 <!-- APP -->
@@ -202,7 +202,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.0</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.1</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -262,19 +262,38 @@ select:focus,input:focus{border-color:var(--green)}
       <div class="form-group"><label>Lahan</label><select id="jdw-lahan"><option value="">-- pilih --</option></select></div>
       <div class="form-group"><label>Jenis kegiatan</label>
         <select id="jdw-jenis" onchange="updateDetailJadwal()">
+          <option value="Panen">Panen</option>
           <option value="Herbisida">Herbisida / Racun rumput</option>
           <option value="Pupuk">Pemupukan</option>
           <option value="Pruning">Pruning / Pelepah</option>
         </select>
       </div>
     </div>
-    <div class="form-group"><label>Detail</label><select id="jdw-detail" onchange="updateIntervalJadwal()"></select></div>
-    <div class="form-group"><label>Tanggal terakhir dilakukan</label><input type="date" id="jdw-terakhir"></div>
-    <div class="grid2">
-      <div class="form-group"><label>Interval (bulan) — otomatis</label><input type="number" id="jdw-interval" readonly style="background:var(--bg3);color:var(--green);font-weight:700"></div>
-      <div class="form-group"><label>Jatuh tempo (otomatis)</label><input type="text" id="jdw-due-preview" readonly style="background:var(--bg3);color:var(--orange);font-weight:700" placeholder="—"></div>
+
+    <!-- Form panen — muncul kalau pilih Panen -->
+    <div id="form-panen-inline" style="display:block">
+      <div class="grid2">
+        <div class="form-group"><label>Tanggal panen</label><input type="date" id="fp-tanggal"></div>
+        <div class="form-group"><label>Berat aktual (kg)</label><input type="number" id="fp-kg" placeholder="cth: 1200" min="0"></div>
+      </div>
+      <div class="grid2">
+        <div class="form-group"><label>Harga aktual (Rp/kg)</label><input type="number" id="fp-harga" placeholder="cth: 2300"></div>
+        <div class="form-group"><label>Upah panen (Rp/kg)</label><input type="number" id="fp-upah" placeholder="cth: 120" min="0"></div>
+      </div>
+      <div class="form-group"><label>Keterangan</label><input type="text" id="fp-ket" placeholder="cth: sortasi baik"></div>
+      <button class="btn btn-orange" onclick="simpanPanenInline()">🌿 Simpan hasil panen</button>
     </div>
-    <button class="btn btn-green" onclick="simpanJadwalForm()">Tambah jadwal</button>
+
+    <!-- Form jadwal biasa — muncul kalau bukan Panen -->
+    <div id="form-jadwal-biasa" style="display:none">
+      <div class="form-group"><label>Detail</label><select id="jdw-detail" onchange="updateIntervalJadwal()"></select></div>
+      <div class="form-group"><label>Tanggal terakhir dilakukan</label><input type="date" id="jdw-terakhir"></div>
+      <div class="grid2">
+        <div class="form-group"><label>Interval (bulan) — otomatis</label><input type="number" id="jdw-interval" readonly style="background:var(--bg3);color:var(--green);font-weight:700"></div>
+        <div class="form-group"><label>Jatuh tempo (otomatis)</label><input type="text" id="jdw-due-preview" readonly style="background:var(--bg3);color:var(--orange);font-weight:700" placeholder="—"></div>
+      </div>
+      <button class="btn btn-green" onclick="simpanJadwalForm()">Simpan jadwal</button>
+    </div>
   </div>
   <div class="filter-row" id="jdw-filter-row">
     <button class="filter-btn active" onclick="filterJadwal('semua',this)">Semua</button>
@@ -660,7 +679,7 @@ const refreshSelects=()=>{
 
 const initApp=()=>{
   // Tanggal default
-  ['rea-tanggal','mod-tanggal','jdw-terakhir'].forEach(id=>{
+  ['rea-tanggal','mod-tanggal','jdw-terakhir','fp-tanggal'].forEach(id=>{
     const el=document.getElementById(id);if(el)el.value=todayStr();
   });
   updateDetailJadwal();
@@ -963,9 +982,48 @@ const DETAIL_JADWAL={
 };
 const updateDetailJadwal=()=>{
   const jenis=document.getElementById('jdw-jenis').value;
-  const sel=document.getElementById('jdw-detail');
-  sel.innerHTML=(DETAIL_JADWAL[jenis]||[]).map(d=>`<option value="${d.label}" data-interval="${d.interval}">${d.label} (${d.interval} bln)</option>`).join('');
-  updateIntervalJadwal();
+  const isPanen=jenis==='Panen';
+  document.getElementById('form-panen-inline').style.display=isPanen?'block':'none';
+  document.getElementById('form-jadwal-biasa').style.display=isPanen?'none':'block';
+  if(!isPanen){
+    const sel=document.getElementById('jdw-detail');
+    sel.innerHTML=(DETAIL_JADWAL[jenis]||[]).map(d=>`<option value="${d.label}" data-interval="${d.interval}">${d.label} (${d.interval} bln)</option>`).join('');
+    updateIntervalJadwal();
+  }
+};
+
+const simpanPanenInline=async()=>{
+  const lahan=document.getElementById('jdw-lahan').value;
+  if(!lahan){showToast('Pilih lahan');return;}
+  const tanggal=document.getElementById('fp-tanggal').value;
+  if(!tanggal){showToast('Isi tanggal panen');return;}
+  const kg=parseFloat(document.getElementById('fp-kg').value)||0;
+  if(!kg){showToast('Isi berat aktual');return;}
+  const harga=parseInt(document.getElementById('fp-harga').value)||0;
+  if(!harga){showToast('Isi harga aktual');return;}
+  const upah_panen=parseInt(document.getElementById('fp-upah').value)||0;
+  const ket=document.getElementById('fp-ket').value;
+  const pendapatan=Math.round(kg*harga);
+  const total_upah=Math.round(kg*upah_panen);
+  const pendapatan_bersih=pendapatan-total_upah;
+  try{
+    await sb('realisasi_panen','POST',{lahan,tanggal,kg_aktual:kg,harga_aktual:harga,upah_panen,total_upah,pendapatan,pendapatan_bersih,keterangan:ket});
+    // Hapus jadwal panen lama & buat jadwal baru
+    const nextDate=new Date(tanggal+'T00:00:00');
+    nextDate.setDate(nextDate.getDate()+ROTASI_PANEN);
+    const nextStr=nextDate.toISOString().slice(0,10);
+    const jadwalLama=cache.jadwal.filter(j=>j.lahan===lahan&&j.jenis==='Panen'&&j.status==='pending');
+    for(const j of jadwalLama)await sb('jadwal_aktif','DELETE',null,'id=eq.'+j.id);
+    await sb('jadwal_aktif','POST',{lahan,jenis:'Panen',detail:'Rotasi '+ROTASI_PANEN+' hari',tanggal_due:nextStr,interval_bulan:null,status:'pending',sumber:'auto'});
+    await reloadTable('realisasi_panen');
+    await reloadTable('jadwal_aktif');
+    renderJadwal();renderDashboard();
+    // Reset form
+    ['fp-kg','fp-harga','fp-upah','fp-ket'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('fp-tanggal').value=todayStr();
+    document.getElementById('jdw-lahan').value='';
+    showToast('Panen '+lahan+' dicatat — jadwal berikutnya: '+nextStr);
+  }catch(e){showToast('Gagal: '+e.message);}
 };
 const updateIntervalJadwal=()=>{
   const sel=document.getElementById('jdw-detail');
