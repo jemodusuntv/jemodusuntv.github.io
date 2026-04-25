@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v6.9</title>
+<title>Kebun Sawit v7.0</title>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -82,6 +82,7 @@ select:focus,input:focus{border-color:var(--green)}
 .btn-orange{background:var(--orange);color:#fff}
 .btn-sm{display:inline-block;width:auto;padding:7px 14px;font-size:13px;margin:0;border-radius:7px}
 .btn-red{background:var(--badge-red-bg);color:var(--badge-red);border:1px solid var(--badge-red-bg)}
+.btn-orange{background:var(--badge-orange-bg);color:var(--badge-orange);border:1px solid var(--badge-orange-bg)}
 .btn-gray{background:var(--bg3);color:var(--text);border:none}
 .metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 .metric-row-2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
@@ -190,7 +191,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 6.9</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.0</div>
 </div>
 
 <!-- APP -->
@@ -201,7 +202,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v6.9</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.0</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -1042,6 +1043,37 @@ const renderJadwal=()=>{
     const st=statusJadwal(j.tanggal_due);
     const selesai=j.status==='selesai';
     const isPanen=j.jenis==='Panen';
+    const formPanen=isPanen&&!selesai?`
+      <div id="form-panen-${j.id}" style="display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px">
+        <div class="grid2" style="margin-bottom:8px">
+          <div class="form-group" style="margin:0">
+            <label>Tanggal panen</label>
+            <input type="date" id="fp-tgl-${j.id}" value="${todayStr()}">
+          </div>
+          <div class="form-group" style="margin:0">
+            <label>Berat aktual (kg)</label>
+            <input type="number" id="fp-kg-${j.id}" placeholder="cth: 1200" min="0">
+          </div>
+        </div>
+        <div class="grid2" style="margin-bottom:8px">
+          <div class="form-group" style="margin:0">
+            <label>Harga aktual (Rp/kg)</label>
+            <input type="number" id="fp-harga-${j.id}" placeholder="cth: 2300">
+          </div>
+          <div class="form-group" style="margin:0">
+            <label>Upah panen (Rp/kg)</label>
+            <input type="number" id="fp-upah-${j.id}" placeholder="cth: 120" min="0">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:8px">
+          <label>Keterangan</label>
+          <input type="text" id="fp-ket-${j.id}" placeholder="cth: sortasi baik">
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-green btn-sm" style="flex:1" onclick="simpanPanenDariJadwal('${j.id}','${j.lahan}')">Simpan panen</button>
+          <button class="btn btn-gray btn-sm" onclick="document.getElementById('form-panen-${j.id}').style.display='none'">Batal</button>
+        </div>
+      </div>`:''
     return`<div class="item-card" style="${selesai?'opacity:0.6':''}border-left:4px solid ${selesai?'#ccc':(jBorder[j.jenis]||st.color)}${isPanen&&!selesai?';background:var(--badge-orange-bg)':''}">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div style="flex:1">
@@ -1052,14 +1084,52 @@ const renderJadwal=()=>{
         <span class="badge ${selesai?'b-gray':st.cls}" style="flex-shrink:0;margin-left:8px;white-space:nowrap">${selesai?'Selesai':st.label}</span>
       </div>
       <div class="item-actions">
-        ${!selesai?`<button class="btn-sm btn-green" onclick="tandaiSelesai('${j.id}')">Selesai</button>`:''}
+        ${isPanen&&!selesai
+          ?`<button class="btn-sm btn-orange" onclick="toggleFormPanen('${j.id}')">🌿 Catat Panen</button>`
+          :!selesai?`<button class="btn-sm btn-green" onclick="tandaiSelesai('${j.id}')">Selesai</button>`:''
+        }
         <button class="btn-sm btn-red" onclick="hapusItem('jadwal_aktif','${j.id}','Hapus jadwal ini?')">Hapus</button>
       </div>
+      ${formPanen}
     </div>`;
   }).join('');
 };
 
 /* ===== REALISASI ===== */
+const toggleFormPanen=id=>{
+  const el=document.getElementById('form-panen-'+id);
+  if(!el)return;
+  el.style.display=el.style.display==='none'?'block':'none';
+};
+
+const simpanPanenDariJadwal=async(jadwalId,lahan)=>{
+  const tanggal=document.getElementById('fp-tgl-'+jadwalId).value;
+  const kg=parseFloat(document.getElementById('fp-kg-'+jadwalId).value)||0;
+  const harga=parseInt(document.getElementById('fp-harga-'+jadwalId).value)||0;
+  const upah_panen=parseInt(document.getElementById('fp-upah-'+jadwalId).value)||0;
+  const ket=document.getElementById('fp-ket-'+jadwalId).value;
+  if(!tanggal){showToast('Isi tanggal panen');return;}
+  if(!kg){showToast('Isi berat aktual');return;}
+  if(!harga){showToast('Isi harga aktual');return;}
+  const pendapatan=Math.round(kg*harga);
+  const total_upah=Math.round(kg*upah_panen);
+  const pendapatan_bersih=pendapatan-total_upah;
+  const data={lahan,tanggal,kg_aktual:kg,harga_aktual:harga,upah_panen,total_upah,pendapatan,pendapatan_bersih,keterangan:ket};
+  try{
+    await sb('realisasi_panen','POST',data);
+    // Hapus jadwal panen lama & buat jadwal baru
+    const nextDate=new Date(tanggal+'T00:00:00');
+    nextDate.setDate(nextDate.getDate()+ROTASI_PANEN);
+    const nextStr=nextDate.toISOString().slice(0,10);
+    const jadwalLama=cache.jadwal.filter(j=>j.lahan===lahan&&j.jenis==='Panen'&&j.status==='pending');
+    for(const j of jadwalLama)await sb('jadwal_aktif','DELETE',null,'id=eq.'+j.id);
+    await sb('jadwal_aktif','POST',{lahan,jenis:'Panen',detail:'Rotasi '+ROTASI_PANEN+' hari',tanggal_due:nextStr,interval_bulan:null,status:'pending',sumber:'auto'});
+    await reloadTable('realisasi_panen');
+    await reloadTable('jadwal_aktif');
+    renderJadwal();renderDashboard();
+    showToast('Panen '+lahan+' dicatat — jadwal berikutnya: '+nextStr);
+  }catch(e){showToast('Gagal: '+e.message);}
+};
 let editReaId=null;
 const simpanRealisasi=async()=>{
   const lahan=document.getElementById('rea-lahan').value;
