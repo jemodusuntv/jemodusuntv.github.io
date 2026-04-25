@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v7.1</title>
+<title>Kebun Sawit v7.2</title>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -191,7 +191,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.1</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.2</div>
 </div>
 
 <!-- APP -->
@@ -202,7 +202,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.1</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.2</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -1143,7 +1143,7 @@ const renderJadwal=()=>{
       </div>
       <div class="item-actions">
         ${isPanen&&!selesai
-          ?`<button class="btn-sm btn-orange" onclick="toggleFormPanen('${j.id}')">🌿 Catat Panen</button>`
+          ?``
           :!selesai?`<button class="btn-sm btn-green" onclick="tandaiSelesai('${j.id}')">Selesai</button>`:''
         }
         <button class="btn-sm btn-red" onclick="hapusItem('jadwal_aktif','${j.id}','Hapus jadwal ini?')">Hapus</button>
