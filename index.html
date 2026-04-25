@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kebun Sawit">
-<title>Kebun Sawit v7.2</title>
+<title>Kebun Sawit v7.3</title>
 <style>
 :root{
   --bg:#f5f5f0;--bg2:#fff;--bg3:#f0f0eb;
@@ -191,7 +191,7 @@ select:focus,input:focus{border-color:var(--green)}
     <button class="pin-btn del" onclick="pinDelete()">&#9003;</button>
   </div>
   <div class="pin-hint">Lupa PIN? Hubungi admin</div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.2</div>
+  <div style="margin-top:16px;font-size:11px;color:var(--text3)">Versi 7.3</div>
 </div>
 
 <!-- APP -->
@@ -202,7 +202,7 @@ select:focus,input:focus{border-color:var(--green)}
 </div>
 
 <div class="topbar">
-  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.2</span></h1>
+  <h1>Kebun Sawit <span style="font-size:11px;opacity:0.7;font-weight:400">v7.3</span></h1>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="conn-status" class="online-badge"><span class="dot-offline" id="conn-dot"></span><span id="conn-txt">Menghubungkan...</span></div>
     <button onclick="logout()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;padding:4px 10px;border-radius:20px;cursor:pointer">Kunci</button>
@@ -212,7 +212,6 @@ select:focus,input:focus{border-color:var(--green)}
 <div class="nav">
   <button class="nav-btn active" onclick="switchTab('dashboard',this)">Dashboard</button>
   <button class="nav-btn" onclick="switchTab('jadwal',this)">Jadwal</button>
-  <button class="nav-btn" onclick="switchTab('realisasi',this)">Realisasi</button>
   <button class="nav-btn" onclick="switchTab('modal',this)">Modal</button>
   <button class="nav-btn" onclick="switchTab('rekap',this)">Rekap</button>
   <button class="nav-btn" onclick="switchTab('lahan',this)">Lahan</button>
@@ -281,7 +280,7 @@ select:focus,input:focus{border-color:var(--green)}
         <div class="form-group"><label>Upah panen (Rp/kg)</label><input type="number" id="fp-upah" placeholder="cth: 120" min="0"></div>
       </div>
       <div class="form-group"><label>Keterangan</label><input type="text" id="fp-ket" placeholder="cth: sortasi baik"></div>
-      <button class="btn btn-orange" onclick="simpanPanenInline()">🌿 Simpan hasil panen</button>
+      <button class="btn btn-green" onclick="simpanPanenInline()">🌿 Simpan hasil panen</button>
     </div>
 
     <!-- Form jadwal biasa — muncul kalau bukan Panen -->
@@ -477,7 +476,7 @@ const ROTASI_PANEN=14;
 const MN=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
 const MNF=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const COLORS=['#1D9E75','#185FA5','#BA7517','#D85A30','#D4537E','#534AB7','#639922','#888780','#E67E22'];
-const TABS=['dashboard','jadwal','realisasi','modal','rekap','lahan'];
+const TABS=['dashboard','jadwal','modal','rekap','lahan'];
 
 let LAHAN_NAMES=[];
 let CORRECT_PIN='';
@@ -818,7 +817,7 @@ const renderDashboard=()=>{
 
   // Peringatan panen terlewat — paling atas, mencolok → arahkan ke Realisasi
   if(panenTelat.length){
-    alertHtml+=`<div class="alert-panen-telat" onclick="switchTab('realisasi',document.querySelectorAll('.nav-btn')[2])">
+    alertHtml+=`<div class="alert-panen-telat" onclick="switchTab('jadwal',document.querySelectorAll('.nav-btn')[1])">
       <div style="display:flex;align-items:center;gap:10px">
         <div style="font-size:32px">🚨</div>
         <div style="flex:1">
@@ -827,7 +826,7 @@ const renderDashboard=()=>{
             const hari=Math.abs(Math.round((parseDate(j.tanggal_due)-today2)/(1000*60*60*24)));
             return`<div style="font-size:13px;color:var(--text);margin-bottom:2px"><b>${j.lahan}</b> — telat <b style="color:var(--red)">${hari} hari</b> <span style="color:var(--text2);font-size:11px">(due: ${j.tanggal_due})</span></div>`;
           }).join('')}
-          <div style="font-size:11px;color:var(--text2);margin-top:6px">Tap untuk catat realisasi panen →</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:6px">Tap untuk catat panen →</div>
         </div>
       </div>
     </div>`;
@@ -839,9 +838,7 @@ const renderDashboard=()=>{
     const isPanen=j.jenis==='Panen';
     const cls=isPanen?(st.diff<=3?'alert-kuning':'alert-hijau'):st.diff<=3?'alert-kuning':'alert-hijau';
     // Panen → tab Realisasi (index 2), selain panen → tab Jadwal (index 1)
-    const onClick=isPanen
-      ?`switchTab('realisasi',document.querySelectorAll('.nav-btn')[2])`
-      :`switchTab('jadwal',document.querySelectorAll('.nav-btn')[1])`;
+    const onClick=`switchTab('jadwal',document.querySelectorAll('.nav-btn')[1])`;
     const label=isPanen?'Panen':j.detail||j.jenis;
     return`<div class="alert-card ${cls}" onclick="${onClick}">
       <div class="alert-title">${j.lahan} — ${label}</div>
