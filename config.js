@@ -7,7 +7,7 @@
 const CONFIG = {
 
   // === PROFIL ===
-  name: "JemoDusunTV - Channel Outdoor & Petualanga",
+  name: "JemoDusunTV - Channel Outdoor & Petualangan",
   location: "Bengkulu – Sumatera, Indonesia",
   tagline: "Channel outdoor & petualangan sungai yang merekam keindahan alam secara autentik — dari memancing di pedalaman hingga menjelajahi jalur air yang belum pernah dieksplor.",
   niche: ["Outdoor & Alam", "Petualangan Sungai", "Memancing","Camping"],
