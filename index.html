@@ -70,42 +70,7 @@
   .d4  { animation-delay:.40s; }
   .d5  { animation-delay:.52s; }
 
-  .wrap { max-width:900px; margin:0 auto; padding:0 28px; }
-
-  @media(max-width:768px){
-    .wrap { padding:0 20px; }
-  }
-
-  @media(max-width:480px){
-    .wrap { padding:0 16px; }
-    .hero { padding:40px 0 34px; }
-    .brand-row { gap:12px; }
-    .logo { width:58px; height:58px; }
-    .hero-name { font-size:30px; }
-    .hero-tagline { font-size:12px; }
-    .live-chip { font-size:9px; margin-bottom:16px; }
-    .badges { gap:5px; }
-    .badge { font-size:9px; padding:3px 9px; }
-    section { padding:32px 0 0; }
-    .sec-label { font-size:9px; letter-spacing:.08em; }
-    .reach { padding:18px 14px; gap:10px; }
-    .reach-num { font-size:36px; }
-    .reach-divider { display:none; }
-    .reach-text { font-size:11px; }
-    .stat-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
-    .stat-card { padding:12px 12px; }
-    .stat-val { font-size:20px; }
-    .plat-grid { grid-template-columns:1fr; gap:8px; }
-    .plat-card { padding:12px 14px; }
-    .plat-count { font-size:20px; }
-    .collab-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
-    .collab-card { padding:14px 10px; }
-    .contact-wrap { padding:32px 0 56px; }
-    .contact-card { padding:24px 16px; }
-    .contact-heading { font-size:26px; }
-    .contact-grid { grid-template-columns:1fr; gap:8px; }
-    .footer { padding:0 0 28px; font-size:10px; }
-  }
+  .wrap { max-width:900px; margin:0 auto; padding:0 28px; box-sizing:border-box; width:100%; }
 
   /* ── HERO ── */
   .hero {
@@ -131,7 +96,7 @@
     );
   }
 
-  .hero-inner { position:relative; z-index:2; }
+  .hero-inner { position:relative; z-index:2; padding:0 28px; }
 
   .live-chip {
     display:inline-flex; align-items:center; gap:7px;
@@ -337,6 +302,35 @@
     display:inline-block; height:1em; width:70px; border-radius:4px;
     background:linear-gradient(90deg,#dde6f0 25%,#ecf2f8 50%,#dde6f0 75%);
     background-size:200% 100%; animation:shimmer 1.4s infinite;
+  }
+
+  @media screen and (max-width: 600px) {
+    .wrap { padding-left: 18px !important; padding-right: 18px !important; }
+    .hero-inner { padding-left: 18px !important; padding-right: 18px !important; }
+    .hero { padding-top: 40px; padding-bottom: 34px; }
+    .reach { padding: 18px 16px; }
+    .reach-num { font-size: 38px; }
+    .reach-divider { display: none; }
+    .reach-text { font-size: 12px; }
+    .stat-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .stat-card { padding: 12px 12px; }
+    .stat-val { font-size: 20px; }
+    .plat-grid { grid-template-columns: 1fr; }
+    .plat-card { padding: 12px 14px; }
+    .collab-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .collab-card { padding: 14px 10px; }
+    .collab-desc { font-size: 10px; }
+    .contact-card { padding: 22px 16px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-heading { font-size: 26px; }
+    section { padding: 30px 0 0; }
+    .contact-wrap { padding: 30px 0 50px; }
+    .sec-label { font-size: 9px; }
+    .hero-name { font-size: 30px; }
+    .logo { width: 58px; height: 58px; }
+    .brand-row { gap: 12px; }
+    .hero-tagline { font-size: 12px; }
+    .badge { font-size: 9px; padding: 3px 9px; }
   }
 </style>
 </head>
