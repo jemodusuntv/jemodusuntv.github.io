@@ -6,3 +6,5 @@ Disallow: /kebun-sawit/
 
 User-agent: Bingbot
 Disallow: /kebun-sawit/
+
+Sitemap: https://jemodusuntv.com/sitemap.xml
