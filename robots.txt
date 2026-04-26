@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /kebun-sawit/
+
+User-agent: Googlebot
+Disallow: /kebun-sawit/
+
+User-agent: Bingbot
+Disallow: /kebun-sawit/
