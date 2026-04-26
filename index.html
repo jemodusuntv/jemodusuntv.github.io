@@ -70,30 +70,47 @@
   .d4  { animation-delay:.40s; }
   .d5  { animation-delay:.52s; }
 
-  .wrap { max-width:900px; margin:0 auto; padding:0 28px; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 40px; }
+
+  @media(max-width:768px){
+    .wrap { padding:0 20px; }
+    .hero { padding:44px 0 38px; }
+  }
+
   @media(max-width:480px){
     .wrap { padding:0 16px; }
-    .hero { padding:40px 0 36px; }
-    .brand-row { gap:14px; }
-    .hero-name { font-size:32px; }
-    .reach { padding:18px 16px; gap:12px; }
-    .reach-num { font-size:38px; }
+    .hero { padding:36px 0 32px; }
+    .brand-row { gap:12px; }
+    .hero-name { font-size:30px; }
+    .hero-tagline { font-size:12px; }
+    .logo { width:58px; height:58px; }
+    .badges { gap:6px; margin-top:12px; }
+    .badge { font-size:9px; padding:3px 10px; }
+    .reach { padding:16px 14px; gap:10px; flex-wrap:wrap; }
+    .reach-num { font-size:36px; }
     .reach-divider { display:none; }
-    .reach-text { font-size:12px; }
+    .reach-text { font-size:11px; }
     .stat-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
-    .stat-card { padding:13px 12px; }
-    .stat-val { font-size:22px; }
+    .stat-card { padding:12px 10px; }
+    .stat-val { font-size:20px; }
+    .stat-lbl { font-size:10px; }
     .plat-grid { grid-template-columns:1fr; gap:8px; }
-    .plat-card { padding:13px 14px; }
+    .plat-card { padding:12px 14px; }
+    .plat-count { font-size:20px; }
     .collab-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
     .collab-card { padding:14px 10px; }
-    .contact-card { padding:24px 18px; }
-    .contact-grid { grid-template-columns:1fr; gap:10px; }
-    .contact-heading { font-size:28px; }
-    section { padding:32px 0 0; }
-    .contact-wrap { padding:32px 0 56px; }
-    .hero-tagline { font-size:12px; }
-    .logo { width:60px; height:60px; }
+    .collab-title { font-size:12px; }
+    .collab-desc { font-size:10px; }
+    .contact-card { padding:24px 16px; }
+    .contact-grid { grid-template-columns:1fr; gap:8px; }
+    .contact-heading { font-size:26px; }
+    .contact-sub { font-size:12px; margin-bottom:18px; }
+    section { padding:28px 0 0; }
+    .contact-wrap { padding:28px 0 50px; }
+    .sec-label { font-size:9px; margin-bottom:10px; }
+    .updated { font-size:9px; }
+    .live-chip { font-size:9px; padding:4px 10px; margin-bottom:16px; }
+    .footer { font-size:10px; padding:0 0 24px; }
   }
 
   /* ── HERO ── */
