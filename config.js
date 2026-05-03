@@ -34,8 +34,8 @@ const CONFIG = {
   platforms: [
     { name: "YouTube",   followers: 492000,   color: "#cc0000",  bg: "#ffecec", icon: "yt" },
     { name: "Facebook",  followers: 1600000,  color: "#1877f2",  bg: "#e8f0fe", icon: "fb" },
-    { name: "TikTok",    followers: 800000,   color: "#000000",  bg: "#f0f0f0", icon: "tt" },
-    { name: "Instagram", followers: 108000,   color: "#c13584",  bg: "#fce4f0", icon: "ig" },
+    { name: "TikTok",    followers: 840000,   color: "#000000",  bg: "#f0f0f0", icon: "tt" },
+    { name: "Instagram", followers: 112000,   color: "#c13584",  bg: "#fce4f0", icon: "ig" },
   ],
 
   // === KOLABORASI ===
