@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- OG tags akan di-update via JS, tapi fallback ini berguna untuk crawler -->
+<meta property="og:type" content="video.other" />
+<meta property="og:site_name" content="Tonton di YouTube" />
+<meta property="og:title" content="Tonton video ini di YouTube" id="og-title" />
+<meta property="og:image" content="" id="og-image" />
+<meta property="og:description" content="Tap untuk membuka langsung di aplikasi YouTube" id="og-desc" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tonton di YouTube" />
+
+<title>Membuka YouTube...</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --red: #FF0000;
+    --red-dark: #CC0000;
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --muted: rgba(255,255,255,0.5);
+    --muted2: rgba(255,255,255,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  /* Subtle background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,0,0,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(255,0,0,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  /* --- LOADING STATE --- */
+  #loading {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-top-color: var(--red);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #loading p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* --- ERROR STATE --- */
+  #error-state {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .error-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  #error-state h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  #error-state p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* --- CARD --- */
+  #card {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Thumbnail */
+  .thumb-wrapper {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .thumb-wrapper img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  .thumb-wrapper:hover img {
+    transform: scale(1.03);
+    opacity: 0.85;
+  }
+
+  .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+  }
+
+  .play-circle {
+    width: 68px;
+    height: 68px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 6px rgba(255,0,0,0.2), 0 8px 24px rgba(255,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .thumb-wrapper:hover .play-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(255,0,0,0.25), 0 12px 32px rgba(255,0,0,0.5);
+  }
+
+  .play-arrow {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 22px solid #fff;
+    margin-left: 5px;
+  }
+
+  /* Info */
+  .info {
+    padding: 20px;
+  }
+
+  .yt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,0,0,0.12);
+    border: 1px solid rgba(255,0,0,0.2);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #FF6060;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .yt-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .video-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .video-url {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Buttons */
+  .btn-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: background 0.2s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-main::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, transparent 100%);
+  }
+
+  .btn-main:hover {
+    background: var(--red-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-main:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  .btn-main svg {
+    flex-shrink: 0;
+  }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.2);
+    color: var(--text);
+    background: var(--surface2);
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    color: var(--muted2);
+    font-size: 11px;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+
+  /* Hint banner */
+  .hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .hint-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  /* In-app browser warning */
+  .inapp-warning {
+    display: none;
+    background: rgba(255, 200, 0, 0.08);
+    border: 1px solid rgba(255, 200, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: rgba(255, 210, 60, 0.9);
+    line-height: 1.5;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .inapp-warning.show { display: flex; }
+
+  /* Auto redirect countdown */
+  .countdown {
+    display: none;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .countdown.show { display: block; }
+  .countdown span { color: var(--red); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Memuat video...</p>
+  </div>
+
+  <!-- Error -->
+  <div id="error-state">
+    <div class="error-icon">⚠️</div>
+    <h2>Link tidak valid</h2>
+    <p>Tidak ada video ID yang ditemukan di URL ini.<br>Pastikan link mengandung parameter <code style="color:#FF6060">?v=VIDEO_ID</code></p>
+  </div>
+
+  <!-- Card -->
+  <div id="card">
+
+    <!-- Thumbnail -->
+    <div class="thumb-wrapper" id="thumb-wrapper" onclick="openApp()">
+      <img id="thumb-img" src="" alt="Thumbnail video YouTube" />
+      <div class="thumb-overlay">
+        <div class="play-circle">
+          <div class="play-arrow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="info">
+
+      <div class="yt-badge">
+        <div class="yt-badge-dot"></div>
+        YouTube
+      </div>
+
+      <p class="video-title" id="video-title">Tonton video ini di YouTube</p>
+      <p class="video-url" id="video-url"></p>
+
+      <!-- In-app browser warning -->
+      <div class="inapp-warning" id="inapp-warn">
+        <span class="hint-icon">⚠️</span>
+        <span>Kamu membuka dari browser in-app (Facebook/Instagram). Tombol di bawah akan membuka aplikasi YouTube langsung.</span>
+      </div>
+
+      <!-- Hint -->
+      <div class="hint">
+        <span class="hint-icon">💡</span>
+        <span>Tap tombol merah untuk membuka langsung di <strong>aplikasi YouTube</strong> — bisa langsung Subscribe!</span>
+      </div>
+
+      <!-- Main CTA -->
+      <button class="btn-main" onclick="openApp()" id="btn-open">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M21.582 6.186a2.496 2.496 0 0 0-1.756-1.756C18.254 4 12 4 12 4s-6.254 0-7.826.43A2.496 2.496 0 0 0 2.418 6.186C2 7.758 2 12 2 12s0 4.242.418 5.814a2.496 2.496 0 0 0 1.756 1.756C5.746 20 12 20 12 20s6.254 0 7.826-.43a2.496 2.496 0 0 0 1.756-1.756C22 16.242 22 12 22 12s0-4.242-.418-5.814z" fill="white"/>
+          <path d="M10 15.464V8.536L16 12l-6 3.464z" fill="#FF0000"/>
+        </svg>
+        Buka di Aplikasi YouTube
+      </button>
+
+      <div class="countdown" id="countdown">
+        Otomatis buka browser dalam <span id="count-num">5</span> detik...
+      </div>
+
+      <div class="divider">atau</div>
+
+      <a class="btn-secondary" id="btn-web" href="#" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Buka di browser web
+      </a>
+
+    </div>
+
+    <div class="footer">
+      Halaman ini akan membuka aplikasi YouTube secara langsung.<br>
+      Cocok dibagikan lewat Facebook, WhatsApp, atau Instagram.
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+
+  // ── Ambil video ID dari ?v= atau ?id= atau path /yt-redirect/VIDEO_ID
+  function getVideoId() {
+    var params = new URLSearchParams(window.location.search);
+    var vid = params.get('v') || params.get('id') || params.get('video');
+    if (vid) return vid.trim();
+
+    // Fallback: cek path
+    var path = window.location.pathname.split('/').filter(Boolean);
+    var last = path[path.length - 1];
+    if (last && /^[a-zA-Z0-9_-]{11}$/.test(last)) return last;
+
+    return null;
+  }
+
+  // ── Deteksi in-app browser
+  function isInAppBrowser() {
+    var ua = navigator.userAgent || '';
+    return /FBAN|FBAV|Instagram|FB_IAB|Line|Twitter|Snapchat|TikTok|Pinterest|WeChat|MicroMessenger/i.test(ua);
+  }
+
+  // ── Deteksi iOS
+  function isIOS() {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  // ── Deteksi Android
+  function isAndroid() {
+    return /Android/i.test(navigator.userAgent);
+  }
+
+  var vid = getVideoId();
+
+  if (!vid || !/^[a-zA-Z0-9_-]{10,12}$/.test(vid)) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error-state').style.display = 'block';
+    return;
+  }
+
+  // ── URLs
+  var webUrl = 'https://www.youtube.com/watch?v=' + vid;
+  var deepLinkAndroid = 'vnd.youtube://' + vid;
+  var deepLinkIOS = 'youtube://www.youtube.com/watch?v=' + vid;
+  var thumbUrl = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
+  var thumbHD = 'https://img.youtube.com/vi/' + vid + '/maxresdefault.jpg';
+
+  // ── Set OG meta (untuk SSR/crawler baca ini saat share — tidak real-time tapi berguna)
+  document.getElementById('og-image').setAttribute('content', thumbUrl);
+  document.getElementById('og-title').setAttribute('content', 'Tonton di YouTube — ' + vid);
+
+  // ── Update UI
+  document.getElementById('video-url').textContent = 'youtu.be/' + vid;
+  document.getElementById('btn-web').href = webUrl;
+  document.title = 'Membuka YouTube...';
+
+  // ── Thumbnail — coba HD dulu, fallback ke hq
+  var img = document.getElementById('thumb-img');
+  var hdImg = new Image();
+  hdImg.onload = function() {
+    // Jika lebar 120 = placeholder YouTube (artinya maxres tidak ada)
+    if (hdImg.width > 120) {
+      img.src = thumbHD;
+    } else {
+      img.src = thumbUrl;
+    }
+  };
+  hdImg.onerror = function() { img.src = thumbUrl; };
+  hdImg.src = thumbHD;
+
+  // ── Tampilkan card
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('card').style.display = 'block';
+
+  // ── In-app browser warning
+  if (isInAppBrowser()) {
+    document.getElementById('inapp-warn').classList.add('show');
+  }
+
+  // ── openApp: coba deep link, fallback ke web
+  var countdownInterval = null;
+
+  window.openApp = function() {
+    var deepLink = isIOS() ? deepLinkIOS : deepLinkAndroid;
+
+    // Untuk non-mobile: langsung buka web
+    if (!isIOS() && !isAndroid()) {
+      window.open(webUrl, '_blank');
+      return;
+    }
+
+    // Mobile: coba app dulu
+    var start = Date.now();
+    window.location.href = deepLink;
+
+    // Jika app tidak ada / user di in-app browser, countdown ke web
+    var secs = 5;
+    var el = document.getElementById('count-num');
+    document.getElementById('countdown').classList.add('show');
+
+    countdownInterval = setInterval(function() {
+      secs--;
+      el.textContent = secs;
+      if (secs <= 0) {
+        clearInterval(countdownInterval);
+        // Cek jika tab masih aktif (app tidak terbuka)
+        if (Date.now() - start < 6000) {
+          window.location.href = webUrl;
+        }
+      }
+    }, 1000);
+
+    // Jika app berhasil buka, page akan blur — batalkan countdown
+    window.addEventListener('blur', function() {
+      clearInterval(countdownInterval);
+      document.getElementById('countdown').classList.remove('show');
+    }, { once: true });
+  };
+
+  // ── Auto-redirect untuk non-inapp browser di mobile
+  if (!isInAppBrowser() && (isIOS() || isAndroid())) {
+    // Langsung coba buka app tanpa perlu klik
+    setTimeout(function() {
+      var deepLink = isIOS() ? deepLinkIOS : deepLinkAndroid;
+      window.location.href = deepLink;
+    }, 800);
+  }
+
+})();
+</script>
+</body>
+</html>
