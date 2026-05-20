@@ -87,29 +87,166 @@
     font-size: 14px;
   }
 
-  /* --- ERROR STATE --- */
-  #error-state {
+  /* --- GENERATOR STATE --- */
+  #generator {
     display: none;
-    text-align: center;
-    padding: 40px 20px;
+    padding: 32px 20px 24px;
+    animation: fadeUp 0.4s ease both;
   }
 
-  .error-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-    line-height: 1;
+  .gen-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
   }
 
-  #error-state h2 {
-    font-size: 18px;
+  .gen-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--red);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gen-logo-icon::after {
+    content: '';
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 13px solid #fff;
+    margin-left: 3px;
+  }
+
+  .gen-logo-text {
+    font-size: 15px;
     font-weight: 600;
+    color: #fff;
+  }
+
+  .gen-logo-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 1px;
+  }
+
+  .gen-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .gen-input-row {
+    display: flex;
+    gap: 8px;
     margin-bottom: 8px;
   }
 
-  #error-state p {
+  .gen-input {
+    flex: 1;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
     font-size: 14px;
-    color: var(--muted);
+    color: #fff;
+    outline: none;
+    font-family: 'Sora', sans-serif;
+    transition: border-color 0.2s;
+  }
+
+  .gen-input::placeholder { color: rgba(255,255,255,0.3); }
+  .gen-input:focus { border-color: rgba(255,255,255,0.35); }
+
+  .gen-btn {
+    padding: 12px 20px;
+    background: var(--red);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .gen-btn:hover { background: var(--red-dark); }
+
+  .gen-err {
+    font-size: 12px;
+    color: #FF6060;
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .gen-result {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 14px;
+    display: none;
+    margin-top: 4px;
+  }
+
+  .gen-result-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .gen-result-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: none;
+  }
+
+  .gen-result-link {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    word-break: break-all;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
     line-height: 1.6;
+  }
+
+  .gen-copy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px;
+    background: var(--red);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .gen-copy-btn:hover { background: var(--red-dark); }
+
+  .gen-footer {
+    margin-top: 24px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    line-height: 1.7;
   }
 
   /* --- CARD --- */
@@ -349,11 +486,37 @@
     <p>Memuat video...</p>
   </div>
 
-  <!-- Error -->
-  <div id="error-state">
-    <div class="error-icon">⚠️</div>
-    <h2>Link tidak valid</h2>
-    <p>Tidak ada video ID yang ditemukan di URL ini.<br>Pastikan link mengandung parameter <code style="color:#FF6060">?v=VIDEO_ID</code></p>
+  <!-- Generator (tampil jika tidak ada ?v=) -->
+  <div id="generator">
+    <div class="gen-logo">
+      <div class="gen-logo-icon"></div>
+      <div>
+        <div class="gen-logo-text">YouTube Link Generator</div>
+        <div class="gen-logo-sub">jemodusuntv.com</div>
+      </div>
+    </div>
+
+    <p class="gen-label">Paste link YouTube kamu</p>
+    <div class="gen-input-row">
+      <input class="gen-input" type="text" id="gen-inp" placeholder="https://youtu.be/... atau youtube.com/watch?v=..." />
+      <button class="gen-btn" onclick="genLink()">Generate</button>
+    </div>
+    <p class="gen-err" id="gen-err">Link YouTube tidak valid. Coba lagi.</p>
+
+    <div class="gen-result" id="gen-result">
+      <p class="gen-result-label">Link siap share</p>
+      <img class="gen-result-thumb" id="gen-thumb" alt="thumbnail" />
+      <div class="gen-result-link" id="gen-link-out"></div>
+      <button class="gen-copy-btn" onclick="genCopy()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="gen-copy-txt">Salin link</span>
+      </button>
+    </div>
+
+    <p class="gen-footer">
+      Link yang dihasilkan akan membuka aplikasi YouTube langsung<br>
+      saat diklik dari Facebook, WhatsApp, atau Instagram.
+    </p>
   </div>
 
   <!-- Card -->
@@ -452,7 +615,66 @@
 
   if (!vid || !/^[a-zA-Z0-9_-]{10,12}$/.test(vid)) {
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('error-state').style.display = 'block';
+    document.getElementById('generator').style.display = 'block';
+    document.getElementById('gen-inp').focus();
+
+    var BASE = 'https://jemodusuntv.com/youtube.html';
+    var curVid = '';
+
+    function extractId(url) {
+      url = (url || '').trim();
+      var m;
+      m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+      m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+      m = url.match(/shorts\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+      m = url.match(/embed\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+      if(/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
+      return null;
+    }
+
+    window.genLink = function() {
+      var val = document.getElementById('gen-inp').value;
+      var errEl = document.getElementById('gen-err');
+      var resEl = document.getElementById('gen-result');
+      errEl.style.display = 'none';
+      resEl.style.display = 'none';
+      var v = extractId(val);
+      if(!v) { errEl.style.display = 'block'; return; }
+      curVid = v;
+      var link = BASE + '?v=' + v;
+      document.getElementById('gen-link-out').textContent = link;
+      var th = document.getElementById('gen-thumb');
+      th.src = 'https://img.youtube.com/vi/' + v + '/hqdefault.jpg';
+      th.style.display = 'block';
+      th.onerror = function(){ th.style.display = 'none'; };
+      document.getElementById('gen-copy-txt').textContent = 'Salin link';
+      resEl.style.display = 'block';
+    };
+
+    window.genCopy = function() {
+      var link = BASE + '?v=' + curVid;
+      navigator.clipboard.writeText(link).then(function(){ showCopied(); }).catch(function(){
+        var el = document.createElement('textarea');
+        el.value = link; document.body.appendChild(el); el.select();
+        document.execCommand('copy'); document.body.removeChild(el);
+        showCopied();
+      });
+    };
+
+    function showCopied() {
+      var el = document.getElementById('gen-copy-txt');
+      el.textContent = 'Tersalin!';
+      setTimeout(function(){ el.textContent = 'Salin link'; }, 2000);
+    }
+
+    document.getElementById('gen-inp').addEventListener('keydown', function(e){
+      if(e.key === 'Enter') genLink();
+    });
+
     return;
   }
 
