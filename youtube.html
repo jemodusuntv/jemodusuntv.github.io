@@ -277,49 +277,8 @@
     flex-shrink: 0;
   }
 
-  .btn-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-family: 'Sora', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    cursor: pointer;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: rgba(255,255,255,0.2);
-    color: var(--text);
-    background: var(--surface2);
-  }
-
-  /* Divider */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-    color: var(--muted2);
-    font-size: 11px;
-  }
-
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* Footer */
+  /* Auto redirect countdown */
+  .countdown { display: none; }
   .footer {
     text-align: center;
     padding: 16px 20px;
@@ -443,19 +402,8 @@
       </button>
 
       <div class="countdown" id="countdown">
-        Otomatis buka browser dalam <span id="count-num">5</span> detik...
+        Membuka aplikasi YouTube dalam <span id="count-num">3</span> detik...
       </div>
-
-      <div class="divider">atau</div>
-
-      <a class="btn-secondary" id="btn-web" href="#" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-        Buka di browser web
-      </a>
 
     </div>
 
@@ -521,7 +469,6 @@
 
   // ── Update UI
   document.getElementById('video-url').textContent = 'youtu.be/' + vid;
-  document.getElementById('btn-web').href = webUrl;
   document.title = 'Membuka YouTube...';
 
   // ── Thumbnail — coba HD dulu, fallback ke hq
@@ -548,48 +495,19 @@
   }
 
   // ── openApp: coba deep link, fallback ke web
-  var countdownInterval = null;
-
   window.openApp = function() {
     var deepLink = isIOS() ? deepLinkIOS : deepLinkAndroid;
 
-    // Untuk non-mobile: langsung buka web
     if (!isIOS() && !isAndroid()) {
-      window.open(webUrl, '_blank');
+      window.location.href = deepLink;
       return;
     }
 
-    // Mobile: coba app dulu
-    var start = Date.now();
     window.location.href = deepLink;
-
-    // Jika app tidak ada / user di in-app browser, countdown ke web
-    var secs = 5;
-    var el = document.getElementById('count-num');
-    document.getElementById('countdown').classList.add('show');
-
-    countdownInterval = setInterval(function() {
-      secs--;
-      el.textContent = secs;
-      if (secs <= 0) {
-        clearInterval(countdownInterval);
-        // Cek jika tab masih aktif (app tidak terbuka)
-        if (Date.now() - start < 6000) {
-          window.location.href = webUrl;
-        }
-      }
-    }, 1000);
-
-    // Jika app berhasil buka, page akan blur — batalkan countdown
-    window.addEventListener('blur', function() {
-      clearInterval(countdownInterval);
-      document.getElementById('countdown').classList.remove('show');
-    }, { once: true });
   };
 
-  // ── Auto-redirect untuk non-inapp browser di mobile
-  if (!isInAppBrowser() && (isIOS() || isAndroid())) {
-    // Langsung coba buka app tanpa perlu klik
+  // ── Auto-redirect untuk mobile: langsung coba buka app
+  if (isIOS() || isAndroid()) {
     setTimeout(function() {
       var deepLink = isIOS() ? deepLinkIOS : deepLinkAndroid;
       window.location.href = deepLink;
