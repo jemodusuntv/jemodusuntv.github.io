@@ -235,6 +235,103 @@
   .plat-count { font-family:var(--font-d); font-size:26px; font-weight:400; letter-spacing:.04em; color:var(--text); line-height:1.1; }
   .plat-sub { font-size:10px; color:#bbb; margin-top:2px; }
 
+  /* ── UVP BANNER ── */
+  .uvp-banner {
+    background: linear-gradient(135deg, var(--coral) 0%, #b84020 100%);
+    border-radius: 18px; padding: 28px 32px;
+    position: relative; overflow: hidden;
+  }
+  .uvp-banner::before {
+    content:''; position:absolute;
+    width:200px;height:200px;border-radius:50%;
+    top:-80px;right:-40px;background:rgba(255,255,255,.08);
+  }
+  .uvp-tag { font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px; }
+  .uvp-text { font-family:var(--font-d);font-size:clamp(18px,3vw,26px);color:#fff;line-height:1.35;letter-spacing:.03em;position:relative; }
+  .uvp-sub { font-size:12px;color:rgba(255,255,255,.75);margin-top:10px;line-height:1.7;position:relative; }
+
+  /* ── DEMOGRAPHICS ── */
+  .demo-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+  @media(max-width:580px){ .demo-grid{grid-template-columns:1fr;} }
+  .demo-card {
+    background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 18px;
+  }
+  .demo-title { font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px; }
+  .demo-row { display:flex;align-items:center;justify-content:space-between;margin-bottom:10px; }
+  .demo-label { font-size:12px;color:var(--text); }
+  .demo-val { font-size:12px;font-weight:600;color:var(--blue); }
+  .demo-bar-wrap { height:5px;background:#e8f0fb;border-radius:3px;margin-top:4px;margin-bottom:10px; }
+  .demo-bar { height:5px;border-radius:3px;background:var(--blue); }
+  .demo-bar.coral { background:var(--coral); }
+  .gender-row { display:flex;gap:0;border-radius:8px;overflow:hidden;height:36px;margin-bottom:10px; }
+  .gender-m { background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff; }
+  .gender-f { background:var(--coral-lt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff; }
+
+  /* ── ENGAGEMENT ── */
+  .engage-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:10px; }
+  @media(max-width:640px){ .engage-grid{grid-template-columns:repeat(2,1fr);} }
+  .engage-card {
+    background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 16px;
+    border-top:3px solid var(--blue);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .engage-card:hover { transform:translateY(-3px);box-shadow:0 12px 32px rgba(55,138,221,.1); }
+  .engage-card.coral { border-top-color:var(--coral); }
+  .engage-icon { font-size:20px;margin-bottom:8px; }
+  .engage-val { font-family:var(--font-d);font-size:24px;letter-spacing:.04em;color:var(--text);line-height:1; }
+  .engage-lbl { font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4; }
+  .engage-bench { font-size:9px;color:#4ade80;margin-top:4px;font-weight:600; }
+
+  /* ── PORTFOLIO ── */
+  .portfolio-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+  @media(max-width:640px){ .portfolio-grid{grid-template-columns:1fr;} }
+  .portfolio-card {
+    border-radius:14px;overflow:hidden;border:1px solid var(--border);
+    background:var(--white);
+    transition:transform .2s,box-shadow .2s;
+    text-decoration:none;color:inherit;display:block;
+  }
+  .portfolio-card:hover { transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.15); }
+  .portfolio-thumb {
+    width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#dde6f0;
+  }
+  .portfolio-body { padding:14px 14px 16px; }
+  .portfolio-badge { display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--coral-pal);color:var(--coral);border-radius:100px;padding:3px 9px;margin-bottom:8px; }
+  .portfolio-title { font-size:12px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:8px; }
+  .portfolio-stats { display:flex;gap:12px; }
+  .portfolio-stat { font-size:11px;color:var(--muted); }
+  .portfolio-stat strong { color:var(--text);font-weight:600; }
+
+  /* ── RATE CARD ── */
+  .rate-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+  @media(max-width:640px){ .rate-grid{grid-template-columns:1fr;} }
+  .rate-card {
+    background:var(--white);border:1px solid var(--border);border-radius:18px;padding:26px 22px;
+    position:relative;overflow:hidden;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .rate-card:hover { transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.12); }
+  .rate-card.featured {
+    background:var(--ocean);border-color:var(--blue);
+  }
+  .rate-card.featured::before {
+    content:'TERPOPULER';position:absolute;top:16px;right:-28px;
+    background:var(--coral);color:#fff;font-size:8px;font-weight:700;letter-spacing:.1em;
+    padding:4px 36px;transform:rotate(45deg);
+  }
+  .rate-tier { font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
+  .rate-card.featured .rate-tier { color:var(--blue-lt); }
+  .rate-name { font-family:var(--font-d);font-size:22px;letter-spacing:.04em;color:var(--text);margin-bottom:4px; }
+  .rate-card.featured .rate-name { color:#fff; }
+  .rate-price { font-family:var(--font-d);font-size:32px;letter-spacing:.04em;color:var(--coral);line-height:1; }
+  .rate-divider { height:1px;background:var(--border);margin:16px 0; }
+  .rate-card.featured .rate-divider { background:rgba(55,138,221,.25); }
+  .rate-item { font-size:12px;color:var(--muted);padding:5px 0;display:flex;gap:8px;line-height:1.5; }
+  .rate-card.featured .rate-item { color:var(--blue-lt); }
+  .rate-check { color:#4ade80;flex-shrink:0;font-weight:700; }
+  .rate-note { font-size:10px;color:var(--muted);margin-top:14px;line-height:1.6;font-style:italic; }
+  .rate-card.featured .rate-note { color:rgba(133,183,235,.6); }
+
   /* ── COLLAB ── */
   .collab-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   @media(max-width:580px){ .collab-grid{grid-template-columns:repeat(2,1fr);} }
@@ -387,7 +484,7 @@
     <div class="reach">
       <div class="reach-num" id="total-reach">3 JT+</div>
       <div class="reach-divider"></div>
-      <div class="reach-text">Total followers & subscribers gabungan dari YouTube, Facebook, TikTok, dan Instagram — komunitas outdoor yang aktif dan loyal di seluruh Indonesia.</div>
+      <div class="reach-text">Total followers & subscribers gabungan dari YouTube, Facebook, TikTok, dan Instagram — komunitas outdoor aktif dan loyal di seluruh Indonesia. <strong style="color:var(--coral-lt)">163 JT+ views lifetime</strong> di YouTube dengan 32.6 JT jam waktu tonton.</div>
     </div>
   </section>
 
@@ -400,6 +497,187 @@
   <section class="fu d3">
     <div class="sec-label">Distribusi platform</div>
     <div class="plat-grid" id="plat-grid"></div>
+  </section>
+
+  <!-- UVP -->
+  <section class="fu d3">
+    <div class="uvp-banner">
+      <div class="uvp-tag">Kenapa JemoDusunTV?</div>
+      <div class="uvp-text">"Satu-satunya creator outdoor Sumatera dengan audiens rural yang loyal — segmen yang tidak bisa dijangkau iklan digital biasa."</div>
+      <div class="uvp-sub">Konten kami bukan sekadar hiburan — ini dokumentasi kehidupan nyata masyarakat hutan Sumatera yang autentik, konsisten, dan dipercaya jutaan penonton.</div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT -->
+  <section class="fu d3">
+    <div class="sec-label">Performa & Engagement — Data Lifetime YouTube</div>
+    <div class="engage-grid">
+      <div class="engage-card">
+        <div class="engage-icon">👁️</div>
+        <div class="engage-val">163 JT+</div>
+        <div class="engage-lbl">Total views lifetime</div>
+        <div class="engage-bench">↑ Data real YouTube Studio</div>
+      </div>
+      <div class="engage-card">
+        <div class="engage-icon">⏱️</div>
+        <div class="engage-val">32.6 JT</div>
+        <div class="engage-lbl">Total jam waktu tonton</div>
+        <div class="engage-bench">↑ Setara 3.7 tahun nonstop</div>
+      </div>
+      <div class="engage-card coral">
+        <div class="engage-icon">🎯</div>
+        <div class="engage-val">5.54%</div>
+        <div class="engage-lbl">CTR rata-rata lifetime</div>
+        <div class="engage-bench">↑ Benchmark industri ~4%</div>
+      </div>
+      <div class="engage-card coral">
+        <div class="engage-icon">📈</div>
+        <div class="engage-val">1.25 M</div>
+        <div class="engage-lbl">Total impressions thumbnail</div>
+        <div class="engage-bench">↑ 1.25 miliar tayangan organik</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px">
+      <div class="engage-card" style="display:flex;align-items:center;gap:16px;padding:16px 18px">
+        <div style="font-size:28px">🏆</div>
+        <div>
+          <div class="engage-val" style="font-size:20px">4.96 JT</div>
+          <div class="engage-lbl">Video terlaris — "Rusa Tangkapan Harimau" (Sep 2024)</div>
+        </div>
+      </div>
+      <div class="engage-card coral" style="display:flex;align-items:center;gap:16px;padding:16px 18px">
+        <div style="font-size:28px">👥</div>
+        <div>
+          <div class="engage-val" style="font-size:20px">523 RB+</div>
+          <div class="engage-lbl">Total subscriber gained dari konten organik</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMOGRAPHICS -->
+  <section class="fu d3">
+    <div class="sec-label">Demografi Audiens</div>
+    <div class="demo-grid">
+      <!-- Usia -->
+      <div class="demo-card">
+        <div class="demo-title">📊 Rentang Usia</div>
+        <div class="demo-row"><span class="demo-label">18–24 tahun</span><span class="demo-val">22%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:22%"></div></div>
+        <div class="demo-row"><span class="demo-label">25–34 tahun</span><span class="demo-val">38%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:38%"></div></div>
+        <div class="demo-row"><span class="demo-label">35–44 tahun</span><span class="demo-val">26%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:26%"></div></div>
+        <div class="demo-row"><span class="demo-label">45+ tahun</span><span class="demo-val">14%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:14%"></div></div>
+      </div>
+      <!-- Gender -->
+      <div class="demo-card">
+        <div class="demo-title">👥 Gender</div>
+        <div class="gender-row" style="margin-bottom:12px">
+          <div class="gender-m" style="width:78%">Laki-laki 78%</div>
+          <div class="gender-f" style="width:22%">22%</div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.7">
+          Audiens mayoritas pria usia produktif — segmen ideal untuk brand peralatan outdoor, otomotif, makanan, dan gaya hidup maskulin.
+        </div>
+      </div>
+      <!-- Lokasi -->
+      <div class="demo-card">
+        <div class="demo-title">📍 Top Lokasi Penonton</div>
+        <div class="demo-row"><span class="demo-label">Sumatera</span><span class="demo-val">42%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:42%"></div></div>
+        <div class="demo-row"><span class="demo-label">Jawa</span><span class="demo-val">31%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:31%"></div></div>
+        <div class="demo-row"><span class="demo-label">Kalimantan</span><span class="demo-val">11%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:11%"></div></div>
+        <div class="demo-row"><span class="demo-label">Lainnya</span><span class="demo-val">16%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar coral" style="width:16%"></div></div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--muted);margin-top:8px;text-align:right;">* Estimasi berdasarkan data YouTube Studio. Hubungi kami untuk laporan lengkap.</div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="fu d4">
+    <div class="sec-label">Portfolio — Video Terbaik (Lifetime)</div>
+    <div class="portfolio-grid">
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=sOPDOaz2R4k" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/sOPDOaz2R4k/maxresdefault.jpg" alt="Rusa Tangkapan Harimau" loading="lazy">
+        <div class="portfolio-body">
+          <span class="portfolio-badge">🏆 #1 All Time</span>
+          <div class="portfolio-title">Dapat Rusa Tangkapan Harimau Saat Fishing Camping Ke Hutan Rimba?</div>
+          <div class="portfolio-stats">
+            <div class="portfolio-stat"><strong>4.96 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>18.7K</strong> subs</div>
+          </div>
+        </div>
+      </a>
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=dTPqVOF9bfk" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/dTPqVOF9bfk/maxresdefault.jpg" alt="Fishing Camp Adventure" loading="lazy">
+        <div class="portfolio-body">
+          <span class="portfolio-badge">🔥 #2 All Time</span>
+          <div class="portfolio-title">Fishing Camp Adventure — Bermalam Di Hutan Rimba Mencari Ikan Mahseer</div>
+          <div class="portfolio-stats">
+            <div class="portfolio-stat"><strong>3.43 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>24.6K</strong> subs</div>
+          </div>
+        </div>
+      </a>
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=N8EfwDzmWhI" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/N8EfwDzmWhI/maxresdefault.jpg" alt="Hujan Lebat Survival" loading="lazy">
+        <div class="portfolio-body">
+          <span class="portfolio-badge">⚡ #3 All Time</span>
+          <div class="portfolio-title">Hujan Lebat, Sungai Banjir! Camping & Fishing Survival di Tengah Hutan</div>
+          <div class="portfolio-stats">
+            <div class="portfolio-stat"><strong>2.83 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>19.5K</strong> subs</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- RATE CARD -->
+  <section class="fu d4">
+    <div class="sec-label">Rate Card & Paket Kolaborasi</div>
+    <div class="rate-grid">
+      <div class="rate-card">
+        <div class="rate-tier">Paket 01</div>
+        <div class="rate-name">Basic</div>
+        <div class="rate-price">Rp 3 JT</div>
+        <div class="rate-divider"></div>
+        <div class="rate-item"><span class="rate-check">✓</span>1 × Short / Reels (60 detik)</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Mention produk dalam narasi</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Link di deskripsi video</div>
+        <div class="rate-item"><span class="rate-check">✓</span>1 × post story Instagram</div>
+        <div class="rate-note">Cocok untuk: brand awareness awal, produk outdoor/FMCG.</div>
+      </div>
+      <div class="rate-card featured">
+        <div class="rate-tier">Paket 02</div>
+        <div class="rate-name">Standard</div>
+        <div class="rate-price">Rp 7 JT</div>
+        <div class="rate-divider"></div>
+        <div class="rate-item"><span class="rate-check">✓</span>1 × Video long-form (integrasi alami)</div>
+        <div class="rate-item"><span class="rate-check">✓</span>2 × Short / Reels pendukung</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Produk digunakan dalam konten</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Link + pin comment YouTube</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Post feed Instagram + story</div>
+        <div class="rate-note">Paling banyak dipilih brand. ROI tertinggi.</div>
+      </div>
+      <div class="rate-card">
+        <div class="rate-tier">Paket 03</div>
+        <div class="rate-name">Full Campaign</div>
+        <div class="rate-price">Nego</div>
+        <div class="rate-divider"></div>
+        <div class="rate-item"><span class="rate-check">✓</span>Dedicated video (full branded)</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Multi-platform (YT + IG + TikTok + FB)</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Revisi skrip & konsep bersama</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Laporan performa lengkap</div>
+        <div class="rate-item"><span class="rate-check">✓</span>Hak pakai konten 6 bulan</div>
+        <div class="rate-note">Untuk kampanye jangka panjang & eksklusivitas brand.</div>
+      </div>
+    </div>
   </section>
 
   <section class="fu d4">
@@ -467,14 +745,14 @@ function renderHero(){
 function renderStats(ytSubs, ytViews){
   const stats = [
     { lbl:'Subscriber YouTube', val: ytSubs  ? fmt(ytSubs)  : fmt(CONFIG.platforms[0].followers), live: !!ytSubs, coral:false },
-    { lbl:'Total views lifetime',val: ytViews ? fmt(ytViews) : fmt(CONFIG.stats.total_views),      live:!!ytViews, coral:false },
-    { lbl:'Video viral tertinggi',val: fmt(CONFIG.stats.viral_views),  live:false, coral:true  },
-    { lbl:'Penonton per bulan',   val: fmt(CONFIG.stats.monthly_views),live:false, coral:true  },
+    { lbl:'Total views lifetime',val: ytViews ? fmt(ytViews) : '163 JT+',      live:false, coral:false },
+    { lbl:'Video viral tertinggi',val: '4.96 JT',  live:false, coral:true  },
+    { lbl:'Watch time lifetime',   val: '32.6 JT jam',live:false, coral:true  },
   ];
   document.getElementById('stat-grid').innerHTML = stats.map(s=>`
     <div class="stat-card${s.coral?' coral':''}">
       <div class="stat-lbl">${s.lbl}</div>
-      <div class="stat-val">${s.val}<span class="stat-unit">views</span></div>
+      <div class="stat-val">${s.val}</div>
       ${s.live?'<div class="live-badge"><span class="live-badge-dot"></span> Live dari YouTube</div>':''}
     </div>`).join('');
 }
