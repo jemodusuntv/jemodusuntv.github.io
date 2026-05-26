@@ -223,6 +223,7 @@
     border-radius:14px; padding:18px 20px;
     display:flex; align-items:center; gap:16px;
     transition:transform .2s,box-shadow .2s;
+    text-decoration:none; color:inherit; cursor:pointer;
   }
   .plat-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(55,138,221,.1); }
   .plat-icon {
@@ -439,6 +440,13 @@ const ICONS = {
 
 const PLAT_BG = { yt:'#ffecec', fb:'#e8f0fe', tt:'#f0f0f0', ig:'#fce4f0' };
 
+const PLAT_URL = {
+  yt: 'https://www.youtube.com/@jemodusuntv',
+  fb: 'https://www.facebook.com/jemodusuntv/',
+  tt: 'https://www.tiktok.com/@jemodusuntv',
+  ig: 'https://www.instagram.com/jemodusuntv'
+};
+
 function renderHero(){
   document.getElementById('hero-name').textContent    = CONFIG.name;
   
@@ -476,15 +484,16 @@ function renderPlatforms(ytSubs){
   document.getElementById('plat-grid').innerHTML = CONFIG.platforms.map((p,i)=>{
     const c = (i===0 && ytSubs) ? ytSubs : p.followers;
     total += c;
+    const url = PLAT_URL[p.icon] || '#';
     return `
-      <div class="plat-card">
+      <a class="plat-card" href="${url}" target="_blank" rel="noopener noreferrer">
         <div class="plat-icon" style="background:${PLAT_BG[p.icon]}">${ICONS[p.icon]||''}</div>
         <div>
           <div class="plat-name">${p.name}</div>
           <div class="plat-count">${fmt(c)}</div>
           <div class="plat-sub">followers / subscribers</div>
         </div>
-      </div>`;
+      </a>`;
   }).join('');
   document.getElementById('total-reach').textContent = fmt(total)+'+';
 }
