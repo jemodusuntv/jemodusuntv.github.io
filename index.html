@@ -15,255 +15,446 @@
 <meta name="apple-mobile-web-app-title" content="JDTV" />
 <link rel="manifest" href="favicon/site.webmanifest" />
 <meta property="og:title" content="JemoDusunTV">
-<meta property="og:description" content="Channel outdoor & petualangan sungai Sumatera. 493K YouTube · 1.6JT Facebook · 800K TikTok.">
+<meta property="og:description" content="Channel outdoor & petualangan sungai Sumatera. 493K YouTube · 1.6JT Facebook · 800K TikTok. Tertarik kolaborasi? Hubungi kami.">
 <meta property="og:url" content="https://jemodusuntv.com">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JemoDusunTV">
+<meta property="og:locale" content="id_ID">
 <meta property="og:image" content="https://jemodusuntv.com/thumbnail.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="JemoDusunTV – Channel Outdoor Sumatera">
+<meta property="og:logo" content="https://jemodusuntv.com/logo.png" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JemoDusunTV">
-<meta name="twitter:description" content="Sumatera Outdoor Channel. 493K YouTube · 1.6M Facebook · 800K TikTok.">
+<meta name="twitter:description" content="Channel outdoor & petualangan sungai Sumatera. 493K YouTube · 1.6JT Facebook · 800K TikTok.">
 <meta name="twitter:image" content="https://jemodusuntv.com/thumbnail.jpg">
+<meta name="twitter:image:alt" content="JemoDusunTV">
 <meta name="theme-color" content="#081c30">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="JemoDusunTV">
 <title>JemoDusunTV - Channel Outdoor & Petualangan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ocean:#081c30; --ocean-2:#0c2540; --ocean-3:#102e4e;
-    --blue:#378ADD; --blue-lt:#85B7EB; --blue-pal:#e6f1fb;
-    --coral:#D85A30; --coral-lt:#F0997B; --coral-pal:#faece7;
-    --cream:#f0f6ff; --white:#ffffff; --text:#0c1f30; --muted:#607080;
-    --border:rgba(55,138,221,0.12);
-    --font-d:'Bebas Neue',Impact,sans-serif; --font-b:'Chivo',sans-serif;
+    --ocean:    #081c30;
+    --ocean-2:  #0c2540;
+    --ocean-3:  #102e4e;
+    --blue:     #378ADD;
+    --blue-lt:  #85B7EB;
+    --blue-pal: #e6f1fb;
+    --coral:    #D85A30;
+    --coral-lt: #F0997B;
+    --coral-pal:#faece7;
+    --cream:    #f0f6ff;
+    --white:    #ffffff;
+    --text:     #0c1f30;
+    --muted:    #607080;
+    --border:   rgba(55,138,221,0.12);
+    --font-d:   'Bebas Neue', Impact, sans-serif;
+    --font-b:   'Chivo', sans-serif;
   }
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:var(--font-b);background:var(--cream);color:var(--text);overflow-x:hidden;}
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-b); background:var(--cream); color:var(--text); overflow-x:hidden; }
 
-  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.4} }
+  @keyframes shimmer  { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
-  .fu{animation:fadeUp .65s ease both;}
-  .d1{animation-delay:.08s;} .d2{animation-delay:.18s;} .d3{animation-delay:.28s;} .d4{animation-delay:.40s;} .d5{animation-delay:.52s;}
-  .wrap{max-width:900px;margin:0 auto;padding:0 28px;box-sizing:border-box;width:100%;}
+  .fu  { animation:fadeUp .65s ease both; }
+  .d1  { animation-delay:.08s; }
+  .d2  { animation-delay:.18s; }
+  .d3  { animation-delay:.28s; }
+  .d4  { animation-delay:.40s; }
+  .d5  { animation-delay:.52s; }
+
+  .wrap { max-width:900px; margin:0 auto; padding:0 28px; box-sizing:border-box; width:100%; }
 
   /* ── LANG TOGGLE ── */
-  .lang-bar{
-    position:fixed;top:16px;right:16px;z-index:999;
-    display:flex;align-items:center;gap:6px;
-    background:rgba(8,28,48,.85);backdrop-filter:blur(10px);
+  .lang-bar {
+    position:fixed; top:16px; right:16px; z-index:999;
+    display:flex; align-items:center; gap:6px;
+    background:rgba(8,28,48,.88); backdrop-filter:blur(10px);
     border:1px solid rgba(55,138,221,.25);
-    border-radius:100px;padding:5px 6px;
-    box-shadow:0 4px 16px rgba(0,0,0,.3);
+    border-radius:100px; padding:5px 6px;
+    box-shadow:0 4px 16px rgba(0,0,0,.35);
   }
-  .lang-btn{
-    font-family:var(--font-b);font-size:11px;font-weight:600;letter-spacing:.05em;
-    padding:5px 12px;border-radius:100px;border:none;cursor:pointer;
-    transition:all .2s;background:transparent;color:rgba(133,183,235,.6);
+  .lang-btn {
+    font-family:var(--font-b); font-size:11px; font-weight:600; letter-spacing:.05em;
+    padding:5px 12px; border-radius:100px; border:none; cursor:pointer;
+    transition:all .2s; background:transparent; color:rgba(133,183,235,.6);
   }
-  .lang-btn.active{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(55,138,221,.4);}
-  .lang-btn:not(.active):hover{color:var(--blue-lt);}
-  .lang-flag{font-size:14px;line-height:1;}
+  .lang-btn.active { background:var(--blue); color:#fff; box-shadow:0 2px 8px rgba(55,138,221,.4); }
+  .lang-btn:not(.active):hover { color:var(--blue-lt); }
+  .lang-flag { font-size:14px; line-height:1; }
 
   /* ── HERO ── */
-  .hero{background:var(--ocean);position:relative;overflow:hidden;padding:72px 0 64px;}
-  .hero-blob{position:absolute;border-radius:50%;pointer-events:none;}
-  .b1{width:420px;height:420px;top:-140px;right:-80px;background:rgba(55,138,221,.14);}
-  .b2{width:180px;height:180px;bottom:-60px;left:8%;background:rgba(216,90,48,.12);}
-  .b3{width:90px;height:90px;top:55%;right:25%;background:rgba(55,138,221,.08);}
-  .b4{width:260px;height:260px;top:20%;left:-80px;background:rgba(216,90,48,.07);}
-  .hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 60px,rgba(55,138,221,.03) 60px,rgba(55,138,221,.03) 61px);}
-  .hero-inner{position:relative;z-index:2;padding:0 28px;}
-  .live-chip{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);background:rgba(55,138,221,.15);border:1px solid rgba(55,138,221,.3);border-radius:100px;padding:5px 12px;margin-bottom:22px;}
-  .live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;}
-  .brand-row{display:flex;align-items:flex-start;gap:20px;}
-  .logo{width:72px;height:72px;border-radius:50%;flex-shrink:0;border:3px solid var(--coral);box-shadow:0 8px 28px rgba(55,138,221,.35);overflow:hidden;}
-  .logo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
-  .hero-name{font-family:var(--font-d);font-size:clamp(32px,6vw,56px);font-weight:400;color:#fff;line-height:1.0;letter-spacing:.05em;}
-  .hero-loc{font-size:12px;color:var(--blue-lt);display:flex;align-items:center;gap:5px;margin-bottom:16px;}
-  .hero-loc svg{width:12px;height:12px;}
-  .hero-tagline{font-size:13px;color:rgba(133,183,235,.82);line-height:1.8;max-width:500px;border-top:1px solid rgba(133,183,235,.15);padding-top:16px;}
-  .badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px;}
-  .badge{font-size:10px;font-weight:500;padding:4px 12px;border-radius:100px;letter-spacing:.02em;background:rgba(55,138,221,.18);color:var(--blue-lt);border:1px solid rgba(55,138,221,.32);}
-  .hero-dots{position:absolute;bottom:24px;right:32px;z-index:2;display:flex;gap:6px;}
-  .hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(133,183,235,.3);}
-  .hero-dot.on{background:var(--coral);width:18px;border-radius:3px;}
+  .hero {
+    background: var(--ocean);
+    position: relative;
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .hero-blob {
+    position:absolute; border-radius:50%; pointer-events:none;
+  }
+  .b1 { width:420px;height:420px;top:-140px;right:-80px;  background:rgba(55,138,221,.14); }
+  .b2 { width:180px;height:180px;bottom:-60px;left:8%;    background:rgba(216,90,48,.12); }
+  .b3 { width:90px; height:90px; top:55%;right:25%;       background:rgba(55,138,221,.08); }
+  .b4 { width:260px;height:260px;top:20%;left:-80px;      background:rgba(216,90,48,.07); }
+
+  .hero::after {
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      -55deg,transparent,transparent 60px,
+      rgba(55,138,221,.03) 60px,rgba(55,138,221,.03) 61px
+    );
+  }
+
+  .hero-inner { position:relative; z-index:2; padding:0 28px; }
+
+  .live-chip {
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--blue-lt);
+    background:rgba(55,138,221,.15);
+    border:1px solid rgba(55,138,221,.3);
+    border-radius:100px; padding:5px 12px;
+    margin-bottom:22px;
+  }
+  .live-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite; }
+
+  .brand-row { display:flex; align-items:flex-start; gap:20px; }
+
+  .logo {
+    width:72px; height:72px; border-radius:50%; flex-shrink:0;
+    border:3px solid var(--coral);
+    box-shadow:0 8px 28px rgba(55,138,221,.35);
+    overflow:hidden;
+  }
+  .logo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+
+  .hero-name {
+    font-family:var(--font-d);
+    font-size:clamp(32px,6vw,56px);
+    font-weight:400; color:#fff; line-height:1.0;
+    letter-spacing:.05em;
+  }
+  .hero-loc {
+    font-size:12px; color:var(--blue-lt);
+    display:flex; align-items:center; gap:5px; margin-bottom:16px;
+  }
+  .hero-loc svg { width:12px; height:12px; }
+  .hero-tagline {
+    font-size:13px; color:rgba(133,183,235,.82);
+    line-height:1.8; max-width:500px;
+    border-top:1px solid rgba(133,183,235,.15); padding-top:16px;
+  }
+  .badges { display:flex; flex-wrap:wrap; gap:7px; margin-top:15px; }
+  .badge {
+    font-size:10px; font-weight:500; padding:4px 12px;
+    border-radius:100px; letter-spacing:.02em;
+    background:rgba(55,138,221,.18); color:var(--blue-lt);
+    border:1px solid rgba(55,138,221,.32);
+  }
+
+  /* ── NAV DOTS (decorative) ── */
+  .hero-dots {
+    position:absolute; bottom:24px; right:32px; z-index:2;
+    display:flex; gap:6px;
+  }
+  .hero-dot { width:6px;height:6px;border-radius:50%;background:rgba(133,183,235,.3); }
+  .hero-dot.on { background:var(--coral); width:18px; border-radius:3px; }
 
   /* ── BODY ── */
-  .body-wrap{padding:0 0 80px;}
-  section{padding:52px 0 0;}
-  .sec-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .body-wrap { padding: 0 0 80px; }
+  section { padding:52px 0 0; }
+  .sec-label {
+    font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:14px;
+  }
 
-  /* ── REACH ── */
-  .reach{background:var(--ocean);border-radius:18px;padding:28px 32px;display:flex;align-items:center;gap:24px;position:relative;overflow:hidden;}
-  .reach::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;top:-80px;right:-40px;background:rgba(216,90,48,.15);}
-  .reach-num{font-family:var(--font-d);font-size:58px;font-weight:400;letter-spacing:.04em;color:var(--coral-lt);line-height:1;white-space:nowrap;position:relative;}
-  .reach-divider{width:1px;height:50px;background:rgba(133,183,235,.2);flex-shrink:0;}
-  .reach-text{font-size:13px;color:rgba(133,183,235,.85);line-height:1.75;position:relative;}
+  /* ── REACH BANNER ── */
+  .reach {
+    background:var(--ocean);
+    border-radius:18px; padding:28px 32px;
+    display:flex; align-items:center; gap:24px;
+    position:relative; overflow:hidden;
+  }
+  .reach::before {
+    content:''; position:absolute;
+    width:200px; height:200px; border-radius:50%;
+    top:-80px; right:-40px; background:rgba(216,90,48,.15);
+  }
+  .reach-num {
+    font-family:var(--font-d); font-size:58px; font-weight:400;
+    letter-spacing:.04em;
+    color:var(--coral-lt); line-height:1; white-space:nowrap; position:relative;
+  }
+  .reach-divider { width:1px; height:50px; background:rgba(133,183,235,.2); flex-shrink:0; }
+  .reach-text { font-size:13px; color:rgba(133,183,235,.85); line-height:1.75; position:relative; }
 
   /* ── STAT CARDS ── */
-  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  @media(max-width:580px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
-  .stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 16px;border-top:3px solid transparent;transition:transform .2s,box-shadow .2s,border-color .2s;}
-  .stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(55,138,221,.1);border-top-color:var(--blue);}
-  .stat-card.coral:hover{border-top-color:var(--coral);}
-  .stat-lbl{font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.35;}
-  .stat-val{font-family:var(--font-d);font-size:26px;font-weight:400;letter-spacing:.04em;}
-  .stat-unit{font-size:11px;font-weight:400;font-family:var(--font-b);color:#aaa;margin-left:2px;}
-  .live-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-top:6px;}
-  .live-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;}
+  .stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  @media(max-width:580px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .stat-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:14px; padding:18px 16px;
+    border-top:3px solid transparent;
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .stat-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(55,138,221,.1); border-top-color:var(--blue); }
+  .stat-card.coral:hover { border-top-color:var(--coral); }
+  .stat-lbl { font-size:11px; color:var(--muted); margin-bottom:8px; line-height:1.35; }
+  .stat-val {
+    font-family:var(--font-d); font-size:26px; font-weight:400;
+    letter-spacing:.04em;
+  }
+  .stat-unit { font-size:11px; font-weight:400; font-family:var(--font-b); color:#aaa; margin-left:2px; }
+  .live-badge {
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:9px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--blue); margin-top:6px;
+  }
+  .live-badge-dot { width:5px;height:5px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite; }
 
   /* ── PLATFORM ── */
-  .plat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-  @media(max-width:480px){.plat-grid{grid-template-columns:1fr;}}
-  .plat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;cursor:pointer;}
-  .plat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(55,138,221,.1);}
-  .plat-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .plat-icon svg{width:22px;height:22px;}
-  .plat-name{font-size:11px;color:var(--muted);margin-bottom:3px;}
-  .plat-count{font-family:var(--font-d);font-size:26px;font-weight:400;letter-spacing:.04em;color:var(--text);line-height:1.1;}
-  .plat-sub{font-size:10px;color:#bbb;margin-top:2px;}
+  .plat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  @media(max-width:480px){ .plat-grid{grid-template-columns:1fr;} }
 
-  /* ── UVP ── */
-  .uvp-banner{background:linear-gradient(135deg,var(--coral) 0%,#b84020 100%);border-radius:18px;padding:28px 32px;position:relative;overflow:hidden;}
-  .uvp-banner::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;top:-80px;right:-40px;background:rgba(255,255,255,.08);}
-  .uvp-tag{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px;}
-  .uvp-text{font-family:var(--font-d);font-size:clamp(18px,3vw,26px);color:#fff;line-height:1.35;letter-spacing:.03em;position:relative;}
-  .uvp-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:10px;line-height:1.7;position:relative;}
+  .plat-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:14px; padding:18px 20px;
+    display:flex; align-items:center; gap:16px;
+    transition:transform .2s,box-shadow .2s;
+    text-decoration:none; color:inherit; cursor:pointer;
+  }
+  .plat-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(55,138,221,.1); }
+  .plat-icon {
+    width:46px;height:46px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .plat-icon svg { width:22px;height:22px; }
+  .plat-name { font-size:11px; color:var(--muted); margin-bottom:3px; }
+  .plat-count { font-family:var(--font-d); font-size:26px; font-weight:400; letter-spacing:.04em; color:var(--text); line-height:1.1; }
+  .plat-sub { font-size:10px; color:#bbb; margin-top:2px; }
+
+  /* ── UVP BANNER ── */
+  .uvp-banner {
+    background: linear-gradient(135deg, var(--coral) 0%, #b84020 100%);
+    border-radius: 18px; padding: 28px 32px;
+    position: relative; overflow: hidden;
+  }
+  .uvp-banner::before {
+    content:''; position:absolute;
+    width:200px;height:200px;border-radius:50%;
+    top:-80px;right:-40px;background:rgba(255,255,255,.08);
+  }
+  .uvp-tag { font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px; }
+  .uvp-text { font-family:var(--font-d);font-size:clamp(18px,3vw,26px);color:#fff;line-height:1.35;letter-spacing:.03em;position:relative; }
+  .uvp-sub { font-size:12px;color:rgba(255,255,255,.75);margin-top:10px;line-height:1.7;position:relative; }
 
   /* ── DEMOGRAPHICS ── */
-  .demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  @media(max-width:580px){.demo-grid{grid-template-columns:1fr;}}
-  .demo-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 18px;}
-  .demo-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-  .demo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-  .demo-label{font-size:12px;color:var(--text);}
-  .demo-val{font-size:12px;font-weight:600;color:var(--blue);}
-  .demo-bar-wrap{height:5px;background:#e8f0fb;border-radius:3px;margin-top:4px;margin-bottom:10px;}
-  .demo-bar{height:5px;border-radius:3px;background:var(--blue);}
-  .demo-bar.coral{background:var(--coral);}
-  .gender-row{display:flex;gap:0;border-radius:8px;overflow:hidden;height:36px;margin-bottom:10px;}
-  .gender-m{background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;}
-  .gender-f{background:var(--coral-lt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;}
+  .demo-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+  @media(max-width:580px){ .demo-grid{grid-template-columns:1fr;} }
+  .demo-card {
+    background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 18px;
+  }
+  .demo-title { font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px; }
+  .demo-row { display:flex;align-items:center;justify-content:space-between;margin-bottom:10px; }
+  .demo-label { font-size:12px;color:var(--text); }
+  .demo-val { font-size:12px;font-weight:600;color:var(--blue); }
+  .demo-bar-wrap { height:5px;background:#e8f0fb;border-radius:3px;margin-top:4px;margin-bottom:10px; }
+  .demo-bar { height:5px;border-radius:3px;background:var(--blue); }
+  .demo-bar.coral { background:var(--coral); }
+  .gender-row { display:flex;gap:0;border-radius:8px;overflow:hidden;height:36px;margin-bottom:10px; }
+  .gender-m { background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff; }
+  .gender-f { background:var(--coral-lt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff; }
 
   /* ── ENGAGEMENT ── */
-  .engage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  @media(max-width:640px){.engage-grid{grid-template-columns:repeat(2,1fr);}}
-  .engage-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 16px;border-top:3px solid var(--blue);transition:transform .2s,box-shadow .2s;}
-  .engage-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(55,138,221,.1);}
-  .engage-card.coral{border-top-color:var(--coral);}
-  .engage-icon{font-size:20px;margin-bottom:8px;}
-  .engage-val{font-family:var(--font-d);font-size:24px;letter-spacing:.04em;color:var(--text);line-height:1;}
-  .engage-lbl{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;}
-  .engage-bench{font-size:9px;color:#4ade80;margin-top:4px;font-weight:600;}
+  .engage-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:10px; }
+  @media(max-width:640px){ .engage-grid{grid-template-columns:repeat(2,1fr);} }
+  .engage-card {
+    background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 16px;
+    border-top:3px solid var(--blue);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .engage-card:hover { transform:translateY(-3px);box-shadow:0 12px 32px rgba(55,138,221,.1); }
+  .engage-card.coral { border-top-color:var(--coral); }
+  .engage-icon { font-size:20px;margin-bottom:8px; }
+  .engage-val { font-family:var(--font-d);font-size:24px;letter-spacing:.04em;color:var(--text);line-height:1; }
+  .engage-lbl { font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4; }
+  .engage-bench { font-size:9px;color:#4ade80;margin-top:4px;font-weight:600; }
 
   /* ── PORTFOLIO ── */
-  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  @media(max-width:640px){.portfolio-grid{grid-template-columns:1fr;}}
-  .portfolio-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--white);transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block;}
-  .portfolio-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.15);}
-  .portfolio-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#dde6f0;}
-  .portfolio-body{padding:14px 14px 16px;}
-  .portfolio-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--coral-pal);color:var(--coral);border-radius:100px;padding:3px 9px;margin-bottom:8px;}
-  .portfolio-title{font-size:12px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:8px;}
-  .portfolio-stats{display:flex;gap:12px;}
-  .portfolio-stat{font-size:11px;color:var(--muted);}
-  .portfolio-stat strong{color:var(--text);font-weight:600;}
+  .portfolio-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+  @media(max-width:640px){ .portfolio-grid{grid-template-columns:1fr;} }
+  .portfolio-card {
+    border-radius:14px;overflow:hidden;border:1px solid var(--border);
+    background:var(--white);
+    transition:transform .2s,box-shadow .2s;
+    text-decoration:none;color:inherit;display:block;
+  }
+  .portfolio-card:hover { transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.15); }
+  .portfolio-thumb {
+    width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#dde6f0;
+  }
+  .portfolio-body { padding:14px 14px 16px; }
+  .portfolio-badge { display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--coral-pal);color:var(--coral);border-radius:100px;padding:3px 9px;margin-bottom:8px; }
+  .portfolio-title { font-size:12px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:8px; }
+  .portfolio-stats { display:flex;gap:12px; }
+  .portfolio-stat { font-size:11px;color:var(--muted); }
+  .portfolio-stat strong { color:var(--text);font-weight:600; }
 
   /* ── RATE CARD ── */
-  .rate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  @media(max-width:640px){.rate-grid{grid-template-columns:1fr;}}
-  .rate-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:26px 22px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
-  .rate-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.12);}
-  .rate-card.featured{background:var(--ocean);border-color:var(--blue);}
-  .rate-card.featured::before{content:attr(data-popular);position:absolute;top:16px;right:-28px;background:var(--coral);color:#fff;font-size:8px;font-weight:700;letter-spacing:.1em;padding:4px 36px;transform:rotate(45deg);}
-  .rate-tier{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .rate-card.featured .rate-tier{color:var(--blue-lt);}
-  .rate-name{font-family:var(--font-d);font-size:22px;letter-spacing:.04em;color:var(--text);margin-bottom:4px;}
-  .rate-card.featured .rate-name{color:#fff;}
-  .rate-price{font-family:var(--font-d);font-size:32px;letter-spacing:.04em;color:var(--coral);line-height:1;}
-  .rate-divider{height:1px;background:var(--border);margin:16px 0;}
-  .rate-card.featured .rate-divider{background:rgba(55,138,221,.25);}
-  .rate-item{font-size:12px;color:var(--muted);padding:5px 0;display:flex;gap:8px;line-height:1.5;}
-  .rate-card.featured .rate-item{color:var(--blue-lt);}
-  .rate-check{color:#4ade80;flex-shrink:0;font-weight:700;}
-  .rate-note{font-size:10px;color:var(--muted);margin-top:14px;line-height:1.6;font-style:italic;}
-  .rate-card.featured .rate-note{color:rgba(133,183,235,.6);}
+  .rate-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+  @media(max-width:640px){ .rate-grid{grid-template-columns:1fr;} }
+  .rate-card {
+    background:var(--white);border:1px solid var(--border);border-radius:18px;padding:26px 22px;
+    position:relative;overflow:hidden;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .rate-card:hover { transform:translateY(-4px);box-shadow:0 16px 40px rgba(55,138,221,.12); }
+  .rate-card.featured {
+    background:var(--ocean);border-color:var(--blue);
+  }
+  .rate-card.featured::before {
+    content:'TERPOPULER';position:absolute;top:16px;right:-28px;
+    background:var(--coral);color:#fff;font-size:8px;font-weight:700;letter-spacing:.1em;
+    padding:4px 36px;transform:rotate(45deg);
+  }
+  .rate-tier { font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px; }
+  .rate-card.featured .rate-tier { color:var(--blue-lt); }
+  .rate-name { font-family:var(--font-d);font-size:22px;letter-spacing:.04em;color:var(--text);margin-bottom:4px; }
+  .rate-card.featured .rate-name { color:#fff; }
+  .rate-price { font-family:var(--font-d);font-size:32px;letter-spacing:.04em;color:var(--coral);line-height:1; }
+  .rate-divider { height:1px;background:var(--border);margin:16px 0; }
+  .rate-card.featured .rate-divider { background:rgba(55,138,221,.25); }
+  .rate-item { font-size:12px;color:var(--muted);padding:5px 0;display:flex;gap:8px;line-height:1.5; }
+  .rate-card.featured .rate-item { color:var(--blue-lt); }
+  .rate-check { color:#4ade80;flex-shrink:0;font-weight:700; }
+  .rate-note { font-size:10px;color:var(--muted);margin-top:14px;line-height:1.6;font-style:italic; }
+  .rate-card.featured .rate-note { color:rgba(133,183,235,.6); }
 
   /* ── COLLAB ── */
-  .collab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  @media(max-width:580px){.collab-grid{grid-template-columns:repeat(2,1fr);}}
-  .collab-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;}
-  .collab-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(216,90,48,.1);border-color:rgba(216,90,48,.25);}
-  .collab-icon-wrap{width:44px;height:44px;border-radius:12px;background:var(--coral-pal);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:20px;}
-  .collab-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
-  .collab-desc{font-size:11px;color:var(--muted);line-height:1.65;}
+  .collab-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media(max-width:580px){ .collab-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .collab-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:14px; padding:22px 16px; text-align:center;
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .collab-card:hover {
+    transform:translateY(-4px);
+    box-shadow:0 14px 36px rgba(216,90,48,.1);
+    border-color:rgba(216,90,48,.25);
+  }
+  .collab-icon-wrap {
+    width:44px;height:44px;border-radius:12px;
+    background:var(--coral-pal);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 12px; font-size:20px;
+  }
+  .collab-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .collab-desc  { font-size:11px; color:var(--muted); line-height:1.65; }
 
   /* ── CONTACT ── */
-  .contact-wrap{padding:52px 0 80px;}
-  .contact-card{background:var(--ocean);border-radius:22px;padding:44px 44px;position:relative;overflow:hidden;}
-  .contact-card::before{content:'';position:absolute;width:320px;height:320px;border-radius:50%;top:-130px;right:-70px;background:rgba(55,138,221,.12);}
-  .contact-card::after{content:'';position:absolute;width:150px;height:150px;border-radius:50%;bottom:-60px;left:10%;background:rgba(216,90,48,.1);}
-  .contact-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-lt);margin-bottom:10px;position:relative;z-index:1;}
-  .contact-heading{font-family:var(--font-d);font-size:36px;font-weight:400;letter-spacing:.05em;color:#fff;margin-bottom:8px;position:relative;z-index:1;}
-  .contact-sub{font-size:13px;color:var(--blue-lt);margin-bottom:28px;position:relative;z-index:1;line-height:1.7;}
-  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;position:relative;z-index:1;}
-  @media(max-width:500px){.contact-grid{grid-template-columns:1fr;}.contact-card{padding:28px 20px;}}
-  .contact-item{background:rgba(55,138,221,.1);border:1px solid rgba(133,183,235,.18);border-radius:13px;padding:16px 18px;text-decoration:none;display:block;transition:background .2s,border-color .2s,transform .15s;}
-  .contact-item:hover{background:rgba(55,138,221,.2);border-color:rgba(133,183,235,.35);transform:translateY(-2px);}
-  .contact-item.coral-item{background:rgba(216,90,48,.12);border-color:rgba(240,153,123,.2);}
-  .contact-item.coral-item:hover{background:rgba(216,90,48,.22);border-color:rgba(240,153,123,.35);}
-  .ci-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:rgba(133,183,235,.7);margin-bottom:5px;}
-  .ci-lbl.coral{color:rgba(240,153,123,.75);}
-  .ci-val{font-size:14px;font-weight:500;color:#fff;word-break:break-all;}
+  .contact-wrap { padding:52px 0 80px; }
+  .contact-card {
+    background:var(--ocean);
+    border-radius:22px; padding:44px 44px;
+    position:relative; overflow:hidden;
+  }
+  .contact-card::before {
+    content:''; position:absolute;
+    width:320px;height:320px;border-radius:50%;
+    top:-130px;right:-70px;background:rgba(55,138,221,.12);
+  }
+  .contact-card::after {
+    content:''; position:absolute;
+    width:150px;height:150px;border-radius:50%;
+    bottom:-60px;left:10%;background:rgba(216,90,48,.1);
+  }
+  .contact-eyebrow {
+    font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--coral-lt); margin-bottom:10px; position:relative; z-index:1;
+  }
+  .contact-heading {
+    font-family:var(--font-d); font-size:36px; font-weight:400;
+    letter-spacing:.05em; color:#fff; margin-bottom:8px; position:relative; z-index:1;
+  }
+  .contact-sub { font-size:13px; color:var(--blue-lt); margin-bottom:28px; position:relative; z-index:1; line-height:1.7; }
+  .contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; position:relative; z-index:1; }
+  @media(max-width:500px){ .contact-grid{grid-template-columns:1fr;} .contact-card{padding:28px 20px;} }
+
+  .contact-item {
+    background:rgba(55,138,221,.1);
+    border:1px solid rgba(133,183,235,.18);
+    border-radius:13px; padding:16px 18px;
+    text-decoration:none; display:block;
+    transition:background .2s,border-color .2s,transform .15s;
+  }
+  .contact-item:hover { background:rgba(55,138,221,.2); border-color:rgba(133,183,235,.35); transform:translateY(-2px); }
+  .contact-item.coral-item { background:rgba(216,90,48,.12); border-color:rgba(240,153,123,.2); }
+  .contact-item.coral-item:hover { background:rgba(216,90,48,.22); border-color:rgba(240,153,123,.35); }
+  .ci-lbl { font-size:10px; text-transform:uppercase; letter-spacing:.07em; color:rgba(133,183,235,.7); margin-bottom:5px; }
+  .ci-lbl.coral { color:rgba(240,153,123,.75); }
+  .ci-val { font-size:14px; font-weight:500; color:#fff; word-break:break-all; }
 
   /* ── FOOTER ── */
-  .footer{text-align:center;padding:0 0 36px;font-size:11px;color:var(--muted);}
-  .footer span{color:var(--coral);}
-  .updated{text-align:right;font-size:10px;color:var(--muted);margin-top:8px;}
-  .skel{display:inline-block;height:1em;width:70px;border-radius:4px;background:linear-gradient(90deg,#dde6f0 25%,#ecf2f8 50%,#dde6f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;}
+  .footer { text-align:center; padding:0 0 36px; font-size:11px; color:var(--muted); }
+  .footer span { color:var(--coral); }
 
-  @media screen and (max-width:600px){
-    .wrap{padding-left:18px!important;padding-right:18px!important;}
-    .hero-inner{padding-left:18px!important;padding-right:18px!important;}
-    .hero{padding-top:40px;padding-bottom:34px;}
-    .reach{padding:18px 16px;}
-    .reach-num{font-size:38px;}
-    .reach-divider{display:none;}
-    .reach-text{font-size:12px;}
-    .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-    .stat-card{padding:12px 12px;}
-    .stat-val{font-size:20px;}
-    .plat-grid{grid-template-columns:1fr;}
-    .plat-card{padding:12px 14px;}
-    .collab-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-    .collab-card{padding:14px 10px;}
-    .collab-desc{font-size:10px;}
-    .contact-card{padding:22px 16px;}
-    .contact-grid{grid-template-columns:1fr;}
-    .contact-heading{font-size:26px;}
-    section{padding:30px 0 0;}
-    .contact-wrap{padding:30px 0 50px;}
-    .sec-label{font-size:9px;}
-    .hero-name{font-size:30px;}
-    .logo{width:58px;height:58px;}
-    .brand-row{gap:12px;}
-    .hero-tagline{font-size:12px;}
-    .badge{font-size:9px;padding:3px 9px;}
-    .lang-bar{top:10px;right:10px;}
+  /* ── UPDATED TAG ── */
+  .updated { text-align:right; font-size:10px; color:var(--muted); margin-top:8px; }
+
+  /* ── SKELETON ── */
+  .skel {
+    display:inline-block; height:1em; width:70px; border-radius:4px;
+    background:linear-gradient(90deg,#dde6f0 25%,#ecf2f8 50%,#dde6f0 75%);
+    background-size:200% 100%; animation:shimmer 1.4s infinite;
+  }
+
+  @media screen and (max-width: 600px) {
+    .wrap { padding-left: 18px !important; padding-right: 18px !important; }
+    .hero-inner { padding-left: 18px !important; padding-right: 18px !important; }
+    .hero { padding-top: 40px; padding-bottom: 34px; }
+    .reach { padding: 18px 16px; }
+    .reach-num { font-size: 38px; }
+    .reach-divider { display: none; }
+    .reach-text { font-size: 12px; }
+    .stat-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .stat-card { padding: 12px 12px; }
+    .stat-val { font-size: 20px; }
+    .plat-grid { grid-template-columns: 1fr; }
+    .plat-card { padding: 12px 14px; }
+    .collab-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+    .collab-card { padding: 14px 10px; }
+    .collab-desc { font-size: 10px; }
+    .contact-card { padding: 22px 16px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-heading { font-size: 26px; }
+    section { padding: 30px 0 0; }
+    .contact-wrap { padding: 30px 0 50px; }
+    .sec-label { font-size: 9px; }
+    .hero-name { font-size: 30px; }
+    .logo { width: 58px; height: 58px; }
+    .brand-row { gap: 12px; }
+    .hero-tagline { font-size: 12px; }
+    .badge { font-size: 9px; padding: 3px 9px; }
+    .lang-bar { top:10px; right:10px; }
   }
 </style>
 </head>
 <body>
 
-<!-- LANGUAGE TOGGLE -->
+<!-- ── LANG TOGGLE ── -->
 <div class="lang-bar">
   <span class="lang-flag">🌐</span>
   <button class="lang-btn active" id="btn-id" onclick="setLang('id')">ID</button>
@@ -276,21 +467,27 @@
   <div class="hero-blob b3"></div>
   <div class="hero-blob b4"></div>
   <div class="hero-dots">
-    <div class="hero-dot on"></div><div class="hero-dot"></div><div class="hero-dot"></div>
+    <div class="hero-dot on"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
   </div>
+
   <div class="wrap hero-inner">
     <div class="fu d1">
       <div class="live-chip"><span class="live-dot"></span> <span data-t="live_chip">YouTube data live</span></div>
     </div>
     <div class="brand-row fu d2">
-      <div class="logo"><img src="https://jemodusuntv.com/logo.png" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22><rect width=%2272%22 height=%2272%22 rx=%2236%22 fill=%22%23102e4e%22/><text x=%2236%22 y=%2244%22 text-anchor=%22middle%22 font-family=%22Impact%22 font-size=%2222%22 fill=%22%23D85A30%22>JD</text></svg>'" alt="JemoDusunTV"></div>
+      <div class="logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCADcANwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDtta0TULe6kmbV4JWjLkKkmF2542K2DnrkVdl0+1utCFv9te2e9xL5oGUUDkOoOPmBGAfUmsPUPG0E2j6Ra388" alt="JemoDusunTV"></div>
       <div>
-        <div class="hero-name">JemoDusunTV</div>
+        <div class="hero-name" id="hero-name">JemoDusunTV</div>
         <div class="hero-loc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"/><circle cx="8" cy="6" r="1.5"/></svg>
-          <span data-t="hero_loc">Bengkulu – Sumatera, Indonesia</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"/>
+            <circle cx="8" cy="6" r="1.5"/>
+          </svg>
+          <span id="hero-loc">Bengkulu – Sumatera, Indonesia</span>
         </div>
-        <div class="hero-tagline" data-t="hero_tagline"></div>
+        <div class="hero-tagline" id="hero-tagline"></div>
         <div class="badges" id="hero-badges"></div>
       </div>
     </div>
@@ -300,570 +497,644 @@
 <div class="wrap body-wrap">
 
   <section class="fu d2">
-    <div class="sec-label" data-t="sec_reach"></div>
+    <div class="sec-label" data-t="sec_reach">Jangkauan total lintas platform</div>
     <div class="reach">
-      <div class="reach-num">3 <span data-t="jt">JT</span>+</div>
+      <div class="reach-num" id="total-reach">3 JT+</div>
       <div class="reach-divider"></div>
-      <div class="reach-text" data-t="reach_text"></div>
+      <div class="reach-text" id="reach-text">Total followers & subscribers gabungan dari YouTube, Facebook, TikTok, dan Instagram — komunitas outdoor aktif dan loyal di seluruh Indonesia. <strong style="color:var(--coral-lt)">163 JT+ views lifetime</strong> di YouTube dengan 32.6 JT jam waktu tonton.</div>
     </div>
   </section>
 
   <section class="fu d3">
-    <div class="sec-label" data-t="sec_yt"></div>
+    <div class="sec-label" data-t="sec_yt">Performa channel YouTube</div>
     <div class="stat-grid" id="stat-grid"></div>
     <div class="updated" id="updated"></div>
   </section>
 
   <section class="fu d3">
-    <div class="sec-label" data-t="sec_plat"></div>
+    <div class="sec-label" data-t="sec_plat">Distribusi platform</div>
     <div class="plat-grid" id="plat-grid"></div>
   </section>
 
+  <!-- UVP -->
   <section class="fu d3">
     <div class="uvp-banner">
-      <div class="uvp-tag" data-t="uvp_tag"></div>
-      <div class="uvp-text" data-t="uvp_text"></div>
-      <div class="uvp-sub" data-t="uvp_sub"></div>
+      <div class="uvp-tag" data-t="uvp_tag">Kenapa JemoDusunTV?</div>
+      <div class="uvp-text" data-t="uvp_text">"Satu-satunya creator outdoor Sumatera dengan audiens rural yang loyal — segmen yang tidak bisa dijangkau iklan digital biasa."</div>
+      <div class="uvp-sub" data-t="uvp_sub">Konten kami bukan sekadar hiburan — ini dokumentasi kehidupan nyata masyarakat hutan Sumatera yang autentik, konsisten, dan dipercaya jutaan penonton.</div>
     </div>
   </section>
 
+  <!-- ENGAGEMENT -->
   <section class="fu d3">
-    <div class="sec-label" data-t="sec_engage"></div>
+    <div class="sec-label" data-t="sec_engage">Performa & Engagement — Data Lifetime YouTube</div>
     <div class="engage-grid">
       <div class="engage-card">
         <div class="engage-icon">👁️</div>
-        <div class="engage-val">163 <span data-t="jt">JT</span>+</div>
-        <div class="engage-lbl" data-t="eng1_lbl"></div>
-        <div class="engage-bench" data-t="eng1_bench"></div>
+        <div class="engage-val">163 JT+</div>
+        <div class="engage-lbl" data-t="eng1_lbl">Total views lifetime</div>
+        <div class="engage-bench" data-t="eng1_bench">↑ Data real YouTube Studio</div>
       </div>
       <div class="engage-card">
         <div class="engage-icon">⏱️</div>
-        <div class="engage-val">32.6 <span data-t="jt">JT</span></div>
-        <div class="engage-lbl" data-t="eng2_lbl"></div>
-        <div class="engage-bench" data-t="eng2_bench"></div>
+        <div class="engage-val">32.6 JT</div>
+        <div class="engage-lbl" data-t="eng2_lbl">Total jam waktu tonton</div>
+        <div class="engage-bench" data-t="eng2_bench">↑ Setara 3.7 tahun nonstop</div>
       </div>
       <div class="engage-card coral">
         <div class="engage-icon">🎯</div>
         <div class="engage-val">5.54%</div>
-        <div class="engage-lbl" data-t="eng3_lbl"></div>
-        <div class="engage-bench" data-t="eng3_bench"></div>
+        <div class="engage-lbl" data-t="eng3_lbl">CTR rata-rata lifetime</div>
+        <div class="engage-bench" data-t="eng3_bench">↑ Benchmark industri ~4%</div>
       </div>
       <div class="engage-card coral">
         <div class="engage-icon">📈</div>
         <div class="engage-val">1.25 M</div>
-        <div class="engage-lbl" data-t="eng4_lbl"></div>
-        <div class="engage-bench" data-t="eng4_bench"></div>
+        <div class="engage-lbl" data-t="eng4_lbl">Total impressions thumbnail</div>
+        <div class="engage-bench" data-t="eng4_bench">↑ 1.25 miliar tayangan organik</div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px">
       <div class="engage-card" style="display:flex;align-items:center;gap:16px;padding:16px 18px">
         <div style="font-size:28px">🏆</div>
         <div>
-          <div class="engage-val" style="font-size:20px">4.96 <span data-t="jt">JT</span></div>
-          <div class="engage-lbl" data-t="viral_lbl"></div>
+          <div class="engage-val" style="font-size:20px">4.96 JT</div>
+          <div class="engage-lbl" data-t="viral_lbl">Video terlaris — "Rusa Tangkapan Harimau" (Sep 2024)</div>
         </div>
       </div>
       <div class="engage-card coral" style="display:flex;align-items:center;gap:16px;padding:16px 18px">
         <div style="font-size:28px">👥</div>
         <div>
-          <div class="engage-val" style="font-size:20px">+8.5K</div>
-          <div class="engage-lbl" data-t="sub_lbl"></div>
+          <div class="engage-val" style="font-size:20px">523 RB+</div>
+          <div class="engage-lbl" data-t="sub_gained_lbl">Total subscriber gained dari konten organik</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- DEMOGRAPHICS -->
   <section class="fu d3">
-    <div class="sec-label" data-t="sec_demo"></div>
+    <div class="sec-label" data-t="sec_demo">Demografi Audiens</div>
     <div class="demo-grid">
+      <!-- Usia -->
       <div class="demo-card">
-        <div class="demo-title" data-t="demo_age"></div>
-        <div class="demo-row"><span class="demo-label">18–24</span><span class="demo-val">28%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar" style="width:28%"></div></div>
-        <div class="demo-row"><span class="demo-label">25–34</span><span class="demo-val">35%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar" style="width:35%"></div></div>
-        <div class="demo-row"><span class="demo-label">35–44</span><span class="demo-val">22%</span></div>
+        <div class="demo-title" data-t="demo_age">📊 Rentang Usia</div>
+        <div class="demo-row"><span class="demo-label">18–24</span><span class="demo-val">22%</span></div>
         <div class="demo-bar-wrap"><div class="demo-bar" style="width:22%"></div></div>
-        <div class="demo-row"><span class="demo-label">45+</span><span class="demo-val">15%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar" style="width:15%"></div></div>
+        <div class="demo-row"><span class="demo-label">25–34</span><span class="demo-val">38%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:38%"></div></div>
+        <div class="demo-row"><span class="demo-label">35–44</span><span class="demo-val">26%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:26%"></div></div>
+        <div class="demo-row"><span class="demo-label">45+</span><span class="demo-val">14%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:14%"></div></div>
       </div>
+      <!-- Gender -->
       <div class="demo-card">
-        <div class="demo-title" data-t="demo_gender"></div>
-        <div class="gender-row">
-          <div class="gender-m" style="width:78%">♂ 78%</div>
-          <div class="gender-f" style="width:22%">♀ 22%</div>
+        <div class="demo-title" data-t="demo_gender">👥 Gender</div>
+        <div class="gender-row" style="margin-bottom:12px">
+          <div class="gender-m" style="width:78%" data-t="gender_m">Laki-laki 78%</div>
+          <div class="gender-f" style="width:22%">22%</div>
         </div>
-        <div style="font-size:11px;color:var(--muted);line-height:1.7;margin-top:10px" data-t="demo_gender_note"></div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.7" data-t="demo_gender_note">
+          Audiens mayoritas pria usia produktif — segmen ideal untuk brand peralatan outdoor, otomotif, makanan, dan gaya hidup maskulin.
+        </div>
       </div>
+      <!-- Lokasi -->
       <div class="demo-card">
-        <div class="demo-title" data-t="demo_geo"></div>
-        <div class="demo-row"><span class="demo-label" data-t="geo_sum">Sumatera</span><span class="demo-val">52%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar coral" style="width:52%"></div></div>
-        <div class="demo-row"><span class="demo-label" data-t="geo_java">Jawa</span><span class="demo-val">28%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar coral" style="width:28%"></div></div>
-        <div class="demo-row"><span class="demo-label" data-t="geo_other">Lainnya</span><span class="demo-val">20%</span></div>
-        <div class="demo-bar-wrap"><div class="demo-bar coral" style="width:20%"></div></div>
+        <div class="demo-title" data-t="demo_geo">📍 Top Lokasi Penonton</div>
+        <div class="demo-row"><span class="demo-label" data-t="geo_sum">Sumatera</span><span class="demo-val">42%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:42%"></div></div>
+        <div class="demo-row"><span class="demo-label" data-t="geo_java">Jawa</span><span class="demo-val">31%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:31%"></div></div>
+        <div class="demo-row"><span class="demo-label" data-t="geo_kali">Kalimantan</span><span class="demo-val">11%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar" style="width:11%"></div></div>
+        <div class="demo-row"><span class="demo-label" data-t="geo_other">Lainnya</span><span class="demo-val">16%</span></div>
+        <div class="demo-bar-wrap"><div class="demo-bar coral" style="width:16%"></div></div>
       </div>
     </div>
+    <div style="font-size:10px;color:var(--muted);margin-top:8px;text-align:right;" data-t="demo_note">* Estimasi berdasarkan data YouTube Studio. Hubungi kami untuk laporan lengkap.</div>
   </section>
 
-  <section class="fu d3">
-    <div class="sec-label" data-t="sec_portfolio"></div>
+  <!-- PORTFOLIO — link YouTube ASLI tidak diubah -->
+  <section class="fu d4">
+    <div class="sec-label" data-t="sec_portfolio">Portfolio — Video Terbaik (Lifetime)</div>
     <div class="portfolio-grid">
-      <a href="https://youtu.be/example1" target="_blank" class="portfolio-card">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/5L3VaKDFXWw/mqdefault.jpg" alt="Rusa Tangkapan Harimau">
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=sOPDOaz2R4k" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/sOPDOaz2R4k/maxresdefault.jpg" alt="Rusa Tangkapan Harimau" loading="lazy">
         <div class="portfolio-body">
-          <div class="portfolio-badge" data-t="port_viral">VIRAL</div>
-          <div class="portfolio-title" data-t="port1_title">Rusa Tangkapan Harimau</div>
+          <span class="portfolio-badge">🏆 #1 All Time</span>
+          <div class="portfolio-title" data-t="port1_title">Dapat Rusa Tangkapan Harimau Saat Fishing Camping Ke Hutan Rimba?</div>
           <div class="portfolio-stats">
-            <div class="portfolio-stat">👁️ <strong>4.96 JT</strong></div>
-            <div class="portfolio-stat">⏱️ <strong>Sep 2024</strong></div>
+            <div class="portfolio-stat"><strong>4.96 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>18.7K</strong> subs</div>
           </div>
         </div>
       </a>
-      <a href="https://youtu.be/example2" target="_blank" class="portfolio-card">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/AvkCmMxahwI/mqdefault.jpg" alt="Madu Hutan Sialang">
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=dTPqVOF9bfk" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/dTPqVOF9bfk/maxresdefault.jpg" alt="Fishing Camp Adventure" loading="lazy">
         <div class="portfolio-body">
-          <div class="portfolio-badge" data-t="port_featured">UNGGULAN</div>
-          <div class="portfolio-title" data-t="port2_title">Panen Madu Pohon Sialang</div>
+          <span class="portfolio-badge">🔥 #2 All Time</span>
+          <div class="portfolio-title" data-t="port2_title">Fishing Camp Adventure — Bermalam Di Hutan Rimba Mencari Ikan Mahseer</div>
           <div class="portfolio-stats">
-            <div class="portfolio-stat">👁️ <strong>2.1 JT</strong></div>
-            <div class="portfolio-stat">⏱️ <strong>2024</strong></div>
+            <div class="portfolio-stat"><strong>3.43 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>24.6K</strong> subs</div>
           </div>
         </div>
       </a>
-      <a href="https://youtu.be/example3" target="_blank" class="portfolio-card">
-        <img class="portfolio-thumb" src="https://img.youtube.com/vi/jGOBwJ5LXAA/mqdefault.jpg" alt="Ekspedisi Sungai">
+      <a class="portfolio-card" href="https://www.youtube.com/watch?v=N8EfwDzmWhI" target="_blank" rel="noopener">
+        <img class="portfolio-thumb" src="https://i.ytimg.com/vi/N8EfwDzmWhI/maxresdefault.jpg" alt="Hujan Lebat Survival" loading="lazy">
         <div class="portfolio-body">
-          <div class="portfolio-badge" data-t="port_expedition">EKSPEDISI</div>
-          <div class="portfolio-title" data-t="port3_title">Ekspedisi Sungai Liar Sumatera</div>
+          <span class="portfolio-badge">⚡ #3 All Time</span>
+          <div class="portfolio-title" data-t="port3_title">Hujan Lebat, Sungai Banjir! Camping & Fishing Survival di Tengah Hutan</div>
           <div class="portfolio-stats">
-            <div class="portfolio-stat">👁️ <strong>1.8 JT</strong></div>
-            <div class="portfolio-stat">⏱️ <strong>2024</strong></div>
+            <div class="portfolio-stat"><strong>2.83 JT</strong> views</div>
+            <div class="portfolio-stat"><strong>19.5K</strong> subs</div>
           </div>
         </div>
       </a>
     </div>
   </section>
 
-  <section class="fu d3">
-    <div class="sec-label" data-t="sec_rates"></div>
+  <!-- RATE CARD -->
+  <section class="fu d4">
+    <div class="sec-label" data-t="sec_rates">Rate Card & Paket Kolaborasi</div>
+
+    <div style="background:var(--ocean);border-radius:14px;padding:18px 24px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);flex-shrink:0" data-t="rate_basis">Basis kalkulasi</div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;flex:1">
+        <div style="font-size:12px;color:rgba(133,183,235,.8)" data-t="rate_b1">📊 Avg views/video <strong style="color:#fff">150K–500K</strong></div>
+        <div style="font-size:12px;color:rgba(133,183,235,.8)" data-t="rate_b2">⚡ Growth harian <strong style="color:#fff">~710 subs/hari</strong></div>
+        <div style="font-size:12px;color:rgba(133,183,235,.8)" data-t="rate_b3">🎯 CTR <strong style="color:#fff">5.54%</strong> (industri ~4%)</div>
+        <div style="font-size:12px;color:rgba(133,183,235,.8)" data-t="rate_b4">📅 Views/bulan <strong style="color:#fff">~11 JT</strong></div>
+      </div>
+    </div>
+
     <div class="rate-grid">
       <div class="rate-card">
-        <div class="rate-tier" data-t="rate1_tier">PAKET DASAR</div>
-        <div class="rate-name" data-t="rate1_name">MENTION</div>
-        <div class="rate-price">Rp 3 JT</div>
+        <div class="rate-tier" data-t="rate1_tier">Paket 01</div>
+        <div class="rate-name" data-t="rate1_name">Mention</div>
+        <div class="rate-price">Rp 5 JT</div>
         <div class="rate-divider"></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i1">Sebutan produk dalam video</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i2">Link di deskripsi</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i3">1 x posting Instagram Story</span></div>
-        <div class="rate-note" data-t="rate_note">*Harga bisa nego tergantung scope.</div>
-      </div>
-      <div class="rate-card featured" data-popular="TERPOPULER">
-        <div class="rate-tier" data-t="rate2_tier">PAKET UNGGULAN</div>
-        <div class="rate-name" data-t="rate2_name">INTEGRASI</div>
-        <div class="rate-price">Rp 7 JT</div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i1">1 × Short / Reels dedicated (30–60 dtk)</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i2">Produk muncul natural dalam konten</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i3">Link + mention di deskripsi</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate1_i4">1 × story Instagram & TikTok</span></div>
         <div class="rate-divider"></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i1">Segmen dedicated 60–90 detik</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i2">Demo produk alami dalam video</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i3">2 x posting semua platform sosial</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i4">Laporan performa akhir</span></div>
-        <div class="rate-note" data-t="rate_note">*Harga bisa nego tergantung scope.</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.6" data-t="rate1_note">📌 Proyeksi: <strong>200K–500K views</strong><br>Referensi benchmark industri: Rp 4–7 JT<br>Cocok: brand peralatan outdoor, FMCG, makanan</div>
       </div>
+
+      <div class="rate-card featured">
+        <div class="rate-tier" data-t="rate2_tier">Paket 02 — Terpopuler</div>
+        <div class="rate-name" data-t="rate2_name">Integrasi</div>
+        <div class="rate-price">Rp 10 JT</div>
+        <div class="rate-divider"></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i1">Segment 60–120 dtk di video long-form</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i2">Produk dipakai langsung di lapangan</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i3">1 × Short / Reels pendukung</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i4">Link + pin comment YouTube</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i5">Feed post Instagram + story</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate2_i6">Post Facebook & TikTok</span></div>
+        <div class="rate-divider"></div>
+        <div style="font-size:10px;color:rgba(133,183,235,.7);line-height:1.6" data-t="rate2_note">📌 Proyeksi: <strong style="color:#fff">500K–1.5 JT views</strong><br>Referensi benchmark industri: Rp 7–12 JT<br>ROI tertinggi untuk brand</div>
+      </div>
+
       <div class="rate-card">
-        <div class="rate-tier" data-t="rate3_tier">PAKET PREMIUM</div>
-        <div class="rate-name" data-t="rate3_name">BRANDED</div>
-        <div class="rate-price">Rp 15 JT+</div>
+        <div class="rate-tier" data-t="rate3_tier">Paket 03</div>
+        <div class="rate-name" data-t="rate3_name">Full Campaign</div>
+        <div class="rate-price">Rp 20 JT+</div>
         <div class="rate-divider"></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i1">Video dedikasi penuh</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i2">Co-branding & thumbnail kustom</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i3">Distribusi lintas platform lengkap</span></div>
-        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i4">Kampanye multi-video</span></div>
-        <div class="rate-note" data-t="rate_note">*Harga bisa nego tergantung scope.</div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i1">1 × Video dedicated full branded</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i2">Distribusi di semua platform (YT+IG+TT+FB)</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i3">Konsep & skrip dikerjakan bersama</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i4">Laporan performa lengkap post-tayang</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i5">Hak pakai konten 6 bulan</span></div>
+        <div class="rate-item"><span class="rate-check">✓</span><span data-t="rate3_i6">Opsi exclusivity niche outdoor</span></div>
+        <div class="rate-divider"></div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.6" data-t="rate3_note">📌 Proyeksi: <strong>1 JT–5 JT+ views</strong><br>Referensi benchmark industri: Rp 12–38 JT<br>Untuk kampanye jangka panjang</div>
       </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-top:12px;display:flex;flex-wrap:wrap;gap:16px">
+      <div style="font-size:11px;color:var(--muted);line-height:1.8;flex:1" data-t="rate_note1">⚠️ <strong>Catatan:</strong> Harga di atas adalah rate dasar untuk 1 konten. Diskon tersedia untuk kontrak multi-video (3+ video). Barter produk dapat dikombinasikan dengan rate cash yang disesuaikan. Harga belum termasuk biaya produksi tambahan jika diperlukan.</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8;flex:1" data-t="rate_note2">📊 <strong>Mengapa harga ini fair?</strong> Rate dihitung berdasarkan performa aktual channel — avg 400K views/video, CTR 5.54% di atas benchmark industri, dan benchmark creator Indonesia aktif. Nilai organik yang Anda dapatkan sebanding dengan iklan berbayar di skala yang sama.</div>
     </div>
   </section>
 
-  <section class="fu d3">
-    <div class="sec-label" data-t="sec_collab"></div>
-    <div class="collab-grid">
-      <div class="collab-card"><div class="collab-icon-wrap">🎣</div><div class="collab-title" data-t="col1_title">Peralatan Outdoor</div><div class="collab-desc" data-t="col1_desc">Pancing, camping, survival, dan navigasi alam bebas</div></div>
-      <div class="collab-card"><div class="collab-icon-wrap">🌿</div><div class="collab-title" data-t="col2_title">Produk Alam</div><div class="collab-desc" data-t="col2_desc">Suplemen herbal, madu, dan produk alami Sumatera</div></div>
-      <div class="collab-card"><div class="collab-icon-wrap">🚗</div><div class="collab-title" data-t="col3_title">Otomotif</div><div class="collab-desc" data-t="col3_desc">Kendaraan offroad, aksesoris, dan modifikasi</div></div>
-      <div class="collab-card"><div class="collab-icon-wrap">📱</div><div class="collab-title" data-t="col4_title">Teknologi</div><div class="collab-desc" data-t="col4_desc">Kamera, drone, gadget, dan aksesoris konten</div></div>
-      <div class="collab-card"><div class="collab-icon-wrap">🍖</div><div class="collab-title" data-t="col5_title">Food & Beverage</div><div class="collab-desc" data-t="col5_desc">Minuman, makanan instan, dan produk konsumen</div></div>
-      <div class="collab-card"><div class="collab-icon-wrap">🌱</div><div class="collab-title" data-t="col6_title">Pertanian</div><div class="collab-desc" data-t="col6_desc">Pupuk, pestisida, dan alat pertanian modern</div></div>
-    </div>
+  <section class="fu d4">
+    <div class="sec-label" data-t="sec_collab">Bentuk kolaborasi</div>
+    <div class="collab-grid" id="collab-grid"></div>
   </section>
 
-  <div class="contact-wrap fu d4">
-    <div class="contact-card">
-      <div class="contact-eyebrow" data-t="contact_eyebrow"></div>
-      <div class="contact-heading" data-t="contact_heading"></div>
-      <div class="contact-sub" data-t="contact_sub"></div>
-      <div class="contact-grid">
-        <a href="https://wa.me/6281234567890" target="_blank" class="contact-item coral-item">
-          <div class="ci-lbl coral">WhatsApp</div>
-          <div class="ci-val">+62 812-3456-7890</div>
-        </a>
-        <a href="mailto:kolaborasi@jemodusuntv.com" class="contact-item coral-item">
-          <div class="ci-lbl coral">Email</div>
-          <div class="ci-val">kolaborasi@jemodusuntv.com</div>
-        </a>
-        <a href="https://instagram.com/jemodusuntv" target="_blank" class="contact-item">
-          <div class="ci-lbl">Instagram</div>
-          <div class="ci-val">@jemodusuntv</div>
-        </a>
-        <a href="https://youtube.com/@jemodusuntv" target="_blank" class="contact-item">
-          <div class="ci-lbl">YouTube</div>
-          <div class="ci-val">youtube.com/@jemodusuntv</div>
-        </a>
-      </div>
-    </div>
+</div>
+
+<div class="wrap contact-wrap fu d5">
+  <div class="contact-card">
+    <div class="contact-eyebrow" data-t="contact_eyebrow">Hubungi kami</div>
+    <div class="contact-heading" data-t="contact_heading">Tertarik berkolaborasi?</div>
+    <div class="contact-sub" data-t="contact_sub">Diskusikan bentuk kerjasama terbaik untuk brand Anda bersama JemoDusunTV.</div>
+    <div class="contact-grid" id="contact-grid"></div>
   </div>
-
 </div>
 
 <div class="footer">
-  <span>JemoDusunTV</span> · <span data-t="footer_copy"></span> · <span data-t="footer_made"></span>
+  Media Kit &copy; <span id="yr"></span> <span id="ft-name"></span>
+  &middot; <span data-t="footer_data">Data YouTube diperbarui otomatis</span>
 </div>
 
+<script src="config.js"></script>
 <script>
-// ── TRANSLATIONS ────────────────────────────────────────────────────────────
-const T = {
+// ── TRANSLATIONS ─────────────────────────────────────────────────────────────
+const LANG = {
   id: {
-    live_chip: "YouTube data live",
-    hero_loc: "Bengkulu – Sumatera, Indonesia",
-    hero_tagline: "Channel outdoor & petualangan sungai Sumatera yang autentik. Dokumentasi kehidupan nyata masyarakat hutan — dari panen madu pohon Sialang, ekspedisi sungai liar, hingga tradisi memancing generasi.",
-    hero_badges: ["🎣 Memancing","🌿 Alam Liar","🏕️ Petualangan","🦅 Satwa Liar","🌊 Sungai Sumatera"],
-    jt: "JT",
-    sec_reach: "Jangkauan total lintas platform",
-    reach_text: "Total followers & subscribers gabungan dari YouTube, Facebook, TikTok, dan Instagram — komunitas outdoor aktif dan loyal di seluruh Indonesia. <strong style=\"color:var(--coral-lt)\">163 JT+ views lifetime</strong> di YouTube dengan 32.6 JT jam waktu tonton.",
-    sec_yt: "Performa channel YouTube",
-    sec_plat: "Distribusi platform",
-    uvp_tag: "Kenapa JemoDusunTV?",
-    uvp_text: '"Satu-satunya creator outdoor Sumatera dengan audiens rural yang loyal — segmen yang tidak bisa dijangkau iklan digital biasa."',
-    uvp_sub: "Konten kami bukan sekadar hiburan — ini dokumentasi kehidupan nyata masyarakat hutan Sumatera yang autentik, konsisten, dan dipercaya jutaan penonton.",
-    sec_engage: "Performa & Engagement — Data Lifetime YouTube",
-    eng1_lbl: "Total views lifetime",
-    eng1_bench: "↑ Data real YouTube Studio",
-    eng2_lbl: "Total jam waktu tonton",
-    eng2_bench: "↑ Setara 3.7 tahun nonstop",
-    eng3_lbl: "CTR rata-rata lifetime",
-    eng3_bench: "↑ Benchmark industri ~4%",
-    eng4_lbl: "Total impressions thumbnail",
-    eng4_bench: "↑ 1.25 miliar tayangan organik",
-    viral_lbl: "Video terlaris — \"Rusa Tangkapan Harimau\" (Sep 2024)",
-    sub_lbl: "Rata-rata subscriber baru per bulan",
-    sec_demo: "Demografi Audiens",
-    demo_age: "Usia",
-    demo_gender: "Gender",
-    demo_gender_note: "Audiens pria mendominasi — sesuai niche outdoor, memancing, dan petualangan alam bebas di Sumatera.",
-    demo_geo: "Geografi",
-    geo_sum: "Sumatera",
-    geo_java: "Jawa",
-    geo_other: "Lainnya",
-    sec_portfolio: "Video Unggulan",
-    port_viral: "VIRAL",
-    port_featured: "UNGGULAN",
-    port_expedition: "EKSPEDISI",
-    port1_title: "Rusa Tangkapan Harimau",
-    port2_title: "Panen Madu Pohon Sialang",
-    port3_title: "Ekspedisi Sungai Liar Sumatera",
-    sec_rates: "Rate Card Kolaborasi",
-    rate1_tier: "PAKET DASAR",
-    rate1_name: "MENTION",
-    rate1_i1: "Sebutan produk dalam video",
-    rate1_i2: "Link di deskripsi",
-    rate1_i3: "1 x posting Instagram Story",
-    rate2_tier: "PAKET UNGGULAN",
-    rate2_name: "INTEGRASI",
-    rate2_i1: "Segmen dedicated 60–90 detik",
-    rate2_i2: "Demo produk alami dalam video",
-    rate2_i3: "2 x posting semua platform sosial",
-    rate2_i4: "Laporan performa akhir",
-    rate3_tier: "PAKET PREMIUM",
-    rate3_name: "BRANDED",
-    rate3_i1: "Video dedikasi penuh",
-    rate3_i2: "Co-branding & thumbnail kustom",
-    rate3_i3: "Distribusi lintas platform lengkap",
-    rate3_i4: "Kampanye multi-video",
-    rate_note: "*Harga bisa nego tergantung scope kampanye.",
-    rate_popular: "TERPOPULER",
-    sec_collab: "Kategori Kolaborasi",
-    col1_title: "Peralatan Outdoor",
-    col1_desc: "Pancing, camping, survival, dan navigasi alam bebas",
-    col2_title: "Produk Alam",
-    col2_desc: "Suplemen herbal, madu, dan produk alami Sumatera",
-    col3_title: "Otomotif",
-    col3_desc: "Kendaraan offroad, aksesoris, dan modifikasi",
-    col4_title: "Teknologi",
-    col4_desc: "Kamera, drone, gadget, dan aksesoris konten",
-    col5_title: "Food & Beverage",
-    col5_desc: "Minuman, makanan instan, dan produk konsumen",
-    col6_title: "Pertanian",
-    col6_desc: "Pupuk, pestisida, dan alat pertanian modern",
-    contact_eyebrow: "Siap Berkolaborasi?",
-    contact_heading: "Hubungi Kami",
-    contact_sub: "Tertarik kolaborasi atau ada pertanyaan tentang media kit? Hubungi kami — biasanya kami membalas dalam 24 jam.",
-    footer_copy: "Media Kit 2025",
-    footer_made: "Dibuat dengan ❤️ untuk brand partner",
-    stat_subs: "Subscribers YouTube",
-    stat_views: "Views bulan ini",
-    stat_watch: "Jam tonton bulan ini",
-    stat_videos: "Total video",
-    stat_live: "DATA LIVE",
-    plat_yt_sub: "Outdoor & Petualangan",
-    plat_fb_sub: "Komunitas Aktif",
-    plat_tt_sub: "Konten Pendek",
-    plat_ig_sub: "Behind the Scenes",
-    updated_prefix: "Diperbarui:",
+    live_chip:       'YouTube data live',
+    sec_reach:       'Jangkauan total lintas platform',
+    reach_text:      'Total followers & subscribers gabungan dari YouTube, Facebook, TikTok, dan Instagram — komunitas outdoor aktif dan loyal di seluruh Indonesia. <strong style="color:var(--coral-lt)">163 JT+ views lifetime</strong> di YouTube dengan 32.6 JT jam waktu tonton.',
+    sec_yt:          'Performa channel YouTube',
+    sec_plat:        'Distribusi platform',
+    uvp_tag:         'Kenapa JemoDusunTV?',
+    uvp_text:        '"Satu-satunya creator outdoor Sumatera dengan audiens rural yang loyal — segmen yang tidak bisa dijangkau iklan digital biasa."',
+    uvp_sub:         'Konten kami bukan sekadar hiburan — ini dokumentasi kehidupan nyata masyarakat hutan Sumatera yang autentik, konsisten, dan dipercaya jutaan penonton.',
+    sec_engage:      'Performa & Engagement — Data Lifetime YouTube',
+    eng1_lbl:        'Total views lifetime',
+    eng1_bench:      '↑ Data real YouTube Studio',
+    eng2_lbl:        'Total jam waktu tonton',
+    eng2_bench:      '↑ Setara 3.7 tahun nonstop',
+    eng3_lbl:        'CTR rata-rata lifetime',
+    eng3_bench:      '↑ Benchmark industri ~4%',
+    eng4_lbl:        'Total impressions thumbnail',
+    eng4_bench:      '↑ 1.25 miliar tayangan organik',
+    viral_lbl:       'Video terlaris — "Rusa Tangkapan Harimau" (Sep 2024)',
+    sub_gained_lbl:  'Total subscriber gained dari konten organik',
+    sec_demo:        'Demografi Audiens',
+    demo_age:        '📊 Rentang Usia',
+    demo_gender:     '👥 Gender',
+    gender_m:        'Laki-laki 78%',
+    demo_gender_note:'Audiens mayoritas pria usia produktif — segmen ideal untuk brand peralatan outdoor, otomotif, makanan, dan gaya hidup maskulin.',
+    demo_geo:        '📍 Top Lokasi Penonton',
+    geo_sum:         'Sumatera',
+    geo_java:        'Jawa',
+    geo_kali:        'Kalimantan',
+    geo_other:       'Lainnya',
+    demo_note:       '* Estimasi berdasarkan data YouTube Studio. Hubungi kami untuk laporan lengkap.',
+    sec_portfolio:   'Portfolio — Video Terbaik (Lifetime)',
+    port1_title:     'Dapat Rusa Tangkapan Harimau Saat Fishing Camping Ke Hutan Rimba?',
+    port2_title:     'Fishing Camp Adventure — Bermalam Di Hutan Rimba Mencari Ikan Mahseer',
+    port3_title:     'Hujan Lebat, Sungai Banjir! Camping & Fishing Survival di Tengah Hutan',
+    sec_rates:       'Rate Card & Paket Kolaborasi',
+    rate_basis:      'Basis kalkulasi',
+    rate_b1:         '📊 Avg views/video <strong style="color:#fff">150K–500K</strong>',
+    rate_b2:         '⚡ Growth harian <strong style="color:#fff">~710 subs/hari</strong>',
+    rate_b3:         '🎯 CTR <strong style="color:#fff">5.54%</strong> (industri ~4%)',
+    rate_b4:         '📅 Views/bulan <strong style="color:#fff">~11 JT</strong>',
+    rate1_tier:      'Paket 01',
+    rate1_name:      'Mention',
+    rate1_i1:        '1 × Short / Reels dedicated (30–60 dtk)',
+    rate1_i2:        'Produk muncul natural dalam konten',
+    rate1_i3:        'Link + mention di deskripsi',
+    rate1_i4:        '1 × story Instagram & TikTok',
+    rate1_note:      '📌 Proyeksi: <strong>200K–500K views</strong><br>Referensi benchmark industri: Rp 4–7 JT<br>Cocok: brand peralatan outdoor, FMCG, makanan',
+    rate2_tier:      'Paket 02 — Terpopuler',
+    rate2_name:      'Integrasi',
+    rate2_i1:        'Segment 60–120 dtk di video long-form',
+    rate2_i2:        'Produk dipakai langsung di lapangan',
+    rate2_i3:        '1 × Short / Reels pendukung',
+    rate2_i4:        'Link + pin comment YouTube',
+    rate2_i5:        'Feed post Instagram + story',
+    rate2_i6:        'Post Facebook & TikTok',
+    rate2_note:      '📌 Proyeksi: <strong style="color:#fff">500K–1.5 JT views</strong><br>Referensi benchmark industri: Rp 7–12 JT<br>ROI tertinggi untuk brand',
+    rate3_tier:      'Paket 03',
+    rate3_name:      'Full Campaign',
+    rate3_i1:        '1 × Video dedicated full branded',
+    rate3_i2:        'Distribusi di semua platform (YT+IG+TT+FB)',
+    rate3_i3:        'Konsep & skrip dikerjakan bersama',
+    rate3_i4:        'Laporan performa lengkap post-tayang',
+    rate3_i5:        'Hak pakai konten 6 bulan',
+    rate3_i6:        'Opsi exclusivity niche outdoor',
+    rate3_note:      '📌 Proyeksi: <strong>1 JT–5 JT+ views</strong><br>Referensi benchmark industri: Rp 12–38 JT<br>Untuk kampanye jangka panjang',
+    rate_note1:      '⚠️ <strong>Catatan:</strong> Harga di atas adalah rate dasar untuk 1 konten. Diskon tersedia untuk kontrak multi-video (3+ video). Barter produk dapat dikombinasikan dengan rate cash yang disesuaikan. Harga belum termasuk biaya produksi tambahan jika diperlukan.',
+    rate_note2:      '📊 <strong>Mengapa harga ini fair?</strong> Rate dihitung berdasarkan performa aktual channel — avg 400K views/video, CTR 5.54% di atas benchmark industri, dan benchmark creator Indonesia aktif. Nilai organik yang Anda dapatkan sebanding dengan iklan berbayar di skala yang sama.',
+    sec_collab:      'Bentuk kolaborasi',
+    contact_eyebrow: 'Hubungi kami',
+    contact_heading: 'Tertarik berkolaborasi?',
+    contact_sub:     'Diskusikan bentuk kerjasama terbaik untuk brand Anda bersama JemoDusunTV.',
+    footer_data:     'Data YouTube diperbarui otomatis',
+    stat_subs:       'Subscriber YouTube',
+    stat_views:      'Total views lifetime',
+    stat_viral:      'Video viral tertinggi',
+    stat_watch:      'Watch time lifetime',
+    live_from_yt:    'Live dari YouTube',
+    plat_sub_label:  'followers / subscribers',
+    dm_label:        'DM Instagram',
+    dm_val:          'Kirim pesan langsung ↗',
+    updated_manual:  'Data manual · Isi API key di config.js untuk live YouTube',
+    updated_cache:   'Refresh dalam',
+    updated_hours:   'jam',
+    updated_err:     'Menggunakan data manual (API error)',
+    updated_cache_err:'Data cache lama (API error) · Coba refresh nanti',
   },
   en: {
-    live_chip: "Live YouTube data",
-    hero_loc: "Bengkulu – Sumatra, Indonesia",
-    hero_tagline: "Authentic Sumatran outdoor & river adventure channel. Real-life documentation of jungle communities — from Sialang honeytree harvests and wild river expeditions to generational fishing traditions.",
-    hero_badges: ["🎣 Fishing","🌿 Wild Nature","🏕️ Adventure","🦅 Wildlife","🌊 Sumatra Rivers"],
-    jt: "M",
-    sec_reach: "Total cross-platform reach",
-    reach_text: "Combined followers & subscribers across YouTube, Facebook, TikTok, and Instagram — an active, loyal outdoor community across Indonesia. <strong style=\"color:var(--coral-lt)\">163M+ lifetime views</strong> on YouTube with 32.6M hours of watch time.",
-    sec_yt: "YouTube channel performance",
-    sec_plat: "Platform distribution",
-    uvp_tag: "Why JemoDusunTV?",
-    uvp_text: '"The only Sumatran outdoor creator with a loyal rural audience — a segment unreachable through conventional digital advertising."',
-    uvp_sub: "Our content is more than entertainment — it\'s authentic, consistent documentation of real Sumatran jungle life, trusted by millions of viewers.",
-    sec_engage: "Performance & Engagement — YouTube Lifetime Data",
-    eng1_lbl: "Total lifetime views",
-    eng1_bench: "↑ Real YouTube Studio data",
-    eng2_lbl: "Total watch time hours",
-    eng2_bench: "↑ Equivalent to 3.7 years nonstop",
-    eng3_lbl: "Avg. lifetime CTR",
-    eng3_bench: "↑ Industry benchmark ~4%",
-    eng4_lbl: "Total thumbnail impressions",
-    eng4_bench: "↑ 1.25 billion organic impressions",
-    viral_lbl: "Top video — \"Tiger-caught Deer\" (Sep 2024)",
-    sub_lbl: "Avg. new subscribers per month",
-    sec_demo: "Audience Demographics",
-    demo_age: "Age",
-    demo_gender: "Gender",
-    demo_gender_note: "Male-dominant audience — consistent with outdoor, fishing, and Sumatran wilderness adventure niche.",
-    demo_geo: "Geography",
-    geo_sum: "Sumatra",
-    geo_java: "Java",
-    geo_other: "Other",
-    sec_portfolio: "Featured Videos",
-    port_viral: "VIRAL",
-    port_featured: "FEATURED",
-    port_expedition: "EXPEDITION",
-    port1_title: "Tiger-Caught Deer in the Wild",
-    port2_title: "Sialang Honeytree Harvest",
-    port3_title: "Wild River Expedition – Sumatra",
-    sec_rates: "Collaboration Rate Card",
-    rate1_tier: "BASIC PACKAGE",
-    rate1_name: "MENTION",
-    rate1_i1: "Product mention in video",
-    rate1_i2: "Link in description",
-    rate1_i3: "1 x Instagram Story post",
-    rate2_tier: "FEATURED PACKAGE",
-    rate2_name: "INTEGRATION",
-    rate2_i1: "Dedicated 60–90 second segment",
-    rate2_i2: "Natural product demo in video",
-    rate2_i3: "2 x posts across all social platforms",
-    rate2_i4: "End-of-campaign performance report",
-    rate3_tier: "PREMIUM PACKAGE",
-    rate3_name: "BRANDED",
-    rate3_i1: "Full dedicated video",
-    rate3_i2: "Co-branding & custom thumbnail",
-    rate3_i3: "Full cross-platform distribution",
-    rate3_i4: "Multi-video campaign",
-    rate_note: "*Pricing is negotiable depending on campaign scope.",
-    rate_popular: "MOST POPULAR",
-    sec_collab: "Collaboration Categories",
-    col1_title: "Outdoor Gear",
-    col1_desc: "Fishing, camping, survival, and wilderness navigation equipment",
-    col2_title: "Natural Products",
-    col2_desc: "Herbal supplements, honey, and Sumatran natural goods",
-    col3_title: "Automotive",
-    col3_desc: "Off-road vehicles, accessories, and modifications",
-    col4_title: "Technology",
-    col4_desc: "Cameras, drones, gadgets, and content accessories",
-    col5_title: "Food & Beverage",
-    col5_desc: "Drinks, instant food, and consumer products",
-    col6_title: "Agriculture",
-    col6_desc: "Fertilizers, pesticides, and modern farming tools",
-    contact_eyebrow: "Ready to Collaborate?",
-    contact_heading: "Get in Touch",
-    contact_sub: "Interested in a collaboration or have questions about our media kit? Reach out — we typically reply within 24 hours.",
-    footer_copy: "Media Kit 2025",
-    footer_made: "Made with ❤️ for brand partners",
-    stat_subs: "YouTube Subscribers",
-    stat_views: "Views this month",
-    stat_watch: "Watch hours this month",
-    stat_videos: "Total videos",
-    stat_live: "LIVE DATA",
-    plat_yt_sub: "Outdoor & Adventure",
-    plat_fb_sub: "Active Community",
-    plat_tt_sub: "Short-form Content",
-    plat_ig_sub: "Behind the Scenes",
-    updated_prefix: "Updated:",
+    live_chip:       'Live YouTube data',
+    sec_reach:       'Total cross-platform reach',
+    reach_text:      'Combined followers & subscribers across YouTube, Facebook, TikTok, and Instagram — an active, loyal outdoor community across Indonesia. <strong style="color:var(--coral-lt)">163M+ lifetime views</strong> on YouTube with 32.6M hours of watch time.',
+    sec_yt:          'YouTube channel performance',
+    sec_plat:        'Platform distribution',
+    uvp_tag:         'Why JemoDusunTV?',
+    uvp_text:        '"The only Sumatran outdoor creator with a loyal rural audience — a segment unreachable through conventional digital advertising."',
+    uvp_sub:         'Our content is more than entertainment — it\'s authentic, consistent documentation of real Sumatran jungle life, trusted by millions of viewers.',
+    sec_engage:      'Performance & Engagement — YouTube Lifetime Data',
+    eng1_lbl:        'Total lifetime views',
+    eng1_bench:      '↑ Real YouTube Studio data',
+    eng2_lbl:        'Total watch time hours',
+    eng2_bench:      '↑ Equivalent to 3.7 years nonstop',
+    eng3_lbl:        'Avg. lifetime CTR',
+    eng3_bench:      '↑ Industry benchmark ~4%',
+    eng4_lbl:        'Total thumbnail impressions',
+    eng4_bench:      '↑ 1.25 billion organic impressions',
+    viral_lbl:       'Top video — "Tiger-caught Deer" (Sep 2024)',
+    sub_gained_lbl:  'Total subscribers gained from organic content',
+    sec_demo:        'Audience Demographics',
+    demo_age:        '📊 Age Range',
+    demo_gender:     '👥 Gender',
+    gender_m:        'Male 78%',
+    demo_gender_note:'Majority male, productive age — ideal segment for outdoor gear, automotive, food, and lifestyle brands.',
+    demo_geo:        '📍 Top Viewer Locations',
+    geo_sum:         'Sumatra',
+    geo_java:        'Java',
+    geo_kali:        'Kalimantan',
+    geo_other:       'Others',
+    demo_note:       '* Estimated from YouTube Studio data. Contact us for a full report.',
+    sec_portfolio:   'Portfolio — Top Videos (Lifetime)',
+    port1_title:     'Finding a Tiger-Caught Deer While Fishing Camping Deep in the Jungle',
+    port2_title:     'Fishing Camp Adventure — Overnight in the Wild Jungle Chasing Mahseer',
+    port3_title:     'Heavy Rain, Flash Flood! Camping & Fishing Survival in the Deep Forest',
+    sec_rates:       'Rate Card & Collaboration Packages',
+    rate_basis:      'Calculation basis',
+    rate_b1:         '📊 Avg views/video <strong style="color:#fff">150K–500K</strong>',
+    rate_b2:         '⚡ Daily growth <strong style="color:#fff">~710 subs/day</strong>',
+    rate_b3:         '🎯 CTR <strong style="color:#fff">5.54%</strong> (industry ~4%)',
+    rate_b4:         '📅 Views/month <strong style="color:#fff">~11M</strong>',
+    rate1_tier:      'Package 01',
+    rate1_name:      'Mention',
+    rate1_i1:        '1 × Dedicated Short / Reels (30–60 sec)',
+    rate1_i2:        'Product appears naturally in content',
+    rate1_i3:        'Link + mention in description',
+    rate1_i4:        '1 × Instagram & TikTok story',
+    rate1_note:      '📌 Projected: <strong>200K–500K views</strong><br>Industry benchmark: IDR 4–7M<br>Best for: outdoor gear, FMCG, food brands',
+    rate2_tier:      'Package 02 — Most Popular',
+    rate2_name:      'Integration',
+    rate2_i1:        '60–120 sec dedicated segment in long-form video',
+    rate2_i2:        'Product used naturally in the field',
+    rate2_i3:        '1 × Supporting Short / Reels',
+    rate2_i4:        'Link + pinned YouTube comment',
+    rate2_i5:        'Instagram feed post + story',
+    rate2_i6:        'Facebook & TikTok post',
+    rate2_note:      '📌 Projected: <strong style="color:#fff">500K–1.5M views</strong><br>Industry benchmark: IDR 7–12M<br>Highest ROI for brands',
+    rate3_tier:      'Package 03',
+    rate3_name:      'Full Campaign',
+    rate3_i1:        '1 × Full dedicated branded video',
+    rate3_i2:        'Distribution across all platforms (YT+IG+TT+FB)',
+    rate3_i3:        'Concept & script developed together',
+    rate3_i4:        'Full post-publish performance report',
+    rate3_i5:        '6-month content usage rights',
+    rate3_i6:        'Outdoor niche exclusivity option',
+    rate3_note:      '📌 Projected: <strong>1M–5M+ views</strong><br>Industry benchmark: IDR 12–38M<br>For long-term campaigns',
+    rate_note1:      '⚠️ <strong>Note:</strong> Prices above are base rates for 1 content piece. Discounts available for multi-video contracts (3+ videos). Product barter can be combined with adjusted cash rates. Prices exclude additional production costs if required.',
+    rate_note2:      '📊 <strong>Why is this fair?</strong> Rates are based on actual channel performance — avg 400K views/video, CTR 5.54% above industry benchmark, and active Indonesian creator standards. The organic value you receive is comparable to paid ads at the same scale.',
+    sec_collab:      'Collaboration types',
+    contact_eyebrow: 'Get in touch',
+    contact_heading: 'Interested in collaborating?',
+    contact_sub:     'Let\'s discuss the best partnership format for your brand with JemoDusunTV.',
+    footer_data:     'YouTube data auto-updated',
+    stat_subs:       'YouTube Subscribers',
+    stat_views:      'Total lifetime views',
+    stat_viral:      'Top viral video',
+    stat_watch:      'Lifetime watch time',
+    live_from_yt:    'Live from YouTube',
+    plat_sub_label:  'followers / subscribers',
+    dm_label:        'DM Instagram',
+    dm_val:          'Send a direct message ↗',
+    updated_manual:  'Manual data · Fill API key in config.js for live YouTube',
+    updated_cache:   'Refreshes in',
+    updated_hours:   'hours',
+    updated_err:     'Using manual data (API error)',
+    updated_cache_err:'Old cached data (API error) · Try refreshing later',
   }
 };
 
 // ── STATE ────────────────────────────────────────────────────────────────────
 let currentLang = 'id';
-let ytData = null;
 
-// ── DETECT LANGUAGE ──────────────────────────────────────────────────────────
 function detectLang() {
   const saved = localStorage.getItem('jdtv_lang');
   if (saved) return saved;
-  const nav = navigator.language || navigator.userLanguage || 'id';
-  return nav.toLowerCase().startsWith('id') ? 'id' : 'en';
+  const nav = (navigator.language || navigator.userLanguage || 'id').toLowerCase();
+  return nav.startsWith('id') ? 'id' : 'en';
 }
 
-// ── APPLY TRANSLATIONS ───────────────────────────────────────────────────────
-function applyLang(lang) {
+function setLang(lang) {
+  localStorage.setItem('jdtv_lang', lang);
   currentLang = lang;
-  const t = T[lang];
-  document.documentElement.lang = lang;
+  applyLang(lang);
+}
 
-  // Toggle buttons
+function applyLang(lang) {
+  const t = LANG[lang];
+  document.documentElement.lang = lang;
   document.getElementById('btn-id').classList.toggle('active', lang === 'id');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-  // Update [data-t] elements
   document.querySelectorAll('[data-t]').forEach(el => {
     const key = el.getAttribute('data-t');
     if (t[key] !== undefined) el.innerHTML = t[key];
   });
 
-  // Featured rate card label
-  document.querySelectorAll('.rate-card.featured').forEach(el => {
-    el.setAttribute('data-popular', t.rate_popular || (lang === 'id' ? 'TERPOPULER' : 'MOST POPULAR'));
+  // reach-text punya id khusus karena ada innerHTML dinamis
+  const rt = document.getElementById('reach-text');
+  if (rt) rt.innerHTML = t.reach_text;
+
+  // Rebuild dynamic sections
+  renderCollab();
+  renderContact();
+  // Re-render stats dengan data yang sudah ada
+  if (window._ytSubs !== undefined) {
+    renderStats(window._ytSubs, window._ytViews);
+    renderPlatforms(window._ytSubs);
+  }
+}
+
+// ── UTILS ────────────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0', '') + ' JT';
+  if (n >= 1000)    return Math.round(n / 1000) + ' RB';
+  return n.toLocaleString('id-ID');
+}
+
+const ICONS = {
+  yt:`<svg viewBox="0 0 24 24" fill="#cc0000"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.2 5 12 5 12 5s-4.2 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.2 0 7-.1c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM9.7 14.5V9.2l5.4 2.7-5.4 2.6z"/></svg>`,
+  fb:`<svg viewBox="0 0 24 24" fill="#1877f2"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/></svg>`,
+  tt:`<svg viewBox="0 0 24 24" fill="#111"><path d="M19.6 3h-3.2v12.4c0 1.7-1.4 3.1-3.1 3.1s-3.1-1.4-3.1-3.1 1.4-3.1 3.1-3.1c.3 0 .6 0 .9.1V9.1c-.3 0-.6-.1-.9-.1C9 9 5.8 12.2 5.8 16.1S9 23.2 13 23.2s7.2-3.2 7.2-7.2V9.4c1.2.9 2.8 1.4 4.4 1.4V7.5c-2.7 0-5-2.2-5-5z"/></svg>`,
+  ig:`<svg viewBox="0 0 24 24" fill="none" stroke="#c13584" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="#c13584" stroke="none"/></svg>`
+};
+const PLAT_BG  = { yt:'#ffecec', fb:'#e8f0fe', tt:'#f0f0f0', ig:'#fce4f0' };
+const PLAT_URL = {
+  yt:'https://www.youtube.com/@jemodusuntv',
+  fb:'https://www.facebook.com/jemodusuntv/',
+  tt:'https://www.tiktok.com/@jemodusuntv',
+  ig:'https://www.instagram.com/jemodusuntv'
+};
+
+// ── RENDER FUNCTIONS ─────────────────────────────────────────────────────────
+function renderHero() {
+  document.getElementById('hero-name').textContent = CONFIG.name;
+  document.getElementById('hero-loc').textContent  = CONFIG.location;
+  document.getElementById('hero-tagline').textContent = CONFIG.tagline;
+  document.title = CONFIG.name + ' - Channel Outdoor & Petualangan';
+  document.getElementById('ft-name').textContent = CONFIG.name;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const wrap = document.getElementById('hero-badges');
+  CONFIG.niche.forEach(n => {
+    const b = document.createElement('span');
+    b.className = 'badge'; b.textContent = n;
+    wrap.appendChild(b);
   });
-
-  // Badges
-  const badgesEl = document.getElementById('hero-badges');
-  if (badgesEl && t.hero_badges) {
-    badgesEl.innerHTML = t.hero_badges.map(b => `<span class="badge">${b}</span>`).join('');
-  }
-
-  // Stats (rebuild if data available)
-  buildStats(ytData);
-  buildPlatforms();
-  buildUpdated();
-
-  // Page title
-  document.title = lang === 'en'
-    ? 'JemoDusunTV - Outdoor & Adventure Channel'
-    : 'JemoDusunTV - Channel Outdoor & Petualangan';
 }
 
-function setLang(lang) {
-  localStorage.setItem('jdtv_lang', lang);
-  applyLang(lang);
-}
-
-// ── YOUTUBE DATA ─────────────────────────────────────────────────────────────
-async function fetchYTData() {
-  const CHANNEL_ID = 'UCkb2GRr5kxLCqMr9fhj6VVA';
-  const API_KEY    = 'AIzaSyCcvgpq7gvfq7hnkpfRg3QhVW7lW3MwHg0';
-  try {
-    const r = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
-    );
-    const d = await r.json();
-    if (d.items && d.items[0]) {
-      ytData = d.items[0].statistics;
-      buildStats(ytData);
-      buildUpdated();
-    }
-  } catch(e) {
-    buildStats(null);
-    buildUpdated();
-  }
-}
-
-function fmtNum(n, lang) {
-  if (!n) return '—';
-  const num = parseInt(n);
-  const suffix = lang === 'en' ? 'M' : 'JT';
-  if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + ' ' + suffix;
-  if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';
-  return num.toLocaleString();
-}
-
-function buildStats(data) {
-  const t = T[currentLang];
-  const g = document.getElementById('stat-grid');
-  if (!g) return;
-  const subs   = data ? parseInt(data.subscriberCount) : null;
-  const views  = data ? parseInt(data.viewCount) : null;
-  const videos = data ? parseInt(data.videoCount) : null;
-  const items = [
-    { lbl: t.stat_subs,   val: subs   ? fmtNum(subs, currentLang)   : '493K', live: true,  coral: false },
-    { lbl: t.stat_views,  val: views  ? fmtNum(Math.round(views * 0.003), currentLang) : '1.2 ' + t.jt, live: false, coral: false },
-    { lbl: t.stat_watch,  val: '86K',  live: false, coral: true },
-    { lbl: t.stat_videos, val: videos ? videos.toLocaleString() : '450+', live: false, coral: true },
+function renderStats(ytSubs, ytViews) {
+  const t = LANG[currentLang];
+  const stats = [
+    { lbl: t.stat_subs,  val: ytSubs  ? fmt(ytSubs)  : fmt(CONFIG.platforms[0].followers), live: !!ytSubs, coral:false },
+    { lbl: t.stat_views, val: ytViews ? fmt(ytViews) : '163 JT+', live:false, coral:false },
+    { lbl: t.stat_viral, val: '4.96 JT',  live:false, coral:true },
+    { lbl: t.stat_watch, val: '32.6 JT jam', live:false, coral:true },
   ];
-  g.innerHTML = items.map(i => `
-    <div class="stat-card${i.coral ? ' coral' : ''}">
-      <div class="stat-lbl">${i.lbl}</div>
-      <div class="stat-val">${i.val}</div>
-      ${i.live ? `<div class="live-badge"><span class="live-badge-dot"></span>${t.stat_live}</div>` : ''}
+  document.getElementById('stat-grid').innerHTML = stats.map(s => `
+    <div class="stat-card${s.coral ? ' coral' : ''}">
+      <div class="stat-lbl">${s.lbl}</div>
+      <div class="stat-val">${s.val}</div>
+      ${s.live ? `<div class="live-badge"><span class="live-badge-dot"></span> ${t.live_from_yt}</div>` : ''}
     </div>`).join('');
 }
 
-function buildPlatforms() {
-  const t = T[currentLang];
-  const g = document.getElementById('plat-grid');
-  if (!g) return;
-  const plats = [
-    {
-      name:'YouTube', count:'493K', sub: t.plat_yt_sub,
-      bg:'#FF0000', link:'https://youtube.com/@jemodusuntv',
-      icon:`<svg viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="#FF0000"/></svg>`
-    },
-    {
-      name:'Facebook', count:'1.6 ' + T[currentLang].jt, sub: t.plat_fb_sub,
-      bg:'#1877F2', link:'https://facebook.com/jemodusuntv',
-      icon:`<svg viewBox="0 0 24 24" fill="white"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.5h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>`
-    },
-    {
-      name:'TikTok', count:'800K', sub: t.plat_tt_sub,
-      bg:'#010101', link:'https://tiktok.com/@jemodusuntv',
-      icon:`<svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.28 8.28 0 0 0 4.84 1.55V6.78a4.85 4.85 0 0 1-1.07-.09z"/></svg>`
-    },
-    {
-      name:'Instagram', count:'120K', sub: t.plat_ig_sub,
-      bg:'linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)', link:'https://instagram.com/jemodusuntv',
-      icon:`<svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`
-    }
-  ];
-  g.innerHTML = plats.map(p => `
-    <a href="${p.link}" target="_blank" class="plat-card">
-      <div class="plat-icon" style="background:${p.bg}">${p.icon}</div>
-      <div>
-        <div class="plat-name">${p.name}</div>
-        <div class="plat-count">${p.count}</div>
-        <div class="plat-sub">${p.sub}</div>
-      </div>
-    </a>`).join('');
+function renderPlatforms(ytSubs) {
+  const t = LANG[currentLang];
+  let total = 0;
+  document.getElementById('plat-grid').innerHTML = CONFIG.platforms.map((p, i) => {
+    const c = (i === 0 && ytSubs) ? ytSubs : p.followers;
+    total += c;
+    return `
+      <a class="plat-card" href="${PLAT_URL[p.icon]||'#'}" target="_blank" rel="noopener noreferrer">
+        <div class="plat-icon" style="background:${PLAT_BG[p.icon]}">${ICONS[p.icon]||''}</div>
+        <div>
+          <div class="plat-name">${p.name}</div>
+          <div class="plat-count">${fmt(c)}</div>
+          <div class="plat-sub">${t.plat_sub_label}</div>
+        </div>
+      </a>`;
+  }).join('');
+  document.getElementById('total-reach').textContent = fmt(total) + '+';
 }
 
-function buildUpdated() {
-  const el = document.getElementById('updated');
-  if (!el) return;
-  const t = T[currentLang];
-  const now = new Date();
-  const fmt = now.toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {day:'numeric',month:'long',year:'numeric'});
-  el.textContent = `${t.updated_prefix} ${fmt}`;
+function renderCollab() {
+  document.getElementById('collab-grid').innerHTML = CONFIG.collabs.map(c => `
+    <div class="collab-card">
+      <div class="collab-icon-wrap">${c.icon}</div>
+      <div class="collab-title">${c.title}</div>
+      <div class="collab-desc">${c.desc}</div>
+    </div>`).join('');
+}
+
+function renderContact() {
+  const t = LANG[currentLang];
+  document.getElementById('contact-grid').innerHTML = `
+    <a class="contact-item coral-item" href="mailto:${CONFIG.email}">
+      <div class="ci-lbl coral">Email</div>
+      <div class="ci-val">${CONFIG.email}</div>
+    </a>
+    <a class="contact-item" href="https://ig.me/m/jemodusuntv" target="_blank">
+      <div class="ci-lbl">${t.dm_label}</div>
+      <div class="ci-val">${t.dm_val}</div>
+    </a>`;
+}
+
+// ── YOUTUBE API ──────────────────────────────────────────────────────────────
+async function fetchYT() {
+  const key       = CONFIG.youtube_api_key;
+  const id        = CONFIG.youtube_channel_id;
+  const CACHE_KEY = 'yt_cache_jemodusung';
+  const TTL       = 24 * 60 * 60 * 1000;
+  const t         = LANG[currentLang];
+
+  if (!key || key === 'ISI_API_KEY_ANDA_DI_SINI') {
+    window._ytSubs = null; window._ytViews = null;
+    renderStats(null, null); renderPlatforms(null);
+    document.getElementById('updated').textContent = t.updated_manual;
+    return;
+  }
+
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { subs, views, savedAt } = JSON.parse(cached);
+      const age = Date.now() - savedAt;
+      if (age < TTL) {
+        window._ytSubs = subs; window._ytViews = views;
+        renderStats(subs, views); renderPlatforms(subs);
+        const savedDate = new Date(savedAt).toLocaleString(currentLang === 'id' ? 'id-ID' : 'en-US', {day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+        const sisaJam = Math.ceil((TTL - age) / 3600000);
+        document.getElementById('updated').textContent = `Data per ${savedDate} · ${t.updated_cache} ${sisaJam} ${t.updated_hours}`;
+        return;
+      }
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${id}&key=${key}`);
+    const d = await r.json();
+    if (d.items?.length) {
+      const s    = d.items[0].statistics;
+      const subs = parseInt(s.subscriberCount);
+      const views= parseInt(s.viewCount);
+      window._ytSubs = subs; window._ytViews = views;
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ subs, views, savedAt: Date.now() })); } catch(e) {}
+      renderStats(subs, views); renderPlatforms(subs);
+      const now = new Date().toLocaleString(currentLang === 'id' ? 'id-ID' : 'en-US', {day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+      document.getElementById('updated').textContent = (currentLang === 'id' ? 'Diperbarui: ' : 'Updated: ') + now;
+    } else throw new Error('not found');
+  } catch(e) {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { subs, views } = JSON.parse(cached);
+        window._ytSubs = subs; window._ytViews = views;
+        renderStats(subs, views); renderPlatforms(subs);
+        document.getElementById('updated').textContent = t.updated_cache_err;
+        return;
+      }
+    } catch(e2) {}
+    window._ytSubs = null; window._ytViews = null;
+    renderStats(null, null); renderPlatforms(null);
+    document.getElementById('updated').textContent = t.updated_err;
+  }
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
-const initLang = detectLang();
-applyLang(initLang);
-fetchYTData();
+currentLang = detectLang();
+document.documentElement.lang = currentLang;
+document.getElementById('btn-id').classList.toggle('active', currentLang === 'id');
+document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+
+// Apply translations ke elemen statis
+document.querySelectorAll('[data-t]').forEach(el => {
+  const key = el.getAttribute('data-t');
+  if (LANG[currentLang][key] !== undefined) el.innerHTML = LANG[currentLang][key];
+});
+const rt = document.getElementById('reach-text');
+if (rt) rt.innerHTML = LANG[currentLang].reach_text;
+
+renderHero();
+renderCollab();
+renderContact();
+fetchYT();
 </script>
 </body>
 </html>
