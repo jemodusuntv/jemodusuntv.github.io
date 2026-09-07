@@ -477,7 +477,7 @@
       <div class="live-chip"><span class="live-dot"></span> <span data-t="live_chip">YouTube data live</span></div>
     </div>
     <div class="brand-row fu d2">
-      <div class="logo"><img src="https://jemodusuntv.com/logo.png" alt="JemoDusunTV"></div>
+      <div class="logo"><img src="logo.png" alt="JemoDusunTV" onerror="this.src='https://jemodusuntv.com/logo.png'"></div>
       <div>
         <div class="hero-name" id="hero-name">JemoDusunTV</div>
         <div class="hero-loc">
@@ -831,6 +831,16 @@ const LANG = {
     updated_hours:   'jam',
     updated_err:     'Menggunakan data manual (API error)',
     updated_cache_err:'Data cache lama (API error) · Coba refresh nanti',
+    hero_tagline: 'Channel outdoor & petualangan sungai yang merekam keindahan alam secara autentik — dari memancing di pedalaman hingga menjelajahi jalur air yang belum pernah dieksplor.',
+    hero_badges: ['🌿 Outdoor & Alam', '🚣 Petualangan Sungai', '🎣 Memancing', '🏕️ Camping'],
+    collabs: [
+      { icon:'🎣', title:'Peralatan Outdoor',  desc:'Pancing, camping, survival, dan navigasi alam bebas' },
+      { icon:'🌿', title:'Produk Alam',         desc:'Suplemen herbal, madu, dan produk alami Sumatera' },
+      { icon:'🚗', title:'Otomotif',             desc:'Kendaraan offroad, aksesoris, dan modifikasi' },
+      { icon:'📱', title:'Teknologi',            desc:'Kamera, drone, gadget, dan aksesoris konten' },
+      { icon:'🍖', title:'Food & Beverage',      desc:'Minuman, makanan instan, dan produk konsumen' },
+      { icon:'🌱', title:'Pertanian',            desc:'Pupuk, pestisida, dan alat pertanian modern' },
+    ],
   },
   en: {
     live_chip:       'Live YouTube data',
@@ -918,6 +928,16 @@ const LANG = {
     updated_hours:   'hours',
     updated_err:     'Using manual data (API error)',
     updated_cache_err:'Old cached data (API error) · Try refreshing later',
+    hero_tagline: 'An outdoor & river adventure channel capturing the authentic beauty of nature — from fishing in the remote interior to exploring waterways never before documented.',
+    hero_badges: ['🌿 Outdoor & Nature', '🚣 River Adventure', '🎣 Fishing', '🏕️ Camping'],
+    collabs: [
+      { icon:'🎣', title:'Outdoor Gear',       desc:'Fishing, camping, survival & wilderness navigation equipment' },
+      { icon:'🌿', title:'Natural Products',    desc:'Herbal supplements, honey, and Sumatran natural goods' },
+      { icon:'🚗', title:'Automotive',          desc:'Off-road vehicles, accessories, and modifications' },
+      { icon:'📱', title:'Technology',          desc:'Cameras, drones, gadgets, and content accessories' },
+      { icon:'🍖', title:'Food & Beverage',     desc:'Drinks, instant food, and consumer products' },
+      { icon:'🌱', title:'Agriculture',         desc:'Fertilizers, pesticides, and modern farming tools' },
+    ],
   }
 };
 
@@ -987,12 +1007,21 @@ const PLAT_URL = {
 function renderHero() {
   document.getElementById('hero-name').textContent = CONFIG.name;
   document.getElementById('hero-loc').textContent  = CONFIG.location;
-  document.getElementById('hero-tagline').textContent = CONFIG.tagline;
   document.title = CONFIG.name + ' - Channel Outdoor & Petualangan';
   document.getElementById('ft-name').textContent = CONFIG.name;
   document.getElementById('yr').textContent = new Date().getFullYear();
+  renderHeroDynamic();
+}
+
+function renderHeroDynamic() {
+  const t = LANG[currentLang];
+  // tagline
+  document.getElementById('hero-tagline').textContent = t.hero_tagline !== undefined ? t.hero_tagline : CONFIG.tagline;
+  // badges
   const wrap = document.getElementById('hero-badges');
-  CONFIG.niche.forEach(n => {
+  wrap.innerHTML = '';
+  const badges = t.hero_badges !== undefined ? t.hero_badges : CONFIG.niche;
+  badges.forEach(n => {
     const b = document.createElement('span');
     b.className = 'badge'; b.textContent = n;
     wrap.appendChild(b);
@@ -1035,7 +1064,9 @@ function renderPlatforms(ytSubs) {
 }
 
 function renderCollab() {
-  document.getElementById('collab-grid').innerHTML = CONFIG.collabs.map(c => `
+  const t = LANG[currentLang];
+  const collabs = t.collabs !== undefined ? t.collabs : CONFIG.collabs;
+  document.getElementById('collab-grid').innerHTML = collabs.map(c => `
     <div class="collab-card">
       <div class="collab-icon-wrap">${c.icon}</div>
       <div class="collab-title">${c.title}</div>
