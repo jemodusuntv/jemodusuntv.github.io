@@ -973,6 +973,7 @@ function applyLang(lang) {
   if (rt) rt.innerHTML = t.reach_text;
 
   // Rebuild dynamic sections
+  renderHeroDynamic();
   renderCollab();
   renderContact();
   // Re-render stats dengan data yang sudah ada
@@ -1015,13 +1016,10 @@ function renderHero() {
 
 function renderHeroDynamic() {
   const t = LANG[currentLang];
-  // tagline
-  document.getElementById('hero-tagline').textContent = t.hero_tagline !== undefined ? t.hero_tagline : CONFIG.tagline;
-  // badges
+  document.getElementById('hero-tagline').textContent = t.hero_tagline;
   const wrap = document.getElementById('hero-badges');
   wrap.innerHTML = '';
-  const badges = t.hero_badges !== undefined ? t.hero_badges : CONFIG.niche;
-  badges.forEach(n => {
+  t.hero_badges.forEach(n => {
     const b = document.createElement('span');
     b.className = 'badge'; b.textContent = n;
     wrap.appendChild(b);
@@ -1065,8 +1063,7 @@ function renderPlatforms(ytSubs) {
 
 function renderCollab() {
   const t = LANG[currentLang];
-  const collabs = t.collabs !== undefined ? t.collabs : CONFIG.collabs;
-  document.getElementById('collab-grid').innerHTML = collabs.map(c => `
+  document.getElementById('collab-grid').innerHTML = t.collabs.map(c => `
     <div class="collab-card">
       <div class="collab-icon-wrap">${c.icon}</div>
       <div class="collab-title">${c.title}</div>
@@ -1154,17 +1151,9 @@ document.documentElement.lang = currentLang;
 document.getElementById('btn-id').classList.toggle('active', currentLang === 'id');
 document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
 
-// Apply translations ke elemen statis
-document.querySelectorAll('[data-t]').forEach(el => {
-  const key = el.getAttribute('data-t');
-  if (LANG[currentLang][key] !== undefined) el.innerHTML = LANG[currentLang][key];
-});
-const rt = document.getElementById('reach-text');
-if (rt) rt.innerHTML = LANG[currentLang].reach_text;
-
+// Apply semua terjemahan sekaligus via applyLang
+applyLang(currentLang);
 renderHero();
-renderCollab();
-renderContact();
 fetchYT();
 </script>
 </body>
