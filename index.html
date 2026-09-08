@@ -475,6 +475,40 @@
   .channel-growth { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:600; color:#4ade80; background:rgba(74,222,128,.1); padding:2px 7px; border-radius:100px; margin-top:6px; }
   .channel-new-badge { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:600; color:var(--coral); background:var(--coral-pal); padding:2px 7px; border-radius:100px; margin-left:6px; }
 
+
+  /* ── OTHER CHANNELS ── */
+  .oc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  @media(max-width:580px){ .oc-grid{grid-template-columns:1fr;} }
+  .oc-card {
+    background:var(--white); border:1px solid var(--border); border-radius:16px;
+    padding:20px 20px; display:flex; align-items:flex-start; gap:16px;
+    text-decoration:none; color:inherit;
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+    position:relative; overflow:hidden;
+  }
+  .oc-card::before {
+    content:''; position:absolute; width:100px; height:100px; border-radius:50%;
+    top:-40px; right:-30px; background:rgba(55,138,221,.06);
+  }
+  .oc-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(55,138,221,.12); border-color:rgba(55,138,221,.3); }
+  .oc-thumb {
+    width:52px; height:52px; border-radius:50%; flex-shrink:0;
+    border:2px solid var(--border); object-fit:cover;
+  }
+  .oc-body { flex:1; min-width:0; }
+  .oc-name { font-family:var(--font-d); font-size:18px; letter-spacing:.04em; color:var(--text); line-height:1.1; margin-bottom:3px; }
+  .oc-handle { font-size:10px; color:var(--muted); margin-bottom:10px; }
+  .oc-stats { display:flex; gap:16px; flex-wrap:wrap; }
+  .oc-stat { }
+  .oc-stat-val { font-family:var(--font-d); font-size:17px; letter-spacing:.03em; color:var(--blue); line-height:1; }
+  .oc-stat-lbl { font-size:9px; color:var(--muted); margin-top:2px; letter-spacing:.04em; text-transform:uppercase; }
+  .oc-badge {
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:9px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--coral); background:var(--coral-pal); border-radius:100px;
+    padding:3px 8px; margin-top:10px;
+  }
+  .oc-growth { color:#4ade80; }
 </style>
 </head>
 <body>
@@ -750,18 +784,73 @@
     <div class="collab-grid" id="collab-grid"></div>
   </section>
 
-</div>
 
 
   <!-- OTHER CHANNELS -->
   <section class="fu d4">
-    <div class="sec-label" data-t="sec_channels">Channel lainnya dalam jaringan JDTV</div>
-    <div style="background:var(--ocean);border-radius:14px;padding:16px 22px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
-      <div style="font-size:20px">📡</div>
-      <div style="font-size:12px;color:var(--blue-lt);line-height:1.7" data-t="channels_desc">Selain channel utama JemoDusunTV, kami mengelola ekosistem channel yang menjangkau audiens lebih luas — dari konten Shorts, keluarga, hingga channel kreator afiliasi kami.</div>
+    <div class="sec-label" data-t="sec_channels">Channel lainnya dalam keluarga JDTV</div>
+    <div class="oc-grid">
+
+      <a class="oc-card" href="https://www.youtube.com/@jemodusuntvshorts" target="_blank" rel="noopener">
+        <img class="oc-thumb" src="https://yt3.ggpht.com/DlonwAbjV8PAlRxf7uOM8hKnx3jCliqwoBNPs-4mWX8kcuO_sIDyO_WReyFg39-nkoSsyx_KYw=s240-c-k-c0x00ffffff-no-rj" alt="JemoDusunTV Shorts">
+        <div class="oc-body">
+          <div class="oc-name">JemoDusunTV Shorts</div>
+          <div class="oc-handle">@jemodusuntvshorts</div>
+          <div class="oc-stats">
+            <div class="oc-stat"><div class="oc-stat-val">67.7K</div><div class="oc-stat-lbl" data-t="ch_subs">Subscribers</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">14.6 JT</div><div class="oc-stat-lbl" data-t="ch_views">Total Views</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">253</div><div class="oc-stat-lbl" data-t="ch_videos">Videos</div></div>
+          </div>
+          <div class="oc-badge"><span class="oc-growth">↑</span> <span data-t="ch_shorts_desc">Konten pendek harian</span></div>
+        </div>
+      </a>
+
+      <a class="oc-card" href="https://www.youtube.com/@jdtvfamilyandfriends" target="_blank" rel="noopener">
+        <img class="oc-thumb" src="https://yt3.ggpht.com/Tf_uZeF-NjL7AX4rORO-DS-hfjfquzmhvyCWmiFfnzF13XMvbuvhVB-GmRYMh_0iti-5RoU-XA=s240-c-k-c0x00ffffff-no-rj" alt="JDTV Family & Friends">
+        <div class="oc-body">
+          <div class="oc-name">JDTV Family & Friends</div>
+          <div class="oc-handle">@jdtvfamilyandfriends</div>
+          <div class="oc-stats">
+            <div class="oc-stat"><div class="oc-stat-val">25K</div><div class="oc-stat-lbl" data-t="ch_subs">Subscribers</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">4 JT</div><div class="oc-stat-lbl" data-t="ch_views">Total Views</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">54</div><div class="oc-stat-lbl" data-t="ch_videos">Videos</div></div>
+          </div>
+          <div class="oc-badge"><span class="oc-growth">↑</span> <span data-t="ch_family_desc">Keluarga & kehidupan sehari-hari</span></div>
+        </div>
+      </a>
+
+      <a class="oc-card" href="https://www.youtube.com/@Mas_Topan" target="_blank" rel="noopener">
+        <img class="oc-thumb" src="https://yt3.ggpht.com/RH-i81a2JnnkqgYgW-kdmwhqxFLQjE2tjybQBcIbZYqNkCB152u_OZ6FV2kVboRllVzf-tlT=s240-c-k-c0x00ffffff-no-rj" alt="Mas Topan">
+        <div class="oc-body">
+          <div class="oc-name">Mas Topan</div>
+          <div class="oc-handle">@Mas_Topan</div>
+          <div class="oc-stats">
+            <div class="oc-stat"><div class="oc-stat-val">22.5K</div><div class="oc-stat-lbl" data-t="ch_subs">Subscribers</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">2 JT</div><div class="oc-stat-lbl" data-t="ch_views">Total Views</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">107</div><div class="oc-stat-lbl" data-t="ch_videos">Videos</div></div>
+          </div>
+          <div class="oc-badge"><span class="oc-growth">↑</span> <span data-t="ch_mastopan_desc">Food, lifestyle & serba-serbi</span></div>
+        </div>
+      </a>
+
+      <a class="oc-card" href="https://www.youtube.com/@KetuaLapar" target="_blank" rel="noopener">
+        <img class="oc-thumb" src="https://yt3.ggpht.com/EgcOOtC1TDkUuVZa63J1smnNl0n9fIaMY_jwKlcurww3kt6-p7ZVlDDfMG_wYfBp_DPDrRdAbqI=s240-c-k-c0x00ffffff-no-rj" alt="Ketua Lapar">
+        <div class="oc-body">
+          <div class="oc-name">Ketua Lapar</div>
+          <div class="oc-handle">@KetuaLapar</div>
+          <div class="oc-stats">
+            <div class="oc-stat"><div class="oc-stat-val">9.14K</div><div class="oc-stat-lbl" data-t="ch_subs">Subscribers</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">355K</div><div class="oc-stat-lbl" data-t="ch_views">Total Views</div></div>
+            <div class="oc-stat"><div class="oc-stat-val">10</div><div class="oc-stat-lbl" data-t="ch_videos">Videos</div></div>
+          </div>
+          <div class="oc-badge"><span class="oc-growth">↑ +1.25K/30hr</span> <span data-t="ch_ketualapar_desc">Channel baru — tumbuh cepat!</span></div>
+        </div>
+      </a>
+
     </div>
-    <div class="channel-grid" id="channel-grid"></div>
   </section>
+
+</div>
 
 <div class="wrap contact-wrap fu d5">
   <div class="contact-card">
@@ -867,6 +956,14 @@ const LANG = {
     updated_hours:   'jam',
     updated_err:     'Menggunakan data manual (API error)',
     updated_cache_err:'Data cache lama (API error) · Coba refresh nanti',
+    sec_channels:      'Channel lainnya dalam keluarga JDTV',
+    ch_subs:           'Subscribers',
+    ch_views:          'Total Views',
+    ch_videos:         'Videos',
+    ch_shorts_desc:    'Konten pendek harian',
+    ch_family_desc:    'Keluarga & kehidupan sehari-hari',
+    ch_mastopan_desc:  'Food, lifestyle & serba-serbi',
+    ch_ketualapar_desc:'Channel baru — tumbuh cepat!',
     hero_tagline: 'Channel outdoor & petualangan sungai yang merekam keindahan alam secara autentik — dari memancing di pedalaman hingga menjelajahi jalur air yang belum pernah dieksplor.',
     hero_badges: ['🌿 Outdoor & Alam', '🚣 Petualangan Sungai', '🎣 Memancing', '🏕️ Camping'],
     sec_channels: 'Channel lainnya dalam jaringan JDTV',
@@ -1006,6 +1103,14 @@ const LANG = {
     updated_hours:   'hours',
     updated_err:     'Using manual data (API error)',
     updated_cache_err:'Old cached data (API error) · Try refreshing later',
+    sec_channels:      'Other channels in the JDTV family',
+    ch_subs:           'Subscribers',
+    ch_views:          'Total Views',
+    ch_videos:         'Videos',
+    ch_shorts_desc:    'Daily short-form content',
+    ch_family_desc:    'Family & everyday life',
+    ch_mastopan_desc:  'Food, lifestyle & more',
+    ch_ketualapar_desc:'New channel — growing fast!',
     hero_tagline: 'An outdoor & river adventure channel capturing the authentic beauty of nature — from fishing in the remote interior to exploring waterways never before documented.',
     hero_badges: ['🌿 Outdoor & Nature', '🚣 River Adventure', '🎣 Fishing', '🏕️ Camping'],
     sec_channels: 'Other channels in the JDTV network',
