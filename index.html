@@ -450,6 +450,31 @@
     .badge { font-size: 9px; padding: 3px 9px; }
     .lang-bar { top:10px; right:10px; }
   }
+
+  /* ── OTHER CHANNELS ── */
+  .channel-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  @media(max-width:580px){ .channel-grid{grid-template-columns:1fr;} }
+  .channel-card {
+    background:var(--white); border:1px solid var(--border); border-radius:16px;
+    padding:20px; display:flex; align-items:center; gap:16px;
+    text-decoration:none; color:inherit;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+    border-left:4px solid transparent;
+  }
+  .channel-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(55,138,221,.12); border-left-color:var(--coral); }
+  .channel-avatar {
+    width:56px; height:56px; border-radius:50%; flex-shrink:0;
+    border:2px solid var(--border); object-fit:cover;
+  }
+  .channel-info { flex:1; min-width:0; }
+  .channel-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .channel-handle { font-size:10px; color:var(--muted); margin-bottom:8px; }
+  .channel-stats { display:flex; gap:12px; flex-wrap:wrap; }
+  .channel-stat { font-size:10px; color:var(--muted); display:flex; align-items:center; gap:3px; }
+  .channel-stat strong { font-family:var(--font-d); font-size:13px; color:var(--text); letter-spacing:.02em; font-weight:400; }
+  .channel-growth { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:600; color:#4ade80; background:rgba(74,222,128,.1); padding:2px 7px; border-radius:100px; margin-top:6px; }
+  .channel-new-badge { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:600; color:var(--coral); background:var(--coral-pal); padding:2px 7px; border-radius:100px; margin-left:6px; }
+
 </style>
 </head>
 <body>
@@ -727,6 +752,17 @@
 
 </div>
 
+
+  <!-- OTHER CHANNELS -->
+  <section class="fu d4">
+    <div class="sec-label" data-t="sec_channels">Channel lainnya dalam jaringan JDTV</div>
+    <div style="background:var(--ocean);border-radius:14px;padding:16px 22px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
+      <div style="font-size:20px">📡</div>
+      <div style="font-size:12px;color:var(--blue-lt);line-height:1.7" data-t="channels_desc">Selain channel utama JemoDusunTV, kami mengelola ekosistem channel yang menjangkau audiens lebih luas — dari konten Shorts, keluarga, hingga channel kreator afiliasi kami.</div>
+    </div>
+    <div class="channel-grid" id="channel-grid"></div>
+  </section>
+
 <div class="wrap contact-wrap fu d5">
   <div class="contact-card">
     <div class="contact-eyebrow" data-t="contact_eyebrow">Hubungi kami</div>
@@ -833,6 +869,48 @@ const LANG = {
     updated_cache_err:'Data cache lama (API error) · Coba refresh nanti',
     hero_tagline: 'Channel outdoor & petualangan sungai yang merekam keindahan alam secara autentik — dari memancing di pedalaman hingga menjelajahi jalur air yang belum pernah dieksplor.',
     hero_badges: ['🌿 Outdoor & Alam', '🚣 Petualangan Sungai', '🎣 Memancing', '🏕️ Camping'],
+    sec_channels: 'Channel lainnya dalam jaringan JDTV',
+    channels_desc: 'Selain channel utama JemoDusunTV, kami mengelola ekosistem channel yang menjangkau audiens lebih luas — dari konten Shorts, keluarga, hingga channel kreator afiliasi kami.',
+    channels_btn: 'Buka Channel ↗',
+    channels_growth: '+{n} subs/bulan',
+    channels: [
+      {
+        name: 'JemoDusunTV Shorts',
+        handle: '@jemodusuntvshorts',
+        url: 'https://www.youtube.com/@jemodusuntvshorts',
+        avatar: 'https://yt3.ggpht.com/DlonwAbjV8PAlRxf7uOM8hKnx3jCliqwoBNPs-4mWX8kcuO_sIDyO_WReyFg39-nkoSsyx_KYw=s240-c-k-c0x00ffffff-no-rj',
+        subs: 67700, views: 14663705, videos: 253, growth: 1500,
+        desc: 'Konten Shorts — highlight & klip terbaik dari ekspedisi outdoor',
+        isNew: false,
+      },
+      {
+        name: 'JDTV Family & Friends',
+        handle: '@jdtvfamilyandfriends',
+        url: 'https://www.youtube.com/@jdtvfamilyandfriends',
+        avatar: 'https://yt3.ggpht.com/Tf_uZeF-NjL7AX4rORO-DS-hfjfquzmhvyCWmiFfnzF13XMvbuvhVB-GmRYMh_0iti-5RoU-XA=s240-c-k-c0x00ffffff-no-rj',
+        subs: 25000, views: 4080655, videos: 54, growth: 1200,
+        desc: 'Kehidupan keluarga, momen bersama sahabat, dan sisi personal kreator',
+        isNew: false,
+      },
+      {
+        name: 'Mas Topan',
+        handle: '@Mas_Topan',
+        url: 'https://www.youtube.com/@Mas_Topan',
+        avatar: 'https://yt3.ggpht.com/RH-i81a2JnnkqgYgW-kdmwhqxFLQjE2tjybQBcIbZYqNkCB152u_OZ6FV2kVboRllVzf-tlT=s240-c-k-c0x00ffffff-no-rj',
+        subs: 22500, views: 2091717, videos: 107, growth: 700,
+        desc: 'Channel afiliasi — outdoor, kuliner, dan gaya hidup Sumatera',
+        isNew: false,
+      },
+      {
+        name: 'Ketua Lapar',
+        handle: '@KetuaLapar',
+        url: 'https://www.youtube.com/@KetuaLapar',
+        avatar: 'https://yt3.ggpht.com/EgcOOtC1TDkUuVZa63J1smnNl0n9fIaMY_jwKlcurww3kt6-p7ZVlDDfMG_wYfBp_DPDrRdAbqI=s240-c-k-c0x00ffffff-no-rj',
+        subs: 9140, views: 354998, videos: 10, growth: 1250,
+        desc: 'Channel baru — kuliner & petualangan, tumbuh cepat sejak Des 2025',
+        isNew: true,
+      },
+    ],
     collabs: [
       { icon:'🎣', title:'Peralatan Outdoor',  desc:'Pancing, camping, survival, dan navigasi alam bebas' },
       { icon:'🌿', title:'Produk Alam',         desc:'Suplemen herbal, madu, dan produk alami Sumatera' },
@@ -930,6 +1008,48 @@ const LANG = {
     updated_cache_err:'Old cached data (API error) · Try refreshing later',
     hero_tagline: 'An outdoor & river adventure channel capturing the authentic beauty of nature — from fishing in the remote interior to exploring waterways never before documented.',
     hero_badges: ['🌿 Outdoor & Nature', '🚣 River Adventure', '🎣 Fishing', '🏕️ Camping'],
+    sec_channels: 'Other channels in the JDTV network',
+    channels_desc: 'Beyond the main JemoDusunTV channel, we manage a growing network of channels reaching wider audiences — from Shorts content and family vlogs to affiliated creator channels.',
+    channels_btn: 'Open Channel ↗',
+    channels_growth: '+{n} subs/month',
+    channels: [
+      {
+        name: 'JemoDusunTV Shorts',
+        handle: '@jemodusuntvshorts',
+        url: 'https://www.youtube.com/@jemodusuntvshorts',
+        avatar: 'https://yt3.ggpht.com/DlonwAbjV8PAlRxf7uOM8hKnx3jCliqwoBNPs-4mWX8kcuO_sIDyO_WReyFg39-nkoSsyx_KYw=s240-c-k-c0x00ffffff-no-rj',
+        subs: 67700, views: 14663705, videos: 253, growth: 1500,
+        desc: 'Shorts content — highlights & best clips from outdoor expeditions',
+        isNew: false,
+      },
+      {
+        name: 'JDTV Family & Friends',
+        handle: '@jdtvfamilyandfriends',
+        url: 'https://www.youtube.com/@jdtvfamilyandfriends',
+        avatar: 'https://yt3.ggpht.com/Tf_uZeF-NjL7AX4rORO-DS-hfjfquzmhvyCWmiFfnzF13XMvbuvhVB-GmRYMh_0iti-5RoU-XA=s240-c-k-c0x00ffffff-no-rj',
+        subs: 25000, views: 4080655, videos: 54, growth: 1200,
+        desc: 'Family life, moments with friends, and the personal side of the creators',
+        isNew: false,
+      },
+      {
+        name: 'Mas Topan',
+        handle: '@Mas_Topan',
+        url: 'https://www.youtube.com/@Mas_Topan',
+        avatar: 'https://yt3.ggpht.com/RH-i81a2JnnkqgYgW-kdmwhqxFLQjE2tjybQBcIbZYqNkCB152u_OZ6FV2kVboRllVzf-tlT=s240-c-k-c0x00ffffff-no-rj',
+        subs: 22500, views: 2091717, videos: 107, growth: 700,
+        desc: 'Affiliated channel — outdoor, culinary, and Sumatran lifestyle content',
+        isNew: false,
+      },
+      {
+        name: 'Ketua Lapar',
+        handle: '@KetuaLapar',
+        url: 'https://www.youtube.com/@KetuaLapar',
+        avatar: 'https://yt3.ggpht.com/EgcOOtC1TDkUuVZa63J1smnNl0n9fIaMY_jwKlcurww3kt6-p7ZVlDDfMG_wYfBp_DPDrRdAbqI=s240-c-k-c0x00ffffff-no-rj',
+        subs: 9140, views: 354998, videos: 10, growth: 1250,
+        desc: 'New channel — food & adventure, growing fast since Dec 2025',
+        isNew: true,
+      },
+    ],
     collabs: [
       { icon:'🎣', title:'Outdoor Gear',       desc:'Fishing, camping, survival & wilderness navigation equipment' },
       { icon:'🌿', title:'Natural Products',    desc:'Herbal supplements, honey, and Sumatran natural goods' },
@@ -975,6 +1095,7 @@ function applyLang(lang) {
   // Rebuild dynamic sections
   renderHeroDynamic();
   renderCollab();
+  renderChannels();
   renderContact();
   // Re-render stats dengan data yang sudah ada
   if (window._ytSubs !== undefined) {
@@ -1071,6 +1192,43 @@ function renderCollab() {
     </div>`).join('');
 }
 
+function fmtSubs(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1).replace('.0','') + ' JT';
+  if (n >= 1000) return (n/1000).toFixed(1).replace('.0','') + 'K';
+  return n.toLocaleString();
+}
+function fmtViews(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1).replace('.0','') + ' JT';
+  if (n >= 1000) return Math.round(n/1000) + 'K';
+  return n.toLocaleString();
+}
+
+function renderChannels() {
+  const t = LANG[currentLang];
+  const el = document.getElementById('channel-grid');
+  if (!el || !t.channels) return;
+  el.innerHTML = t.channels.map(ch => `
+    <a class="channel-card" href="${ch.url}" target="_blank" rel="noopener noreferrer">
+      <img class="channel-avatar" src="${ch.avatar}" alt="${ch.name}" loading="lazy">
+      <div class="channel-info">
+        <div class="channel-name">
+          ${ch.name}
+          ${ch.isNew ? `<span class="channel-new-badge">🆕 NEW</span>` : ''}
+        </div>
+        <div class="channel-handle">${ch.handle}</div>
+        <div class="channel-stats">
+          <div class="channel-stat">👥 <strong>${fmtSubs(ch.subs)}</strong></div>
+          <div class="channel-stat">👁️ <strong>${fmtViews(ch.views)}</strong></div>
+          <div class="channel-stat">🎬 <strong>${ch.videos}</strong></div>
+        </div>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="channel-growth">↑ +${fmtSubs(ch.growth)}/bln</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5">${ch.desc}</div>
+      </div>
+    </a>`).join('');
+}
+
 function renderContact() {
   const t = LANG[currentLang];
   document.getElementById('contact-grid').innerHTML = `
@@ -1154,6 +1312,7 @@ document.getElementById('btn-en').classList.toggle('active', currentLang === 'en
 // Apply semua terjemahan sekaligus via applyLang
 applyLang(currentLang);
 renderHero();
+renderChannels();
 fetchYT();
 </script>
 </body>
